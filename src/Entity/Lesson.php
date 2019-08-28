@@ -2,6 +2,8 @@
 
 namespace App\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 use Symfony\Component\Validator\Constraints as Assert;
@@ -110,6 +112,16 @@ class Lesson
      * @ORM\JoinColumn(nullable=false)
      */
     private $dance;
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Member", mappedBy="lesson")
+     */
+    private $members;
+
+    public function __construct()
+    {
+        $this->members = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -297,6 +309,37 @@ class Lesson
     public function setDance(?Dance $dance): self
     {
         $this->dance = $dance;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Member[]
+     */
+    public function getMembers(): Collection
+    {
+        return $this->members;
+    }
+
+    public function addMember(Member $member): self
+    {
+        if (!$this->members->contains($member)) {
+            $this->members[] = $member;
+            $member->setLesson($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMember(Member $member): self
+    {
+        if ($this->members->contains($member)) {
+            $this->members->removeElement($member);
+            // set the owning side to null (unless already changed)
+            if ($member->getLesson() === $this) {
+                $member->setLesson(null);
+            }
+        }
 
         return $this;
     }
