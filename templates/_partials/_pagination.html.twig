@@ -1,0 +1,18 @@
+<ul class="uk-pagination uk-flex-center" uk-margin>
+
+    <li class="{% if page == 1 %}uk-disabled {% endif %}">
+        <a href="{{ path(route,{'page': page -1})}}">
+            <span uk-pagination-previous></span>
+        </a>
+    </li>
+    {% for i in 1..pages %}
+        <li class="{% if page == i %}uk-active{% endif %}">
+            <a href="{{ path(route,{'page':i})}}">{{i}}</a>
+        </li>
+    {% endfor %}
+    <li class="{% if page == pages %}uk-disabled {% endif %}">
+        <a href="{{ path(route,{'page': page +1})}}">
+            <span uk-pagination-next></span>
+        </a>
+    </li>
+</ul>

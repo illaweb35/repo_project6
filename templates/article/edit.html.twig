@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Article
+{% endblock %}
+{# appel du formulaire #}
+{% form_theme form '_partials/_collection.html.twig' %}
+
+{% block body %}
+
+    <section class="uk-section">
+
+        <div class="uk-container uk-margin-top">
+            <h1 class="uk-heading-line uk-text-center">
+                Modification de l'article</h1>
+        </div>
+        <div class="uk-container uk-margin-top uk-container-small">
+            {{ include('article/_form.html.twig') }}
+            <div class="uk-grid uk-grid-small uk-grid-divider uk-margin-top uk-margin-bottom" uk-grid>
+                <div>
+                    <a class="uk-button uk-button-text" href="{{ path('article_index') }}">
+                        <span uk-icon="icon: arrow-left"></span>
+                        retour à la liste</a>
+                </div>
+                <div>
+                    <a href="#delete-confirm" uk-toggle>
+                        <span uk-icon="icon: trash"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    {{ include('article/_delete_form.html.twig')}}
+
+{% endblock %}
+{% block javascripts %}
+    {{parent()}}
+    <script src="{{asset('js/addImages.js')}}"></script>
+{% endblock %}

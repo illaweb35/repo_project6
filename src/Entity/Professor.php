@@ -123,6 +123,11 @@ class Professor
      */
     private $dances;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $imageCaption;
+
     public function __construct()
     {
         $this->dances = new ArrayCollection();
@@ -320,5 +325,25 @@ class Professor
     public function setCreatedAtValue()
     {
         $this->createdAt = new \DateTime();
+    }
+    /**
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function setUpdatedAtValue()
+    {
+        $this->updatedAt = new \DateTime();
+    }
+
+    public function getImageCaption(): ?string
+    {
+        return $this->imageCaption;
+    }
+
+    public function setImageCaption(?string $imageCaption): self
+    {
+        $this->imageCaption = $imageCaption;
+
+        return $this;
     }
 }

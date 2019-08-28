@@ -164,6 +164,11 @@ class Member
      */
     private $lesson;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $imageCaption;
+
 
 
     public function getId(): ?int
@@ -405,6 +410,18 @@ class Member
     public function setLesson(?Lesson $lesson): self
     {
         $this->lesson = $lesson;
+
+        return $this;
+    }
+
+    public function getImageCaption(): ?string
+    {
+        return $this->imageCaption;
+    }
+
+    public function setImageCaption(?string $imageCaption): self
+    {
+        $this->imageCaption = $imageCaption;
 
         return $this;
     }

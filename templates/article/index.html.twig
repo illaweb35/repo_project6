@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article index
+{% endblock %}
+
+{% block body %}
+    <section class="uk-section">
+        <h1 class="uk-heading-line uk-text-center">Liste des articles</h1>
+        <div class="uk-float-right ">
+            {% if is_granted("ROLE_USER") %}
+                <a class="uk-button uk-button-primary uk-margin" href="{{path('article_new')}}">Création d'un article</a>
+            {% endif %}
+        </div>
+
+        <!-- filter article -->
+        <div class="uk-container uk-margin-top">
+            <div uk-filter="target: .js-filter">
+                <div class="uk-grid-small uk-grid-divider uk-child-width-auto" uk-grid>
+                    <div>
+                        <ul class="uk-subnav uk-subnav-pill" uk-margin>
+                            <li class="uk-active uk-light" uk-filter-control>
+                                <a href="#">Tous</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <ul class="uk-subnav uk-subnav-pill" uk-margin>
+                            {% for category in categories %}
+                                <li uk-filter-control="[data-dance='{{category.name}}']">
+                                    {% if category.name == category.getSameName %}
+                                        <a href="#" style="color:{{category.colorName}}">{{category.name}}</a>
+                                    {% else %}
+                                        <a href="#">{{category.name}}</a>
+                                    {% endif %}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                <ul class="js-filter uk-child-width-1-2@s uk-child-width-1-3@m uk-child-width-1-4@l" uk-grid uk-pagination uk-scrollspy="cls: uk-animation-fade; target: .uk-card; delay: 100; repeat: true">
+                    {% for article in articles %}
+                        <li class="uk-active" data-dance="{{article.category.name}}">
+                            <div class="uk-card uk-card-default">
+                                <div class="uk-card-header">
+                                    <div class="uk-grid-small uk-flex-middle" uk-grid>
+                                        <div class="uk-width-auto">
+                                            <a href="{{path('article_show',{'slug':article.slug})}}">
+                                                <img class="uk-border-rounded" alt="{{article.imageCaption}}" height="80" data-src="{{article.image}}" width="80" uk-img></a>
+                                        </div>
+                                        <div class="uk-width-expand">
+                                            {% if article.category.name == article.category.getSameName %}
+                                                <h4 class="uk-card-title uk-margin-remove-bottom" style="color:{{article.category.colorName}}">
+                                                    <span uk-icon="icon:tag"></span>
+                                                    {{article.category}}</h4>
+                                            {% else %}
+                                                <h4 class="uk-card-title uk-margin-remove-bottom">
+                                                    <span uk-icon="icon:tag"></span>
+                                                    {{article.category}}</h4>
+                                            {% endif %}
+                                            <p class="uk-text-meta uk-margin-remove-top">
+                                                {% if article.updatedAt > article.createdAt %}
+                                                    <time datetime="2016-04-01T19:00">
+                                                        modifier le&nbsp;{{article.createdAt|date('d M Y')}}</time>
+                                                {% else %}
+                                                    <time datetime="2016-04-01T19:00">
+                                                        Crée le&nbsp;{{article.createdAt|date('d M Y')}}</time>
+                                                {% endif %}
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="uk-card-body">
+                                    <p class="uk-text-muted">{{article.subTitle}}
+                                    </p>
+                                    <p>{{article.content|slice(0,120)|raw}}...</p>
+                                </div>
+                                <div class="uk-card-footer">
+                                    <div class="uk-grid-small" uk-grid>
+                                        <a class="uk-button uk-button-text" href="{{path('article_show',{'slug':article.slug})}}">Lire +</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+{% block javascripts %}
+    {{parent()}}
+    <script src="{{asset('js/card_notification.js')}}"></script>
+{% endblock %}

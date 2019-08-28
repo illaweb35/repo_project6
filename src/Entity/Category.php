@@ -2,10 +2,10 @@
 
 namespace App\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
@@ -67,6 +67,11 @@ class Category
         $this->name = $name;
 
         return $this;
+    }
+
+    public function getSameName()
+    {
+        return $this->name;
     }
 
     public function getColorName(): ?string
@@ -150,5 +155,14 @@ class Category
         }
 
         return $this;
+    }
+    /**
+     * Convertion to string
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return strval($this->name);
     }
 }

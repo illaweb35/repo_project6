@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Service\Slugger;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 use Symfony\Component\HttpFoundation\File\File;
@@ -50,7 +51,7 @@ class Article
      *      maxMessage = "Your subtitle cannot be longer than {{ limit }} characters"
      * )
      */
-    private $subtitle;
+    private $subTitle;
 
     /**
      * @ORM\Column(type="text", nullable=true)
@@ -84,6 +85,11 @@ class Article
      */
     private $category;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $imageCaption;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -113,14 +119,14 @@ class Article
         return $this;
     }
 
-    public function getSubtitle(): ?string
+    public function getSubTitle(): ?string
     {
-        return $this->subtitle;
+        return $this->subTitle;
     }
 
-    public function setSubtitle(string $subtitle): self
+    public function setSubTitle(string $subTitle): self
     {
-        $this->subtitle = $subtitle;
+        $this->subTitle = $subTitle;
 
         return $this;
     }
@@ -218,5 +224,43 @@ class Article
         $this->category = $category;
 
         return $this;
+    }
+
+    /**
+     * Initialize Slug !
+     *
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     *
+     * @return void
+     */
+    public function initializeSlug()
+    {
+        if (empty($this->slug)) {
+            $slugy = new Slugger();
+            $this->slug = $slugy->slugify($this->title);
+        }
+    }
+
+    public function getImageCaption(): ?string
+    {
+        return $this->imageCaption;
+    }
+
+    public function setImageCaption(?string $imageCaption): self
+    {
+        $this->imageCaption = $imageCaption;
+
+        return $this;
+    }
+
+    /**
+     * Convertion to string
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return strval($this->title);
     }
 }

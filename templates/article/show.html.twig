@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article
+{% endblock %}
+
+{% block body %}
+
+    <section class="uk-section">
+        <div class="uk-container">
+            <article class="uk-article">
+                <h1 class="uk-article-title">
+                    <a class="uk-link-reset" href="">
+                        Article :
+                        {{article.title}}</a>
+                </h1>
+                <p class="uk-article-meta">Dans la catégorie
+                    <span uk-icon="icon:tag; ratio:1.5"></span>
+                    {{article.category}}
+                </p>
+
+                <img class="uk-border-rounded" data-src="{{article.image}}" alt="{{article.imageCaption}}" uk-img>
+                <p class="uk-text-lead">{{article.subTitle}}</p>
+
+                <p>{{article.content}}</p>
+
+                <hr class="uk-divider-icon">
+                <div class="uk-grid-small uk-grid-divider" uk-grid>
+                    <a class="uk-button uk-button-link" href="javascript:history.go(-1)" uk-icon="icon: arrow-left;ratio:1.5" uk-tooltip="title: Page précédente"></a>
+                    <a class="uk-button uk-button-text" href="{{ path('article_index') }}">retour à la liste</a>
+                    {% if is_granted("ROLE_USER") %}
+
+                        <a class="uk-button uk-button-link" href="{{ path('article_edit', {'slug': article.slug}) }}" uk-icon="icon: file-edit"></a>
+
+                        <a href="#delete-confirm" uk-toggle>
+                            <span uk-icon="icon: trash"></span>
+                        </a>
+
+                    {% endif %}
+
+                </div>
+            </article>
+        </section>
+        {{ include('article/_delete_form.html.twig') }}
+    {% endblock %}
