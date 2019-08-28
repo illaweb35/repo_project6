@@ -1,4 +1,80 @@
 {{ form_start(form) }}
+
+<form action="">
+    <fieldset class="uk-fieldset">
+
+        <div class="uk-margin">
+            {{form_row(form.image)}}
+            <div class="uk-form-danger">
+                {{form_errors(form.image)}}
+            </div>
+
+        </div>
+        <div class="uk-margin">
+            {{form_row(form.imageCaption)}}
+            <div class="uk-form-danger">
+                {{form_errors(form.imageCaption)}}
+            </div>
+            <div class="uk-grid-divider uk-margin" uk-grid>
+                <div>
+                    <label class="uk-form-label">Prénom</label>
+                    {{ form_widget(form.firstName) }}
+                    <div class="uk-form-danger">
+                        {{form_errors(form.firstName)}}</div>
+                </div>
+                <div>
+                    <label class="uk-form-label">Nom
+                    </label>
+                    {{ form_widget(form.lastName) }}
+                    <div class="uk-form-danger">
+                        {{form_errors(form.lastName)}}</div>
+                </div>
+            </div>
+            <div class="uk-grid-divider uk-margin" uk-grid>
+                <div>
+                    <label class="uk-form-label">email</label>
+                    {{ form_widget(form.email) }}
+                    <div class="uk-form-danger">
+                        {{form_errors(form.email)}}</div>
+                </div>
+                <div>
+                    <label class="uk-form-label">Téléphone fixe</label>
+                    {{ form_widget(form.phoneNumber) }}
+                    <div class="uk-form-danger">
+                        {{form_errors(form.phoneNumber)}}</div>
+                </div>
+                <div>
+                    <label class="uk-form-label">Téléphone mobile</label>
+                    {{ form_widget(form.mobileNumber) }}
+                    <div class="uk-form-danger">
+                        {{form_errors(form.mobileNumber)}}</div>
+                </div>
+            </div>
+            <div class="uk-margin">
+                <label class="uk-form-label">rue</label>
+                {{ form_widget(form.address) }}
+                <div class="uk-form-danger">
+                    {{form_errors(form.address)}}</div>
+            </div>
+            <div class="uk-grid-divider uk-margin" uk-grid>
+                <div>
+                    <label class="uk-form-label">Code postal</label>
+                    {{ form_widget(form.postCode) }}
+                    <div class="uk-form-danger">
+                        {{form_errors(form.postCode)}}</div>
+                </div>
+                <div>
+                    <label class="uk-form-label">Ville</label>
+                    {{ form_widget(form.city) }}
+                    <div class="uk-form-danger">
+                        {{form_errors(form.city)}}</div>
+                </div>
+            </div>
+
+
+        </fieldset>
+
+    </form>
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
-{{ form_end(form) }}
+    <button class="uk-button uk-button-primary">{{ button_label|default('Créer') }}</button>
+    {{ form_end(form) }}

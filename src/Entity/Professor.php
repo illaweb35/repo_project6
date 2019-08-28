@@ -301,6 +301,14 @@ class Professor
         return $this;
     }
 
+
+    /**
+     * Upload Manualy
+     *
+     * @param \Symfony\Component\HttpFoundation\File\File $image
+     *
+     * @return void
+     */
     public function setImageFile(File $image = null)
     {
         $this->imageFile = $image;
@@ -312,11 +320,6 @@ class Professor
             // if 'updatedAt' is not defined in your entity, use another property
             $this->updatedAt = new \DateTime('now');
         }
-    }
-
-    public function getImageFile()
-    {
-        return $this->imageFile;
     }
 
     /**

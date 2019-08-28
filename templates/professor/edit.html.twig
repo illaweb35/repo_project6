@@ -1,13 +1,27 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Professor{% endblock %}
+{% block title %}Edit Professor
+{% endblock %}
 
 {% block body %}
-    <h1>Edit Professor</h1>
+    <section class="uk-section">
+        <div class="uk-container">
+            <h1>Modification d'un Professeur</h1>
 
-    {{ include('professor/_form.html.twig', {'button_label': 'Update'}) }}
+            {{ include('professor/_form.html.twig', {'button_label': 'Modifier'}) }}
+            <div class="uk-grid uk-grid-small uk-grid-divider uk-margin-top uk-margin-bottom" uk-grid>
+                <div>
+                    <a class="uk-button uk-button-text" href="{{ path('professor_index') }}">
+                        <span uk-icon="icon: arrow-left"></span>
+                        retour à la liste</a>
+                </div>
+                <div>
+                    <a href="#delete-confirm" uk-toggle>
+                        <span uk-icon="icon: trash"></span>
+                    </a>
+                </div>
+            </div>
 
-    <a href="{{ path('professor_index') }}">back to list</a>
 
-    {{ include('professor/_delete_form.html.twig') }}
-{% endblock %}
+            {{ include('professor/_delete_form.html.twig') }}
+        {% endblock %}

@@ -1,11 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Professor{% endblock %}
+{% block title %}New Professor
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Professor</h1>
+    <section class="uk-section">
+        <div class="uk-container">
+            <h1>Création d'un Professeur</h1>
 
-    {{ include('professor/_form.html.twig') }}
+            {{ include('professor/_form.html.twig') }}
+            <div class="uk-grid uk-grid-small uk-grid-divider uk-margin-top uk-margin-bottom" uk-grid>
+                <div>
+                    <a class="uk-button uk-button-text" href="{{ path('professor_index') }}">
+                        <span uk-icon="icon: arrow-left"></span>
+                        retour à la liste</a>
+                </div>
+            </div>
+        </div>
 
-    <a href="{{ path('professor_index') }}">back to list</a>
-{% endblock %}
+    </div>
+</section>{% endblock %}

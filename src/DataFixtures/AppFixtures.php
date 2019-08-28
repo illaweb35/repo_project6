@@ -75,7 +75,7 @@ class AppFixtures extends Fixture
         $manager->persist($professor);
 
         /* Dance */
-        for ($d = 1; $d <= mt_rand(1, 3); $d++) {
+        for ($d = 1; $d <= mt_rand(2, 5); $d++) {
             $dance = new Dance();
             $dance->setTitle($faker->word)
                 ->setSubTitle($faker->sentence)
