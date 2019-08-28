@@ -86,6 +86,12 @@ class Dance
      */
     private $lessons;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Professor", inversedBy="dances")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $professor;
+
     public function __construct()
     {
         $this->lessons = new ArrayCollection();
@@ -242,6 +248,18 @@ class Dance
                 $lesson->setDance(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getProfessor(): ?Professor
+    {
+        return $this->professor;
+    }
+
+    public function setProfessor(?Professor $professor): self
+    {
+        $this->professor = $professor;
 
         return $this;
     }
