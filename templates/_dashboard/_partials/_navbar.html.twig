@@ -1,0 +1,69 @@
+<div class="uk-position-top">
+    <div class="uk-sticky uk-sticky-fixed " style="position:fixed;top:0px;" uk-sticky="sel-target: .uk-navbar-container;cls-active: uk-navbar-stiky;bottom: #sticky-dropbar-push">
+        <nav class="uk-navbar-container  uk-navbar-dark" data-uk-navbar>
+            <div class="uk-navbar-left">
+                <div class="uk-navbar-item">
+                    <a class="uk-logo brand" href="{{ path('dashboard')}}"><img alt="Logo dashboard" src="{{asset('img/dashboard.png')}}">Tableau de bord
+                    </a>
+                </div>
+            </div>
+            <div class="uk-navbar-right">
+                <ul class="uk-navbar-nav">
+                    <li class="uk-visible@m">
+                        <a data-uk-icon="home" href="{{path('home')}}"></a>
+                    </li>
+                    <li class="uk-visible@m">
+                        <a href="{{ path('dance_index')}}">Danses</a>
+                    </li>
+                    <li class="uk-visible@m">
+                        <a href="{{path('lesson_index')}}">Leçons</a>
+                    </li>
+                    <li class="uk-visible@m">
+                        <a href="{{path('article_index')}}">Articles</a>
+                    </li>
+
+                    <li class="uk-visible@m">
+                        <a href="{{path('prospect_index')}}">Contact</a>
+                    </li>
+                    <li>
+                        <a href="{{ path('dashboard') }}">
+                            <span uk-icon="icon: user"></span>
+                        </a>
+                    </li>
+                    <li class="uk-hidden@m">
+                        <a class="uk-navbar-toggle" data-uk-navbar-toggle-icon data-uk-toggle href="#offcanvas-nav"></a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
+<!-- OFFCANVAS -->
+<div data-uk-offcanvas="flip: true; overlay: false" id="offcanvas-nav">
+    <div class="uk-offcanvas-bar uk-offcanvas-bar-animation uk-offcanvas-slide">
+        <button class="uk-offcanvas-close uk-close uk-icon" data-uk-close type="button"></button>
+        <ul class="uk-nav uk-nav-default">
+            <li>
+                <a data-uk-icon="home" href="{{path('home')}}"></a>
+            </li>
+            <li>
+                <a href="{{path('dance_index')}}">Danses</a>
+            </li>
+            <li>
+                <a href="{{path('lesson_index')}}">Lessons</a>
+            </li>
+            <li>
+                <a href="{{path('article_index')}}">article</a>
+            </li>
+
+            <li>
+                <a href="{{path('prospect_index')}}">Contact</a>
+            </li>
+            <li>
+                <a href="{{ path('dashboard') }}">
+                    <span uk-icon="icon: user"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

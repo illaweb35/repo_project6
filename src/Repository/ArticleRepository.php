@@ -38,4 +38,20 @@ class ArticleRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
+
+    /**
+     * Find the last Article
+     *
+     * @param [type] $value
+     *
+     * @return void
+     */
+    public function findByLast($value)
+    {
+        return $this->createQueryBuilder('a')
+            ->orderBy('a.id', 'DESC')
+            ->setMaxResults($value)
+            ->getQuery()
+            ->getResult();
+    }
 }

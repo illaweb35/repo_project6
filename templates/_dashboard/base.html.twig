@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta
+        content="width=device-width, initial-scale=1" name="viewport">
+        <!-- favicons -->
+        <link href="{{asset('img/favicon/apple-icon-57x57.png')}}" rel="apple-touch-icon" sizes="57x57">
+        <link href="{{asset('img/favicon/apple-icon-60x60.png')}}" rel="apple-touch-icon" sizes="60x60">
+        <link href="{{asset('img/favicon/apple-icon-72x72.png')}}" rel="apple-touch-icon" sizes="72x72">
+        <link href="{{asset('img/favicon/apple-icon-76x76.png')}}" rel="apple-touch-icon" sizes="76x76">
+        <link href="{{asset('img/favicon/apple-icon-114x114.png')}}" rel="apple-touch-icon" sizes="114x114">
+        <link href="{{asset('img/favicon/apple-icon-120x120.png')}}" rel="apple-touch-icon" sizes="120x120">
+        <link href="{{asset('img/favicon/apple-icon-144x144.png')}}" rel="apple-touch-icon" sizes="144x144">
+        <link href="{{asset('img/favicon/apple-icon-152x152.png')}}" rel="apple-touch-icon" sizes="152x152">
+        <link href="{{asset('img/favicon/apple-icon-180x180.png')}}" rel="apple-touch-icon" sizes="180x180">
+        <link href="{{asset('img/favicon/android-icon-192x192.png')}}" rel="icon" sizes="192x192" type="image/png">
+        <link href="{{asset('img/favicon/favicon-32x32.png')}}" rel="icon" sizes="32x32" type="image/png">
+        <link href="{{asset('img/favicon/favicon-96x96.png')}}" rel="icon" sizes="96x96" type="image/png">
+        <link href="{{asset('img/favicon/favicon-16x16.png')}}" rel="icon" sizes="16x16" type="image/png">
+        <link href="{{asset('img/favicon/manifest.json')}}" rel="manifest">
+        <browserconfig>
+            <msapplication>
+                <tile>
+                    <square70x70logo src="{{asset('img/favicon/ms-icon-70x70.png')}}"/>
+                    <square150x150logo src="{{asset('img/favicon/ms-icon-150x150.png')}}"/>
+                    <square310x310logo src="{{asset('img/favicon/ms-icon-310x310.png')}}"/>
+                </tile>
+            </msapplication>
+        </browserconfig>
+        <meta content="#ffffff" name="msapplication-TileColor">
+        <meta content="/ms-icon-144x144.png" name="msapplication-TileImage">
+        <meta
+        content="#ffffff" name="theme-color">
+        <!-- Block CSS -->
+        {% block stylesheets %}
+            <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+            <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.18.0/ui/trumbowyg.min.css" integrity="sha256-X5UWaGp+SiusJ9TA2ShymJz5VPE+oTl88TNI47fqOTs=" rel="stylesheet"/>
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.7/css/uikit.min.css" rel="stylesheet"/>
+            <link rel="stylesheet" href="{{asset('css/styles.css')}}">
+        {% endblock %}
+
+        <!-- Title page-head -->
+        <title>DA_Bréal _
+            {% block title %}{% endblock %}
+        </title>
+
+    </head>
+    <body>
+        <!-- Content -->
+        {{ include('_dashboard/_partials/_navbar.html.twig')}}
+        {% block body %}{% endblock %}
+        {{include('_partials/_footer.html.twig')}}
+        <!-- Block javascripts -->
+        {% block javascripts %}
+            <!-- Jquery -->
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            <script>
+                window.jQuery || document.write( '<script src="js/vendor/jquery-3.3.1.min.js"><\/script>' );
+            </script>
+
+            <!-- Editor trumbowyg -->
+            <script crossorigin="anonymous" integrity="sha256-9fPnxiyJ+MnhUKSPthB3qEIkImjaWGEJpEOk2bsoXPE=" src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.18.0/trumbowyg.min.js"></script>
+            <!-- Plugins trumbowyg -->
+            <script crossorigin="anonymous" integrity="sha256-oSbMq1h4jLg+Mmtu9DxrooTyUuzfoAZNeJwc/1amrCU=" src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.18.0/plugins/base64/trumbowyg.base64.min.js"></script>
+            <script crossorigin="anonymous" integrity="sha256-QNHDMDCGphkKiCj0juja+bE2I+xqCxk3MUHPm+qjJQc=" src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.18.0/langs/fr.min.js"></script>
+            <script src="{{asset('js/editor.js')}}"></script>
+            <!-- UIkit -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.7/js/uikit.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.7/js/uikit-icons.min.js"></script>
+
+        {% endblock %}
+    </body>
+</html>

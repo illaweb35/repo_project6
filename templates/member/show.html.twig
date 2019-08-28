@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Member
+{% endblock %}
+
+{% block body %}
+    <h1>Member</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ member.id }}</td>
+            </tr>
+            <tr>
+                <th>UserFirstName</th>
+                <td>{{ member.userFirstName }}</td>
+            </tr>
+            <tr>
+                <th>UserLastName</th>
+                <td>{{ member.userLastName }}</td>
+            </tr>
+            <tr>
+                <th>Birthday</th>
+                <td>{{ member.birthday ? member.birthday|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Civility</th>
+                <td>{{ member.civility }}</td>
+            </tr>
+            <tr>
+                <th>FirstName</th>
+                <td>{{ member.firstName }}</td>
+            </tr>
+            <tr>
+                <th>LastName</th>
+                <td>{{ member.lastName }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ member.email }}</td>
+            </tr>
+            <tr>
+                <th>Phone</th>
+                <td>{{ member.phoneNumber }}</td>
+            </tr>
+            <tr>
+                <th>Mobile</th>
+                <td>{{ member.mobileNumber }}</td>
+            </tr>
+            <tr>
+                <th>Address</th>
+                <td>{{ member.address }}</td>
+            </tr>
+            <tr>
+                <th>PostCode</th>
+                <td>{{ member.postCode }}</td>
+            </tr>
+            <tr>
+                <th>City</th>
+                <td>{{ member.city }}</td>
+            </tr>
+            <tr>
+                <th>Infos</th>
+                <td>{{ member.infos }}</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <a href="{{ path('member_index') }}">back to list</a>
+
+    <a href="{{ path('member_edit', {'id': member.id}) }}">edit</a>
+
+    {{ include('member/_delete_form.html.twig') }}
+{% endblock %}

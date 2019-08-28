@@ -119,7 +119,7 @@ class AppFixtures extends Fixture
                         ->setPhoneNumber($faker->phoneNumber)
                         ->setMobileNumber($faker->phoneNumber)
                         ->setAddress($faker->streetAddress)
-                        ->setPostcode($faker->postcode)
+                        ->setPostCode($faker->postcode)
                         ->setCity($faker->city)
                         ->setInfos($faker->paragraph(5))
                         ->setLesson($lesson)

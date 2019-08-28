@@ -136,7 +136,7 @@ class Member
      *      minMessage = "Your post code must be at least {{ limit }} characters long",
      *      maxMessage = "Your post code cannot be longer than {{ limit }} characters")
      */
-    private $postcode;
+    private $postCode;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -296,14 +296,14 @@ class Member
         return $this;
     }
 
-    public function getPostcode(): ?string
+    public function getPostCode(): ?string
     {
-        return $this->postcode;
+        return $this->postCode;
     }
 
-    public function setPostcode(?string $postcode): self
+    public function setPostCode(?string $postCode): self
     {
-        $this->postcode = $postcode;
+        $this->postCode = $postCode;
 
         return $this;
     }

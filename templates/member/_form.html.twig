@@ -1,0 +1,112 @@
+{{ form_start(form) }}
+<form action="">
+    <fiedlset class="uk-fieldset">
+        <h4>Elève qui s'incrit à une danse</h4>
+        <div class="uk-grid-divider" uk-grid>
+            <div>
+                <label class="uk-form-label">Prénom de l'eleve</label>
+                {{ form_widget(form.userFirstName) }}
+                <div class="uk-form-danger">
+                    {{form_errors(form.userFirstName)}}</div>
+            </div>
+            <div>
+                <label class="uk-form-label">Nom de l'eleve</label>
+                {{ form_widget(form.userLastName) }}
+                <div class="uk-form-danger">
+                    {{form_errors(form.userLastName)}}</div>
+            </div>
+            <div>
+                <label class="uk-form-label">Date de naissance</label>
+                {{ form_widget(form.birthday) }}
+                <div class="uk-form-danger">
+                    {{form_errors(form.birthday)}}</div>
+            </div>
+        </div>
+        <hr class="uk-divider-icon">
+        <h4>Parent ou responsbale de l'élève
+        </h4>
+        <p>( repporter les informations ci-dessus  si il s'agit de la même personne)</p>
+        <div class="uk-grid-divider" uk-grid>
+            <div>
+                <label class="uk-form-label">Civilité</label>
+                {{ form_widget(form.civility) }}
+                <div class="uk-form-danger">
+                    {{form_errors(form.civility)}}</div>
+            </div>
+            <div>
+                <label class="uk-form-label">Nom du parent ou responsable</label>
+                {{ form_widget(form.lastName) }}
+                <div class="uk-form-danger">
+                    {{form_errors(form.lastName)}}</div>
+            </div>
+            <div>
+                <label class="uk-form-label">Prénom du parent ou responsable</label>
+                {{ form_widget(form.firstName) }}
+                <div class="uk-form-danger">
+                    {{form_errors(form.firstName)}}</div>
+            </div>
+
+            <div>
+                <label class="uk-form-label">Email</label>
+                {{ form_widget(form.email) }}
+                <div class="uk-form-danger">
+                    {{form_errors(form.email)}}</div>
+            </div>
+            <div>
+                <label class="uk-form-label">Téléphone</label>
+                {{ form_widget(form.phoneNumber) }}
+                <div class="uk-form-danger">
+                    {{form_errors(form.phoneNumber)}}</div>
+
+            </div>
+            <div>
+                <label class="uk-form-label">mobile</label>
+                {{ form_widget(form.mobileNumber) }}
+
+                <div class="uk-form-danger">
+                    {{form_errors(form.mobileNumber)}}</div>
+
+            </div>
+        </div>
+        <div class="uk-margin">
+            <label class="uk-form-label">Addres</label>
+            {{ form_widget(form.address) }}
+            <div class="uk-form-danger">
+                {{form_errors(form.address)}}</div>
+        </div>
+        <div class="uk-grid-divider" uk-grid>
+            <div class="uk-width-auto@m">
+                <label class=" uk-form-label">Code postale</label>
+                {{ form_widget(form.postCode) }}
+                <div class="uk-form-danger">
+                    {{form_errors(form.postCode)}}</div>
+            </div>
+            <div class="uk-width-expand@m">
+                <label class="uk-form-label">Ville</label>
+                {{ form_widget(form.city) }}
+                <div class="uk-form-danger">
+                    {{form_errors(form.city)}}</div>
+            </div>
+        </div>
+        <div class="uk-margin">
+            <label class="uk-form-label">information supplémentaire concernant l'élève.</label>
+            {{ form_widget(form.infos) }}
+            <div class="uk-form-danger">
+                {{form_errors(form.infos)}}</div>
+        </div>
+        <div class="uk-margin">
+            <label class="uk-form-label">Lesson</label>
+            {{ form_widget(form.lesson) }}
+            <div class="uk-form-danger">
+                {{form_errors(form.lesson)}}</div>
+        </div>
+
+
+        {{ form_widget(form) }}
+        <div class="uk-margin">
+            <button class="uk-button uk-button-primary">{{ button_label|default('enregistrer') }}</button>
+        </div>
+
+    </fiedlset>
+</form>
+{{ form_end(form) }}

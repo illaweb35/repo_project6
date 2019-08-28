@@ -1,0 +1,50 @@
+<div class="left-content-box  content-box-dark ">
+    <img class="uk-border-circle" height="80" data-src="{{app.user.image}}" width="80" alt="{{app.user.imageCaption}}" uk-img>
+    <h4 class="uk-text-center uk-margin-remove-vertical text-light">{{app.user.pseudo}}</h4>
+    <div class="uk-position-relative uk-text-center uk-display-block">
+        <a class="uk-text-small uk-text-muted uk-display-block uk-text-center" data-uk-icon="icon: triangle-down; ratio: 0.7" href="#">Admin</a>
+        <!-- user dropdown -->
+        <div class="uk-dropdown user-drop" data-uk-dropdown="mode: click; pos: bottom-center; animation: uk-animation-slide-bottom-small; duration: 150">
+            <ul class="uk-nav uk-dropdown-nav uk-text-left">
+                <li>
+                    <a href="{{ path('user_edit', {'id': app.user.id}) }}">
+                        <span data-uk-icon="icon: refresh"></span>
+                        Edit</a>
+                </li>
+                <li>
+                    <a href="{{path('app_logout')}}">
+                        <span data-uk-icon="icon: sign-out"></span>
+                        Sign Out</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /user dropdown -->
+    </div>
+</div>
+<div class="left-nav-wrap">
+    <ul class="uk-nav uk-nav-default uk-nav-parent-icon" data-uk-nav>
+        <li class="uk-nav-header">Menu</li>
+        <li>
+            <a href="{{path('user_index')}}">
+                <span class="uk-margin-small-right" data-uk-icon="icon: list"></span>Utilisateurs</a>
+        </li>
+        <li>
+            <a href="{{path('article_index')}}">
+                <span class="uk-margin-small-right" data-uk-icon="icon: list"></span>Articles</a>
+        </li>
+        <li>
+            <a href="{{ path('lesson_index')}}">
+                <span class="uk-margin-small-right" data-uk-icon="icon: list"></span>Leçons</a>
+        </li>
+        <li>
+            <a href="{{path('dance_index')}}">
+                <span class="uk-margin-small-right" data-uk-icon="icon: list"></span>Danses</a>
+        </li>
+        <li>
+            <a href="{{path('professor_index')}}">
+                <span class="uk-margin-small-right" data-uk-icon="icon: list"></span>Professeurs</a>
+        </li>
+
+
+    </ul>
+</div>

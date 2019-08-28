@@ -1,0 +1,26 @@
+{% extends '_dashboard/base.html.twig' %}
+{%block stylesheets %}
+    {{parent()}}
+    <link rel="stylesheet" href="{{asset('css/dashboard.css')}}">
+{% endblock %}
+{% block title %}Tableau de bord
+{% endblock %}
+
+{% block body %}
+
+    <!-- LEFT BAR -->
+    <aside class="uk-light uk-visible@m" id="left-col">
+        {{ include('_dashboard/home/_aside.html.twig') }}
+    </aside>
+    <!-- /LEFT BAR -->
+    <!-- CONTENT -->
+    <div data-uk-height-viewport="expand: true" id="content">
+        {{ include('_dashboard/home/_content.html.twig') }}
+    </div>
+    <!-- /CONTENT -->
+
+{% endblock %}
+{% block javascripts %}
+    {{parent()}}
+    <script src="{{asset('js/hour.js')}}"></script>
+{% endblock %}

@@ -5,10 +5,10 @@ namespace App\Controller;
 use App\Entity\Professor;
 use App\Form\ProfessorType;
 use App\Repository\ProfessorRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/professor")
@@ -21,6 +21,15 @@ class ProfessorController extends AbstractController
     public function index(ProfessorRepository $professorRepository): Response
     {
         return $this->render('professor/index.html.twig', [
+            'professors' => $professorRepository->findAll(),
+        ]);
+    }
+    /**
+     * @Route("/professor_dance", name="professor_dance", methods={"GET"})
+     */
+    public function professorDance(ProfessorRepository $professorRepository): Response
+    {
+        return $this->render('professor/_professor_dance.html.twig', [
             'professors' => $professorRepository->findAll(),
         ]);
     }
@@ -83,7 +92,7 @@ class ProfessorController extends AbstractController
      */
     public function delete(Request $request, Professor $professor): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$professor->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $professor->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($professor);
             $entityManager->flush();

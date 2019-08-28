@@ -18,4 +18,20 @@ class ProspectRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Prospect::class);
     }
+
+    /**
+     * Find last Prospect
+     *
+     * @param [type] $value
+     *
+     * @return void
+     */
+    public function findByLast($value)
+    {
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.id', 'DESC')
+            ->setMaxResults($value)
+            ->getQuery()
+            ->getResult();
+    }
 }

@@ -1,42 +1,48 @@
 {% extends 'base.html.twig' %}
-
-{% block title %}Log in!{% endblock %}
-
-{% block body %}
-<form method="post">
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
-
-    {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
-        </div>
-    {% endif %}
-
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputEmail" class="sr-only">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus>
-    <label for="inputPassword" class="sr-only">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required>
-
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
-
-    {#
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
-
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
-        </div>
-    #}
-
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
-</form>
+{% block stylesheets %}
+    {{parent()}}
+    <link rel="stylesheet" href="{{asset('css/login.css')}}">
 {% endblock %}
+{% block title %}Se connecter
+{% endblock %}
+{% block body %}
+    <section class="login uk-cover-container uk-background-secondary uk-flex uk-flex-center uk-flex-middle uk-height-viewport uk-overflow-hidden uk-blend-luminosity" data-uk-viewport>
+        <div class="uk-width-medium uk-padding-small uk-position-z-index" uk-scrollspy="cls: uk-animation-fade">
+            <div class="uk-text-center uk-margin">
+                <img alt="Logo" src="{{asset('img/user_login.svg')}}" width="250px" height="250px">
+            </div>
+            <form class="toggle-class" method="post">
+                {% if error %}
+                    <div class="uk-alert uk-alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                {% endif %}
+                {% if app.user %}
+                    <div class="checkbox mb-3">You are logged in as
+                        {{ app.user.username }},
+                        <a href="{{ path('app_logout') }}">Logout</a>
+                    {% endif %}
+                    <fiedset class="uk-fieldset">
+                        <div class="uk-margin-small">
+                            <div class="uk-inline uk-width-1-1">
+                                <span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: user"></span>
+                                <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="uk-input uk-border-pill" placeholder="Email" required autofocus>
+                            </div>
+                        </div>
+                        <div class="uk-margin-small">
+                            <div class="uk-inline uk-width-1-1">
+                                <span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: lock"></span>
+                                <input class="uk-input uk-border-pill" id="inputPassword" name="password" placeholder="Password" required type="password">
+                            </div>
+                        </div>
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                        <div class="uk-margin-small">
+                            <label><input class="uk-checkbox" name="_remember_me" type="checkbox">
+                                Remember
+                            </label>
+                        </div>
+                        <div class="uk-margin-bottom">
+                            <button class="uk-button uk-button-primary uk-border-pill uk-width-1-1" type="submit">LOG IN</button>
+                        </div>
+                    </fiedset>
+                </form>
+            </section>
+        {% endblock %}

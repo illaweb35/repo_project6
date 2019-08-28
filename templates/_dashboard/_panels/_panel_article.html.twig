@@ -1,0 +1,55 @@
+<div class="uk-card uk-card-default uk-card-small uk-card-hover">
+    <div class="uk-card-header">
+        <div class="uk-grid uk-grid-small">
+            <div class="uk-width-auto">
+                <h4>Articles</h4>
+            </div>
+            <div class="uk-width-expand uk-text-right panel-icons">
+                <a class="uk-icon-link" data-uk-icon="icon: move" data-uk-tooltip href="#" title="Move"></a>
+            </div>
+        </div>
+    </div>
+    <div class="uk-card-body">
+        <table class="uk-table">
+            <thead>
+                <tr>
+                    <th>titre</th>
+                    <th>catégorie</th>
+                    <th>Date publication
+                    </th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for article in articlesPanel %}
+                    <tr>
+                        <td>
+                            <a class="uk-link-text uk-text-small" href="{{ path('article_show',{'slug':article.slug})}}">{{article.title|slice(0,10)}}...</a>
+                        </td>
+                        <td>
+                            <p>{{article.category}}</p>
+                        </td>
+                        <td>
+                            <p class="uk-text-small">{{article.updatedAt|date('d M Y')}}</p>
+                        </td>
+                        <td>
+                            <div class="uk-grid uk-grid-small uk-grid-divider" uk-grid>
+                                <a href="{{ path('article_show',{'slug':article.slug})}}">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <a href="{{ path('article_edit',{'slug':article.slug})}}">
+                                    <span uk-icon="icon: file-edit"></span>
+                                </a>
+                                <a href="#delete-confirm" uk-toggle>
+                                    <span uk-icon="icon: trash"></span>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    {{ include('article/_delete_form.html.twig') }}
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</div>

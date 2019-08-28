@@ -3,8 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\Lesson;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Lesson|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,32 +19,19 @@ class LessonRepository extends ServiceEntityRepository
         parent::__construct($registry, Lesson::class);
     }
 
-    // /**
-    //  * @return Lesson[] Returns an array of Lesson objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * Find last Lesson
+     *
+     * @param [type] $value
+     *
+     * @return void
+     */
+    public function findByLast($value)
     {
         return $this->createQueryBuilder('l')
-            ->andWhere('l.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('l.id', 'ASC')
-            ->setMaxResults(10)
+            ->orderBy('l.id', 'DESC')
+            ->setMaxResults($value)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Lesson
-    {
-        return $this->createQueryBuilder('l')
-            ->andWhere('l.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

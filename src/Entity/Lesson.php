@@ -376,4 +376,13 @@ class Lesson
 
         return $this;
     }
+    /**
+     * Convertion to string
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return strval($this->title);
+    }
 }
