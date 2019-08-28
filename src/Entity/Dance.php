@@ -10,12 +10,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\DanceRepository")
  * @ORM\HasLifecycleCallbacks()
  * @UniqueEntity("slug")
  * @Vich\Uploadable
  */
-class Article
+class Dance
 {
     /**
      * @ORM\Id()
@@ -43,6 +43,7 @@ class Article
 
     /**
      * @ORM\Column(type="string", length=255)
+     *  @Assert\NotBlank
      * @Assert\Length(
      *      min= 2,
      *      max= 250,
@@ -50,10 +51,10 @@ class Article
      *      maxMessage = "Your subtitle cannot be longer than {{ limit }} characters"
      * )
      */
-    private $subtitle;
+    private $subTitle;
 
     /**
-     * @ORM\Column(type="text", nullable=true)
+     * @ORM\Column(type="text")
      */
     private $content;
 
@@ -77,12 +78,6 @@ class Article
      * @ORM\Column(type="datetime")
      */
     private $updatedAt;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Category", inversedBy="article")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $category;
 
     public function getId(): ?int
     {
@@ -113,14 +108,14 @@ class Article
         return $this;
     }
 
-    public function getSubtitle(): ?string
+    public function getSubTitle(): ?string
     {
-        return $this->subtitle;
+        return $this->subTitle;
     }
 
-    public function setSubtitle(string $subtitle): self
+    public function setSubTitle(string $subTitle): self
     {
-        $this->subtitle = $subtitle;
+        $this->subTitle = $subTitle;
 
         return $this;
     }
@@ -130,7 +125,7 @@ class Article
         return $this->content;
     }
 
-    public function setContent(?string $content): self
+    public function setContent(string $content): self
     {
         $this->content = $content;
 
@@ -206,17 +201,5 @@ class Article
     public function setUpdatedAtValue()
     {
         $this->updatedAt = new \DateTime();
-    }
-
-    public function getCategory(): ?Category
-    {
-        return $this->category;
-    }
-
-    public function setCategory(?Category $category): self
-    {
-        $this->category = $category;
-
-        return $this;
     }
 }
