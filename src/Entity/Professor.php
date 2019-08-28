@@ -346,4 +346,13 @@ class Professor
 
         return $this;
     }
+    /**
+     * Concatenation FirstName + LastName
+     *
+     * @return void
+     */
+    public function getFullName()
+    {
+        return "{$this->firstName} {$this->lastName}";
+    }
 }

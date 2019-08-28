@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Professor
+{% endblock %}
+
+{% block body %}
+    <section class="uk-section">
+        <div class="uk-container">
+            <div class="uk-card uk-card-default">
+                <div class="uk-card-header">
+                    <img class="uk-border-circle uk-float-left uk-margin-right" data-src="{{professor.image}}" alt="{{professor.imageCaption}}" uk-img>
+                    <h3 class="uk-card-title">{{professor.fullName}}</h3>
+                    <p class="uk-text-lead">{{professor.email}}</p>
+                </div>
+                <div class="uk-card-body">
+                    <div class="uk-child-width-expand@s uk-grid-divider" uk-grid>
+
+                        <div>
+                            {% if is_granted("ROLE_USER") %}
+                                <p>
+                                    <strong>Tel fixe :</strong>
+                                    {{ professor.phoneNumber|formatPhone(professor.phoneNumber)}}
+                                </p>
+                            {% endif %}
+                            <p>
+                                <strong>
+                                    Tel mobile :</strong>
+                                {{ professor.mobileNumber|formatPhone(professor.mobileNumber)}}
+                            </p>
+                            {% if is_granted("ROLE_USER") %}
+                                <p>
+                                    <strong>Adresse :</strong>
+                                </p>
+                                <p>{{professor.address}}</p>
+                                <p>{{professor.postCode}}
+                                    {{professor.city}}</p>
+                            {% endif %}
+                        </div>
+                        <div>
+                            <p>
+                                <strong>Danses enseignées :</strong>
+                            </p>
+                            {% for dance in professor.dances %}
+                                <ul class="uk-list">
+                                    <li>
+                                        _
+                                        <a class="uk-button uk-button-link" href="{{ path('dance_show', {'slug': dance.slug}) }}" uk-tooltip="title: Voir +">{{dance.title}}</a>
+
+                                    </li>
+                                </ul>
+                            {% endfor %}
+                        </div>
+
+                    </div>
+                    <div class="uk-card-footer">
+                        <div class="uk-grid-small uk-grid-divider" uk-grid>
+                            <a class="uk-button uk-button-text" href="javascript:history.go(-1)" uk-icon="icon: arrow-left;ratio:1.5" uk-tooltip="title: Page précédente"></a>
+                            <a class="uk-button uk-button-text" href="{{ path('professor_index')}}">Retour à la liste</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endblock %}

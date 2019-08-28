@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dance index{% endblock %}
+
+{% block body %}
+    <h1>Dance index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Title</th>
+                <th>Slug</th>
+                <th>SubTitle</th>
+                <th>Content</th>
+                <th>Image</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>ImageCaption</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for dance in dances %}
+            <tr>
+                <td>{{ dance.id }}</td>
+                <td>{{ dance.title }}</td>
+                <td>{{ dance.slug }}</td>
+                <td>{{ dance.subTitle }}</td>
+                <td>{{ dance.content }}</td>
+                <td>{{ dance.image }}</td>
+                <td>{{ dance.createdAt ? dance.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ dance.updatedAt ? dance.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ dance.imageCaption }}</td>
+                <td>
+                    <a href="{{ path('dance_show', {'id': dance.id}) }}">show</a>
+                    <a href="{{ path('dance_edit', {'id': dance.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="10">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('dance_new') }}">Create new</a>
+{% endblock %}

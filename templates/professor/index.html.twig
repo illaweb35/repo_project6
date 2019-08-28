@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Professor index
+{% endblock %}
+
+{% block body %}
+    <section class="uk-section">
+        <div class="uk-container uk-margin-top">
+            <h1>Professor index</h1>
+            <table class="uk-table">
+                <thead>
+                    <tr>
+                        <th>CreatedAt</th>
+                        <th>Nom Prénom</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Mobile</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for professor in professors %}
+                        <tr>
+                            <td><img class="uk-border-circle" data-src="{{ professor.image}}" alt="{{professor.imageCaption}}" width="60" uk-img></td>
+                            <td>{{ professor.fullName }}</td>
+                            <td>{{ professor.email }}</td>
+                            <td>{{ professor.phoneNumber|formatPhone(professor.phoneNumber) }}</td>
+                            <td>{{ professor.mobileNumber|formatPhone(professor.mobileNumber) }}</td>
+                            <td>
+                                <a href="{{ path('professor_show', {'id': professor.id}) }}">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <a class="uk-button uk-button-link" href="{{ path('professor_edit', {'id': professor.id}) }}" uk-icon="icon: file-edit"></a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="12">no records found</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <a class="uk-button uk-button-primary" href="{{ path('professor_new') }}">Create new</a>
+
+        </div>
+
+    </section>
+
+{% endblock %}
