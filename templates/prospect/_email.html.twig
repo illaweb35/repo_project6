@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="ie=edge" http-equiv="X-UA-Compatible">
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.5/css/uikit.min.css" rel="stylesheet"/>
+        <link href="style_ljm.css" rel="stylesheet">
+        <title>emails</title>
+    </head>
+
+    <body>
+        {% block body %}
+            <div class="uk-container">
+                <div class="uk-card uk-card-default uk-width-1-2@m">
+                    <div class="uk-card-header">
+                        <div class="uk-grid-small uk-flex-middle" uk-grid>
+                            <div class="uk-width-auto">
+                                <img src="{{absolute_url(asset('img/Logo.png'))}}" id="logo" alt="Dance Attitude Bréal sous monftort">
+                            </div>
+                            <div class="uk-width-expand">
+                                <h3 class="uk-card-title uk-margin-remove-bottom">Confirmation de demande
+                                    {{ value.subject }}
+                                </h3>
+                                <p class="uk-text-meta uk-margin-remove-top">
+                                    le{{ "now"|date("m/d/Y") }}
+                                </p>
+                            </time>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="uk-card-body">
+                <p>Bonjour
+                    {{ value.lastName }}
+                    {{ value.firstName }}</p>
+                <p>Votre demande :</p>
+                {{ value.content }}
+            </div>
+            <div class="uk-card-footer">
+                <p class="uk-text-meta">Votre demande est prise en compte, nous y répondrons dans les meilleurs délais
+                </p>
+            </div>
+        </body>
+    </html>
+</div></div>{% endblock %}</body></html>

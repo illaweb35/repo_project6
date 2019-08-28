@@ -8,11 +8,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\CustomerRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\ProspectRepository")
  * @ORM\HasLifecycleCallbacks()
  * @UniqueEntity("email")
  */
-class Customer
+class Prospect
 {
     /**
      * @ORM\Id()

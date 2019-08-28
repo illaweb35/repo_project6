@@ -9,7 +9,7 @@ use App\Entity\Lesson;
 use App\Entity\Member;
 use App\Entity\Article;
 use App\Entity\Category;
-use App\Entity\Customer;
+use App\Entity\Prospect;
 use App\Entity\Professor;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -154,17 +154,17 @@ class AppFixtures extends Fixture
                 $manager->persist($article);
             }
         }
-        /* Customer */
+        /* prospect */
         for ($ce = 0; $ce <= 10; $ce++) {
-            $customer = new Customer();
-            $customer->setFirstName($faker->firstName)
+            $prospect = new Prospect();
+            $prospect->setFirstName($faker->firstName)
                 ->setLastName($faker->lastName)
                 ->setEmail($faker->email)
                 ->setPhoneNumber($faker->phoneNumber)
                 ->setSubject($faker->randomElement(['informations', 'divers']))
                 ->setContent($faker->paragraph)
                 ->setAgreeRGPD(true);
-            $manager->persist($customer);
+            $manager->persist($prospect);
         }
 
         $manager->flush();

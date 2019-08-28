@@ -1,0 +1,48 @@
+{{ form_start(form) }}
+<form action="">
+    <fieldset class="uk-fieldset">
+        <div class="uk-margin">
+            <label class="uk-form-label">Prénom*</label>
+            {{form_widget(form.firstName)}}
+            <div class="uk-form-danger">{{form_errors(form.firstName)}}</div>
+        </div>
+        <div class="uk-margin">
+            <label class="uk-form-label">Nom*</label>
+            {{form_widget(form.lastName)}}
+            <div class="uk-form-danger">{{form_errors(form.lastName)}}</div>
+        </div>
+        <div class="uk-margin">
+            <label class="uk-form-label">email*</label>
+            {{form_widget(form.email)}}
+            <div class="uk-form-danger">{{form_errors(form.email)}}</div>
+        </div>
+        <div class="uk-margin">
+            <label class="uk-form-label">téléphone</label>
+            {{form_widget(form.phoneNumber)}}
+            <div class="uk-form-danger">{{form_errors(form.phoneNumber)}}</div>
+        </div>
+        <div class="uk-margin">
+            <label class="uk-form-label">Sujet</label>
+            {{form_widget(form.subject)}}
+            <div class="uk-form-danger">{{form_errors(form.subject)}}</div>
+        </div>
+        <div class="uk-margin">
+            <label class="uk-form-label">Contenu</label>
+            {{form_widget(form.content)}}
+            <div class="uk-form-danger">{{form_errors(form.content)}}</div>
+        </div>
+        <p class="uk-light">Les champs avec * son obligatoires</p>
+        <div class="uk-margin uk-align-center">
+            <label class="uk-form-label" for="form-stacked-text">J'autorise la collecte de mes données
+                                                                                                        personnelles</label>
+            <div id="agreeRGPD">{{form_widget(form.agreeRgpd)}}</div>
+
+        </fieldset>
+
+
+        {{ form_widget(form) }}
+        <div class="uk-margin">
+            <button class="uk-button uk-button-primary" type="submit">{{ button_label|default('Envoyer') }}</button>
+        </div>
+    </form>
+    {{ form_end(form) }}

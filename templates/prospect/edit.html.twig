@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit prospect
+{% endblock %}
+
+{% block body %}
+
+    <section class="uk-section">
+
+        <div class="uk-container uk-margin-top">
+            <h1 class="uk-heading-line uk-text-center">
+                Modification de l'email'</h1>
+        </div>
+        <div class="uk-container uk-margin-top uk-container-small">
+
+            {{ include('prospect/_form.html.twig', {'button_label': 'Update'}) }}
+            <div class="uk-grid uk-grid-small uk-grid-divider uk-margin-top uk-margin-bottom" uk-grid>
+                <div>
+                    <a class="uk-button uk-button-text" href="{{ path('prospect_index') }}">
+                        <span uk-icon="icon: arrow-left"></span>
+                        retour à la liste</a>
+                </div>
+                <div>
+                    <a href="#delete-confirm" uk-toggle>
+                        <span uk-icon="icon: trash"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    {{ include('_partials/_footer.html.twig') }}
+
+
+{% endblock %}
