@@ -1,54 +1,61 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Dance{% endblock %}
+{% block title %}Dance
+{% endblock %}
 
 {% block body %}
-    <h1>Dance</h1>
+    <section class="uk-section">
+        <div class="uk-container">
+            <article class="uk-article">
+                <h1 class="uk-article-title">
+                    <a class="uk-link-reset" href="">Danse :&nbsp;{{dance.title|capitalize}}</a>
+                </h1>
+                <p class="uk-article-meta">Professeur pour cette danse :
+                    <a class="uk-button uk-button-text" href="{{path('professor_show',{'id':dance.professor.id})}}" uk-tooltip="title: Voir la fiche du Professeur">{{dance.professor.fullName}}</a>
+                </p>
+                <img class="uk-border-rounded" data-src="{{dance.image}}" alt="{{dance.imageCaption}}" width="450" uk-img>
+                <p class="uk-text-lead">{{dance.subTitle}}</p>
+                <p>{{dance.content}}</p>
+                <hr class="uk-divider-icon">
+                <h4>Leçons pour cette dance</h4>
+                <table class="uk-table uk-table-divider uk-table-hover">
+                    <thead>
+                        <tr>
+                            <th>Titre</th>
+                            <th>Jour</th>
+                            <th>Heure debut</th>
+                            <th>Heure de fin</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for lesson in dance.lessons %}
+                            <tr>
+                                <td>
+                                    <a href="{{path('lesson_show',{'slug':lesson.slug})}}" uk-tooltip="title: Voir +">
+                                        {{lesson.title|capitalize}}
+                                    </a>
+                                </td>
+                                <td>{{lesson.dayLesson}}</td>
+                                <td>{{lesson.startHour|date('H:i')}}</td>
+                                <td>{{lesson.endHour|date('H:i')}}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                <hr class="uk-divider-icon">
+                <div class="uk-grid-small uk-grid-divider" uk-grid>
+                    <a class="uk-button uk-button-link" href="javascript:history.go(-1)" uk-icon="icon: arrow-left;ratio:1.5" uk-tooltip="title: Page précédente"></a>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ dance.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ dance.title }}</td>
-            </tr>
-            <tr>
-                <th>Slug</th>
-                <td>{{ dance.slug }}</td>
-            </tr>
-            <tr>
-                <th>SubTitle</th>
-                <td>{{ dance.subTitle }}</td>
-            </tr>
-            <tr>
-                <th>Content</th>
-                <td>{{ dance.content }}</td>
-            </tr>
-            <tr>
-                <th>Image</th>
-                <td>{{ dance.image }}</td>
-            </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ dance.createdAt ? dance.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>UpdatedAt</th>
-                <td>{{ dance.updatedAt ? dance.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>ImageCaption</th>
-                <td>{{ dance.imageCaption }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('dance_index') }}">back to list</a>
-
-    <a href="{{ path('dance_edit', {'id': dance.id}) }}">edit</a>
-
-    {{ include('dance/_delete_form.html.twig') }}
+                    <a class="uk-button uk-button-text" href="{{ path('dance_index') }}">retour à la liste des danses</a>
+                    {% if is_granted("ROLE_USER") %}
+                        <a class="uk-button uk-button-link" href="{{ path('dance_edit', {'slug': dance.slug}) }}" uk-icon="icon: file-edit"></a>
+                        <a class="uk-button uk-button-link" href="#delete-confirm" uk-toggle>
+                            <span uk-icon="icon: trash"></span>
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+        </article>
+    </section>
+    {{ include ('dance/_delete_form.html.twig') }}
 {% endblock %}

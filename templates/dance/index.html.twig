@@ -1,49 +1,59 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Dance index{% endblock %}
+{% block title %}Dance index
+{% endblock %}
 
 {% block body %}
-    <h1>Dance index</h1>
+    <section class="uk-section">
+        <div class="uk-container">
+            <h1 class="uk-margin">Liste des danses enseignées</h1>
+            {% if is_granted("ROLE_USER")%}
+                <div class="uk-float-right">
+                    <a class="uk-button uk-button-primary uk-margin" href="{{path('dance_new')}}">Création d'une danse</a>
+                </div>
+            {% endif %}
+            <table class="uk-table uk-table-hover uk-table-responsive">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Titre</th>
+                        <th>Description</th>
+                        <th>Contenu</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for dance in dances %}
+                        <tr>
+                            <td>
+                                <a href="{{ path('dance_show', {'slug': dance.slug}) }}">
+                                    <img class="uk-border-rounded" data-src="{{dance.image}}" width="80" alt="{{dance.imageCaption}}" uk-img uk-tooltip="title: Voir +">
+                                </a>
+                            </td>
+                            <td>{{ dance.title }}</td>
+                            <td>{{ dance.subTitle }}</td>
+                            <td>{{ dance.content|slice(0,120)|raw }}...</td>
+                            <td>
+                                <a href="{{ path('dance_show', {'slug': dance.slug}) }}" uk-tooltip="title: Voir +">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                {% if is_granted("ROLE_USER") %}
+                                    <a class="uk-button uk-button-link" href=" {{ path('dance_edit', {'slug': dance.slug} ) }}" uk-icon="icon: file-edit"></a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="8">no records found</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <hr class="uk-divider-icon">
+            <div class="uk-grid-small uk-grid-divider" uk-grid>
+                <a class="uk-button uk-button-link" href="javascript:history.go(-1)" uk-icon="icon: arrow-left;ratio:1.5" uk-tooltip="title: Page précédente"></a>
+            </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Title</th>
-                <th>Slug</th>
-                <th>SubTitle</th>
-                <th>Content</th>
-                <th>Image</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>ImageCaption</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for dance in dances %}
-            <tr>
-                <td>{{ dance.id }}</td>
-                <td>{{ dance.title }}</td>
-                <td>{{ dance.slug }}</td>
-                <td>{{ dance.subTitle }}</td>
-                <td>{{ dance.content }}</td>
-                <td>{{ dance.image }}</td>
-                <td>{{ dance.createdAt ? dance.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ dance.updatedAt ? dance.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ dance.imageCaption }}</td>
-                <td>
-                    <a href="{{ path('dance_show', {'id': dance.id}) }}">show</a>
-                    <a href="{{ path('dance_edit', {'id': dance.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="10">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('dance_new') }}">Create new</a>
+        </div>
+    </section>
 {% endblock %}

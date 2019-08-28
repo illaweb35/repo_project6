@@ -4,11 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Lesson;
 use App\Form\LessonType;
-use App\Repository\LessonRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Service\Pagination;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/lesson")
@@ -16,12 +16,16 @@ use Symfony\Component\Routing\Annotation\Route;
 class LessonController extends AbstractController
 {
     /**
-     * @Route("/", name="lesson_index", methods={"GET"})
+     * @Route("/{page<\d+>?1}", name="lesson_index", methods={"GET"})
      */
-    public function index(LessonRepository $lessonRepository): Response
+    public function index(Pagination $pagination, $page): Response
     {
+        $pagination->setEntityClass(Lesson::class)
+            ->setPage($page);
+        $lessons = $pagination->getData();
         return $this->render('lesson/index.html.twig', [
-            'lessons' => $lessonRepository->findAll(),
+            'lessons' => $lessons,
+            'pagination' => $pagination
         ]);
     }
 
@@ -49,7 +53,7 @@ class LessonController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="lesson_show", methods={"GET"})
+     * @Route("/{slug}", name="lesson_show", methods={"GET"})
      */
     public function show(Lesson $lesson): Response
     {
@@ -59,7 +63,7 @@ class LessonController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="lesson_edit", methods={"GET","POST"})
+     * @Route("/{slug}/edit", name="lesson_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Lesson $lesson): Response
     {
@@ -79,11 +83,11 @@ class LessonController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="lesson_delete", methods={"DELETE"})
+     * @Route("/{slug}", name="lesson_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Lesson $lesson): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$lesson->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $lesson->getSlug(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($lesson);
             $entityManager->flush();

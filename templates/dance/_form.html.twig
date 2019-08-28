@@ -1,4 +1,44 @@
 {{ form_start(form) }}
+
+<form action="" class="uk-grid-small" enctype="multipart/form-data" method="post" uk-grid>
+    <div class="uk-width-1-2">
+        <label class="uk-form-label">
+            Image de Couverture</label>
+        {{form_widget(form.image)}}
+        <div class="uk-fom-danger">{{form_errors(form.image)}}</div>
+    </div>
+    <div class="uk-width-1-2">
+        <label class="uk-form-label">
+            Description de l'image</label>
+        {{form_widget(form.imageCaption)}}
+        <div class="uk-fom-danger">{{form_errors(form.imageCaption)}}</div>
+    </div>
+
+    <div class="uk-width-1-1">
+        <label class="uk-form-label">Titre</label>
+        {{form_widget(form.title)}}
+        <div class="uk-form-danger">{{form_errors(form.title)}}</div>
+    </div>
+    <div class="uk-width-1-1">
+        <label class="uk-form-label" for="">description</label>
+        {{form_widget(form.subTitle)}}
+        <div class="uk-form-danger">{{form_errors(form.subTitle)}}</div>
+    </div>
+    <div class="uk-width-1-1">
+        <label class="uk-form-label" for="">Contenu</label>
+        {{form_widget(form.content)}}
+        <div class="uk-form-danger">{{form_errors(form.content)}}</div>
+    </div>
+    <div class="uk-width-1-2">
+        <label class="uk-form-label" for="">Professeur</label>
+        {{form_widget(form.professor)}}
+        <div class="uk-form-danger">{{form_errors(form.professor)}}</div>
+    </div>
+
+
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <div class="uk-margin">
+        <button class="uk-button uk-button-primary">{{ button_label|default('Enregistrer') }}</button>
+    </div>
+</form>
 {{ form_end(form) }}

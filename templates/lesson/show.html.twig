@@ -1,78 +1,68 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Lesson{% endblock %}
+{% block title %}Lesson
+{% endblock %}
 
 {% block body %}
-    <h1>Lesson</h1>
+    <section class="uk-section">
+        <div class="uk-container">
+            <h1>Leçon :
+                {{lesson.title|capitalize}}</h1>
+            <article class="uk-article">
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ lesson.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ lesson.title }}</td>
-            </tr>
-            <tr>
-                <th>Slug</th>
-                <td>{{ lesson.slug }}</td>
-            </tr>
-            <tr>
-                <th>SubTitle</th>
-                <td>{{ lesson.subTitle }}</td>
-            </tr>
-            <tr>
-                <th>DayLesson</th>
-                <td>{{ lesson.dayLesson }}</td>
-            </tr>
-            <tr>
-                <th>StartHour</th>
-                <td>{{ lesson.startHour ? lesson.startHour|date('H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>EndHour</th>
-                <td>{{ lesson.endHour ? lesson.endHour|date('H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Duration</th>
-                <td>{{ lesson.duration }}</td>
-            </tr>
-            <tr>
-                <th>Amount</th>
-                <td>{{ lesson.amount }}</td>
-            </tr>
-            <tr>
-                <th>Address</th>
-                <td>{{ lesson.address }}</td>
-            </tr>
-            <tr>
-                <th>PostCode</th>
-                <td>{{ lesson.postCode }}</td>
-            </tr>
-            <tr>
-                <th>City</th>
-                <td>{{ lesson.city }}</td>
-            </tr>
-            <tr>
-                <th>CreatedAt</th>
-                <td>{{ lesson.createdAt ? lesson.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>UpdatedAt</th>
-                <td>{{ lesson.updatedAt ? lesson.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>ImageCaption</th>
-                <td>{{ lesson.imageCaption }}</td>
-            </tr>
-        </tbody>
-    </table>
+                <p class="uk-article-meta">pour la danse
+                    <a class="uk-button uk-button-link" href="{{path('dance_show',{'slug':lesson.dance.slug})}}" uk-tooltip="title: Voir la dance">
+                        <strong>{{lesson.dance}}</strong>
+                    </a>
+                </p>
+                <p class="uk-text-lead">{{lesson.subTitle}}</p>
+                <hr class="uk-divider-icon">
+                <p>Ce cours à lieu le :
+                    <strong>
+                        {{lesson.dayLesson}}</strong>
+                </p>
+                <p>Les horaires pour ce cours sont
+                </p>
+                <p>De &nbsp;
+                    {{lesson.startHour|date('H:i')}}&nbsp; à &nbsp;{{lesson.endHour|date('H:i')}}
+                </p>
+                <p>Pour une durée de
+                    {{lesson.duration}}</p>
+                <hr>
+                <div class="uk-grid-divider uk-child-width-expand@s" uk-grid>
 
-    <a href="{{ path('lesson_index') }}">back to list</a>
+                    <div>
+                        <p>Le cours est situé à l'adresse suivante :</p>
+                        <p>{{lesson.address}}
+                            &nbsp;{{lesson.postCode}}
+                            &nbsp;{{lesson.city}}</p>
+                    </div>
+                    <div>
+                        <div class="uk-card uk-card-default uk-card-body">
+                            <h3 class="uk-card-title">Carte</h3>
+                            <p>emplacement de la lesson</p>
+                            <p>
+                                à venir</p>
+                        </div>
+                    </div>
 
-    <a href="{{ path('lesson_edit', {'id': lesson.id}) }}">edit</a>
+                </div>
+                <hr class="uk-divider-icon">
+                <div class="uk-grid-small uk-grid-divider" uk-grid>
+                    <a class="uk-button uk-button-link" href="javascript:history.go(-1)" uk-icon="icon: arrow-left;ratio:1.5" uk-tooltip="title: Page précédente"></a>
+                    <a class="uk-button uk-button-text" href="{{ path('lesson_index') }}">retour à la liste</a>
+                    {% if is_granted("ROLE_USER") %}
+                        <a class="uk-button uk-button-link" href="{{ path('lesson_edit', {'slug': lesson.slug}) }}" uk-icon="icon: file-edit"></a>
 
+                        <a class="uk-button uk-button-link" href="#delete-confirm" uk-toggle>
+                            <span uk-icon="icon: trash"></span>
+                        </a>
+                    {% endif %}
+
+                </div>
+
+            </article>
+        </div>
+    </section>
     {{ include('lesson/_delete_form.html.twig') }}
 {% endblock %}

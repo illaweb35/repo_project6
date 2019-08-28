@@ -358,4 +358,13 @@ class Professor
     {
         return "{$this->firstName} {$this->lastName}";
     }
+    /**
+     * Convertion to string
+     *
+     * @return string
+     */
+    public function __toString()
+    {
+        return strval($this->firstName);
+    }
 }
