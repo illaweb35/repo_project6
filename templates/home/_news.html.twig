@@ -1,0 +1,65 @@
+<section class="uk-section uk-section-muted">
+    <h1 class="uk-heading-line uk-text-center">Les dernières news</h1>
+    <!-- CreateButton -->
+    <div class="uk-container  uk-margin-large-bottom">
+        {% if is_granted('ROLE_USER') %}
+            <a class="uk-button uk-button-primary uk-border-rounded" href="{{ path('article_new') }}">Create New</a>
+        {% endif %}
+    </div>
+    <!-- cards -->
+    <div class="uk-container uk-container-muted">
+        <div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-child-width-1-4@l " uk-grid uk-scrollspy="cls: uk-animation-fade; target: .uk-card; delay: 100; repeat: true">
+
+            {% for article in articles %}
+                <div>
+                    <div class="uk-card uk-card-small uk-card-default uk-card-hover">
+                        <div class="uk-card-header">
+                            <p>{{article.category|capitalize}}</p>
+                            <div class="uk-grid-small uk-flex-middle" uk-grid>
+                                <div class="uk-width-expand">
+                                    <img class="uk-border-rounded" data-src="{{article.coverImage}}" alt="{{article.coverImage.imageCaption}}" uk-img>
+                                    <h3 class="uk-card-title uk-margin-remove-bottom">{{article.title}}</h3>
+                                    <p class="uk-text-meta uk-margin">
+                                        le :
+                                        {{article.createdAt|date('d M Y')}}
+                                        à
+                                        {{article.createdAt|date('H:i')}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="uk-card-body">
+                            <p>
+                                {{article.subTitle}}</p>
+                            <p>{{article.content|slice(0,50)|raw}}...</p>
+                        </div>
+                        <div class="uk-card-footer">
+                            <div class="uk-grid uk-grid-small  uk-flex uk-flex-middle" data-uk-grid>
+
+                                <div class="uk-grid uk-grid-small uk-grid-divider">
+                                    <div>
+                                        <a href="{{ path('article_show', {'slug': article.slug}) }}" uk-tooltip="Voir +">
+
+
+                                            <i class="far fa-eye"></i>
+                                        </a>
+                                    </div>
+                                    <div>
+                                        {% if is_granted('ROLE_USER') %}
+                                            <a href="{{ path('article_edit', {'slug': article.slug}) }}">
+                                                <span uk-icon="file-edit"></span>
+                                            </a>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                No records Found
+            {% endfor %}
+        </div>
+    </div>
+</section>

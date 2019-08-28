@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil
+{% endblock %}
+
+{% block body %}
+    <section class="uk-light wrap uk-background-norepeat uk-background-cover uk-background-center-center uk-cover-container uk-background-secondary">
+        <img alt="" data-src="{{asset('img/fonds/home.jpg')}}" data-srcset="{{asset('img/fonds/home-4.jpg')}}?image=482 640w,{{asset('img/fonds/home-3.jpg')}}?image=482 960w, {{asset('img/fonds/home-2.jpg')}}?image=482 1200w,{{asset('img/fonds/home.jpg')}}?image=482 2000w" data-uk-cover data-uk-img sizes="100vw">
+        <div
+            class="uk-flex uk-flex-center uk-flex-middle uk-height-viewport uk-position-z-index uk-position-relative" data-uk-height-viewport="min-height: 400">
+
+            <!-- TEXT -->
+            <div class="uk-container uk-container-small uk-flex-auto uk-text-center" data-uk-scrollspy="target: > .animate; cls: uk-animation-slide-bottom-small uk-invisible; delay: 300">
+                <h1 class="uk-heading-primary animate uk-invisible" style="font-weight: 700;">Danse Attitude Bréal-sous-montfort</h1>
+                <div class="uk-width-4-5@m uk-margin-auto animate uk-invisible">
+                    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit. A ad, reiciendis maxime, facilis nam natus incidunt provident.</p>
+                </div>
+                <div class="uk-margin-medium-top animate uk-invisible">
+                    <span class="scroll-btn">
+                        <a href="#news" uk-scroll uk-tooltip="Voir les news">
+                            <span class="mouse">
+                                <span></span>
+                            </span>
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- News -->
+    <section class="uk-section" id="news">
+        {{include('home/_news.html.twig')}}
+        <div class="uk-container">
+            <hr class="uk-divider-icon">
+            <h4>Informations de contact</h4>
+            <div class="uk-column-1-2@s uk-column-divider">
+                <p>Adresse postale : za route du lion d'or 35310 Bréal sous montfort</p>
+
+                <p>Telephone : 06 78 89 56 78</p>
+            </div>
+        </div>
+    </section>
+{% endblock %}

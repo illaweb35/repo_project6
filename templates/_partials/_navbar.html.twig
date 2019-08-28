@@ -1,0 +1,102 @@
+<div class="uk-position-relative">
+    <div class="uk-sticky uk-sticky-fixed" style="position:fixed;top:0px;" uk-sticky="sel-target: .uk-navbar-container;cls-active: uk-navbar-stiky;bottom: #sticky-dropbar-push">
+        <nav class="uk-navbar-container uk-navbar" data-uk-navbar uk-navbar="dropbar: true; dropbar-mode: push">
+
+            <div class="uk-navbar-left">
+                <div class="uk-navbar-item">
+                    <a class="uk-logo brand" href="{{ path('home')}}"><img alt="Logo" src="{{asset('img/logo.png')}}">Danse Attitude
+                    </a>
+                </div>
+            </div>
+            <div class="uk-navbar-right">
+                <ul class="uk-navbar-nav">
+                    <li class="uk-visible@m">
+                        <a data-uk-icon="home" href="{{path('home')}}"></a>
+                    </li>
+                    <li class="uk-visible@m">
+                        <a href="#">Danses</a>
+                        <div class="uk-navbar-dropdown">
+                            <ul class="uk-nav uk-navbar-dropdown-nav">
+                                <li class="uk-active">
+                                    <a href="#">Les professeurs</a>
+                                </li>
+                                <li class="uk-active">
+                                    <a href="#}">Les danses</a>
+                                </li>
+                                <li class="uk-active">
+                                    <a href="#">Les lessons</a>
+                                </li>
+                                <li class="uk-active">
+                                    <a href="#">inscription</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </li>
+                    <li class="uk-visible@m">
+                        <a href="#">Articles</a>
+                    </li>
+                </li>
+                <li class="uk-visible@m">
+                    <a href="#">Contact</a>
+                </li>
+                <li>
+                    {% if app.user %}
+                        <a href="{{ path('dashboard')}}">
+                            <span uk-icon="icon: user"></span>
+                        </a>
+                    {% else %}
+                        <a href="{{ path('app_login') }}">
+                            <span uk-icon="icon: user"></span>
+                        </a>
+                    {% endif %}
+                </li>
+                <li class="uk-hidden@m">
+                    <a class="uk-navbar-toggle" data-uk-navbar-toggle-icon data-uk-toggle href="#offcanvas-nav"></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</div></div><!-- OFFCANVAS --><div data-uk-offcanvas="flip: true; overlay: false" id="offcanvas-nav">
+<div class="uk-offcanvas-bar uk-offcanvas-bar-animation uk-offcanvas-slide">
+    <button class="uk-offcanvas-close uk-close uk-icon" data-uk-close type="button"></button>
+    <ul class="uk-nav uk-nav-default">
+        <li>
+            <a data-uk-icon="home" href="{{path('home')}}"></a>
+        </li>
+        <li>
+            <a href="#">Danses</a>
+            <ul class="uk-nav-sub">
+                <li>
+                    <a href="#">Les professeurs</a>
+                </li>
+                <li>
+                    <a href="#">Les danses</a>
+                </li>
+                <li>
+                    <a href="#">Les lessons</a>
+                </li>
+
+            </ul>
+        </li>
+        <li>
+            <a href="#">Leçons</a>
+
+        </li>
+        <li>
+            <a href="#">Articles</a>
+
+
+        </li>
+
+        <li>
+            <a href="#">Contact</a>
+
+        </li>
+        <li>
+            <a href="{{ path('app_login') }}">
+                <span uk-icon="icon: user"></span>
+            </a>
+        </li>
+    </ul>
+</div></div>
