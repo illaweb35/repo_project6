@@ -5,6 +5,10 @@
 	left:0;
 	right:0;
 }
+/* color navbar-container */
+.uk-navbar-container:not(.uk-navbar-transparent){
+	background-color: #222A30;
+}
 /* Smaller Header */
 .uk-navbar-nav > li > a,
 .uk-navbar-item,

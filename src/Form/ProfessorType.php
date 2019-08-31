@@ -5,11 +5,13 @@ namespace App\Form;
 use App\Entity\Professor;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Vich\UploaderBundle\Form\Type\VichImageType;
+use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
+
 
 class ProfessorType extends AbstractType
 {
@@ -31,12 +33,12 @@ class ProfessorType extends AbstractType
                     'class' => 'uk-input'
                 ]
             ])
-            ->add('phoneNumber', NumberType::class, [
+            ->add('phoneNumber', TextType::class, [
                 'attr' => [
                     'class' => 'uk-input'
                 ]
             ])
-            ->add('mobileNumber', NumberType::class, [
+            ->add('mobileNumber', TextType::class, [
                 'attr' => [
                     'class' => 'uk-input'
                 ]
@@ -46,7 +48,7 @@ class ProfessorType extends AbstractType
                     'class' => 'uk-input'
                 ]
             ])
-            ->add('postCode', NumberType::class, [
+            ->add('postCode', TextType::class, [
                 'attr' => [
                     'class' => 'uk-input'
                 ]
@@ -56,7 +58,20 @@ class ProfessorType extends AbstractType
                     'class' => 'uk-input'
                 ]
             ])
-            ->add('image', FileType::class)
+            ->add(
+                'image',
+                FileType::class,
+                [
+                    'label' => 'image',
+                    'mapped' => false,
+                    'required' => false,
+                    'constraints' => [
+                        new File([
+                            'maxSize' => '2M',
+                        ])
+                    ],
+                ]
+            )
             ->add('imageCaption', TextType::class, [
                 'attr' => [
                     'class' => 'uk-input'

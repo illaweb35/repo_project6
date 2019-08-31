@@ -4,9 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Professor;
 use App\Form\ProfessorType;
+use App\Service\FileUploader;
 use App\Repository\ProfessorRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -37,7 +39,7 @@ class ProfessorController extends AbstractController
     /**
      * @Route("/new", name="professor_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, FileUploader $fileUploader): Response
     {
         $professor = new Professor();
         $form = $this->createForm(ProfessorType::class, $professor);
@@ -45,6 +47,11 @@ class ProfessorController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $imageFile = $form['image']->getData();
+            if ($imageFile) {
+                $imageFileName = $fileUploader->upload($imageFile);
+                $professor->setImage($imageFileName);
+            }
             $entityManager->persist($professor);
             $entityManager->flush();
 
@@ -76,6 +83,9 @@ class ProfessorController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $professor->setImage(
+                new File($this->getParameter('images_directory') . '/' . $professor->getImage())
+            );
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('professor_index');

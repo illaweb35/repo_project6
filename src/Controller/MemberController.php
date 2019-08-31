@@ -4,11 +4,13 @@ namespace App\Controller;
 
 use App\Entity\Member;
 use App\Form\MemberType;
+use App\Service\FileUploader;
 use App\Repository\MemberRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
  * @Route("/member")
@@ -28,7 +30,7 @@ class MemberController extends AbstractController
     /**
      * @Route("/new", name="member_new", methods={"GET","POST"})
      */
-    public function new(Request $request): Response
+    public function new(Request $request, FileUploader $fileUploader): Response
     {
         $member = new Member();
         $form = $this->createForm(MemberType::class, $member);
@@ -36,6 +38,11 @@ class MemberController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $imageFile = $form['image']->getData();
+            if ($imageFile) {
+                $imageFileName = $fileUploader->upload($imageFile);
+                $member->setImage($imageFileName);
+            }
             $entityManager->persist($member);
             $entityManager->flush();
 
@@ -67,6 +74,9 @@ class MemberController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $member->setImage(
+                new File($this->getParameter('images_directory') . '/' . $member->getImage())
+            );
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('member_index');
@@ -83,7 +93,7 @@ class MemberController extends AbstractController
      */
     public function delete(Request $request, Member $member): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$member->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $member->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($member);
             $entityManager->flush();

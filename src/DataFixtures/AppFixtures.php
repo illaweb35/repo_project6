@@ -11,31 +11,38 @@ use App\Entity\Article;
 use App\Entity\Category;
 use App\Entity\Prospect;
 use App\Entity\Professor;
+use App\Service\FileUploader;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Symfony\Component\Filesystem\Filesystem;
 use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
 {
     private $passwordEncoder;
+    private $fileUploader;
 
-    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder, FileUploader $fileUploader)
     {
-
         $this->passwordEncoder = $passwordEncoder;
+        $this->fileUploader = $fileUploader;
     }
+
+
+
 
     public function load(ObjectManager $manager)
     {
+
         $faker = Factory::create('fr_FR');
-
-
-        /* User Administrator */
         $genres     = ['male', 'female'];
         $genre      = $faker->randomElement($genres);
         $imageFile  = 'https://randomuser.me/api/portraits/';
         $imageId    = $faker->numberBetween(1, 99) . '.jpg';
         $imageFile .= ($genre == 'male' ? 'men/' : 'women/') . $imageId;
+        /* User Administrator */
+
         $user = new User();
         $user->setEmail('admin@localhost.eu')
             ->setPseudo('jmh')
@@ -81,7 +88,7 @@ class AppFixtures extends Fixture
                 ->setSubTitle($faker->sentence)
                 ->setContent($faker->paragraph(5))
                 ->setProfessor($professor)
-                ->setImage($faker->imageUrl())
+                ->setImage($faker->imageUrl)
                 ->setImageCaption($faker->sentence);
 
             $manager->persist($dance);
@@ -147,7 +154,7 @@ class AppFixtures extends Fixture
                     ->setSubTitle($faker->sentence)
                     ->setCategory($category)
                     ->setContent($faker->paragraph(5))
-                    ->setImage($faker->imageUrl())
+                    ->setImage($faker->imageUrl)
                     ->setImageCaption($faker->sentence);
 
 

@@ -1,17 +1,22 @@
 {{ form_start(form) }}
 
-<form action="" class="uk-grid-small" enctype="multipart/form-data" method="post" uk-grid>
-    <div class="uk-width-1-2">
-        <label class="uk-form-label">
-            Image de Couverture</label>
-        {{form_widget(form.image)}}
-        <div class="uk-fom-danger">{{form_errors(form.image)}}</div>
-    </div>
-    <div class="uk-width-1-2">
-        <label class="uk-form-label">
-            Description de l'image</label>
-        {{form_widget(form.imageCaption)}}
-        <div class="uk-fom-danger">{{form_errors(form.imageCaption)}}</div>
+<form action="" enctype="multipart/form-data" method="post">
+    <div class="uk-grid-small uk-grdid-divider" uk-grid>
+        <div>
+            <img data-src="{{dance.image}}" alt="{{dance.imageCaption}}" width="250" uk-img>
+        </div>
+        <div>
+            <label class="uk-form-label">
+                Image de Couverture</label>
+            {{form_widget(form.image)}}
+            <div class="uk-fom-danger">{{form_errors(form.image)}}</div>
+        </div>
+        <div>
+            <label class="uk-form-label">
+                Description de l'image</label>
+            {{form_widget(form.imageCaption)}}
+            <div class="uk-fom-danger">{{form_errors(form.imageCaption)}}</div>
+        </div>
     </div>
 
     <div class="uk-width-1-1">

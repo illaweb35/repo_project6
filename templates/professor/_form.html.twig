@@ -4,9 +4,9 @@
     <fieldset class="uk-fieldset">
 
         <div class="uk-margin">
-            {{form_row(form.image)}}
+            {{form_row(form.imageFile)}}
             <div class="uk-form-danger">
-                {{form_errors(form.image)}}
+                {{form_errors(form.imageFile)}}
             </div>
 
         </div>
@@ -71,10 +71,10 @@
                 </div>
             </div>
 
-
+            {{ form_widget(form) }}
+            <button class="uk-button uk-button-primary">{{ button_label|default('Créer') }}</button>
         </fieldset>
 
     </form>
-    {{ form_widget(form) }}
-    <button class="uk-button uk-button-primary">{{ button_label|default('Créer') }}</button>
+
     {{ form_end(form) }}
