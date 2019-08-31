@@ -40,54 +40,59 @@
                 <ul class="js-filter uk-child-width-1-2@s uk-child-width-1-3@m uk-child-width-1-4@l" uk-grid uk-pagination uk-scrollspy="cls: uk-animation-fade; target: .uk-card; delay: 100; repeat: true">
                     {% for article in articles %}
                         <li class="uk-active" data-dance="{{article.category.name}}">
-                            <div class="uk-card uk-card-default">
-                                <div class="uk-card-header">
-                                    <div class="uk-grid-small uk-flex-middle" uk-grid>
-                                        <div class="uk-width-auto">
-                                            <a href="{{path('article_show',{'slug':article.slug})}}">
-                                                <img class="uk-border-rounded" alt="{{article.imageCaption}}" height="80" data-src="{{asset('img/uploads/' ~ article.image)}}" width="80" uk-img></a>
-                                        </div>
-                                        <div class="uk-width-expand">
-                                            {% if article.category.name == article.category.getSameName %}
-                                                <h4 class="uk-card-title uk-margin-remove-bottom" style="color:{{article.category.colorName}}">
-                                                    <span uk-icon="icon:tag"></span>
-                                                    {{article.category}}</h4>
-                                            {% else %}
-                                                <h4 class="uk-card-title uk-margin-remove-bottom">
-                                                    <span uk-icon="icon:tag"></span>
-                                                    {{article.category}}</h4>
-                                            {% endif %}
-                                            <p class="uk-text-meta uk-margin-remove-top">
-                                                {% if article.updatedAt > article.createdAt %}
-                                                    <time datetime="2016-04-01T19:00">
-                                                        modifier le&nbsp;{{article.createdAt|date('d M Y')}}</time>
+                            {% if article.category.name == article.category.getSameName %}
+                                <div class="uk-card uk-card-default" style="border: 2px solid {{article.category.colorName}}">
+                                {% else %}
+                                    <div class="uk-card uk-card-default">
+
+                                    {% endif %}
+                                    <div class="uk-card-header">
+                                        <div class="uk-grid-small uk-flex-middle" uk-grid>
+                                            <div class="uk-width-auto">
+                                                <a href="{{path('article_show',{'slug':article.slug})}}">
+                                                    <img class="uk-border-rounded" alt="{{article.imageCaption}}" height="80" data-src="{{asset('img/uploads/' ~ article.image)}}" width="80" uk-img></a>
+                                            </div>
+                                            <div class="uk-width-expand">
+                                                {% if article.category.name == article.category.getSameName %}
+                                                    <h4 class="uk-card-title uk-margin-remove-bottom" style="color:{{article.category.colorName}}">
+                                                        <span uk-icon="icon:tag"></span>
+                                                        {{article.category}}</h4>
                                                 {% else %}
-                                                    <time datetime="2016-04-01T19:00">
-                                                        Crée le&nbsp;{{article.createdAt|date('d M Y')}}</time>
+                                                    <h4 class="uk-card-title uk-margin-remove-bottom">
+                                                        <span uk-icon="icon:tag"></span>
+                                                        {{article.category}}</h4>
                                                 {% endif %}
-                                            </p>
+                                                <p class="uk-text-meta uk-margin-remove-top">
+                                                    {% if article.updatedAt > article.createdAt %}
+                                                        <time datetime="2016-04-01T19:00">
+                                                            modifier le&nbsp;{{article.createdAt|date('d M Y')}}</time>
+                                                    {% else %}
+                                                        <time datetime="2016-04-01T19:00">
+                                                            Crée le&nbsp;{{article.createdAt|date('d M Y')}}</time>
+                                                    {% endif %}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="uk-card-body">
+                                        <p class="uk-text-muted">{{article.subTitle}}
+                                        </p>
+                                        <p>{{article.content|slice(0,120)|raw}}...</p>
+                                    </div>
+                                    <div class="uk-card-footer">
+                                        <div class="uk-grid-small" uk-grid>
+                                            <a class="uk-button uk-button-text" href="{{path('article_show',{'slug':article.slug})}}">Lire +</a>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="uk-card-body">
-                                    <p class="uk-text-muted">{{article.subTitle}}
-                                    </p>
-                                    <p>{{article.content|slice(0,120)|raw}}...</p>
-                                </div>
-                                <div class="uk-card-footer">
-                                    <div class="uk-grid-small" uk-grid>
-                                        <a class="uk-button uk-button-text" href="{{path('article_show',{'slug':article.slug})}}">Lire +</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </li>
-                    {% endfor %}
-                </ul>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
-        </div>
-    </section>
-{% endblock %}
-{% block javascripts %}
-    {{parent()}}
-    <script src="{{asset('js/card_notification.js')}}"></script>
-{% endblock %}
+        </section>
+    {% endblock %}
+    {% block javascripts %}
+        {{parent()}}
+        <script src="{{asset('js/card_notification.js')}}"></script>
+    {% endblock %}

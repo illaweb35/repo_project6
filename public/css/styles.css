@@ -61,7 +61,9 @@ a {
     color: #1b80bf;
 }
 .uk-subnav-pill > .uk-active > a{
-    background-color: #f22e62
+ background-color: rgba(245,245,245, 0.1);
+   border:1px solid rgb(27,128,191,1);
+   color:#111111;
 }
 
 
