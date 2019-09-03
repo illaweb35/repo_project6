@@ -3,12 +3,9 @@
     <fieldset class="uk-fieldset">
         <div class="uk-grid-small" uk-grid>
             <div>
-                <img src="{{asset('img/uploads/' ~ article.image)}}" alt="{{article.imageCaption}}">
-            </div>
-            <div>
-                {{form_row(form.image)}}
+                {{form_row(form.imageFile)}}
                 <div class="uk-form-danger">
-                    {{form_errors(form.image)}}
+                    {{form_errors(form.imageFile)}}
                 </div>
 
             </div>

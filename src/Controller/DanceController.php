@@ -4,11 +4,9 @@ namespace App\Controller;
 
 use App\Entity\Dance;
 use App\Form\DanceType;
-use App\Service\FileUploader;
 use App\Repository\DanceRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -30,7 +28,7 @@ class DanceController extends AbstractController
     /**
      * @Route("/new", name="dance_new", methods={"GET","POST"})
      */
-    public function new(Request $request, FileUploader $fileUploader): Response
+    public function new(Request $request): Response
     {
         $dance = new Dance();
         $form = $this->createForm(DanceType::class, $dance);
@@ -38,11 +36,7 @@ class DanceController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-            $imageFile = $form['image']->getData();
-            if ($imageFile) {
-                $imageFileName = $fileUploader->upload($imageFile);
-                $dance->setImage($imageFileName);
-            }
+
             $entityManager->persist($dance);
             $entityManager->flush();
 
@@ -74,9 +68,7 @@ class DanceController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $dance->setImage(
-                new File($this->getParameter('images_directory') . '/' . $dance->getImage())
-            );
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('dance_index');

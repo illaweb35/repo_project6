@@ -5,10 +5,8 @@ namespace App\Controller;
 use App\Entity\Lesson;
 use App\Form\LessonType;
 use App\Service\Pagination;
-use App\Service\FileUploader;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -34,7 +32,7 @@ class LessonController extends AbstractController
     /**
      * @Route("/new", name="lesson_new", methods={"GET","POST"})
      */
-    public function new(Request $request, FileUploader $fileUploader): Response
+    public function new(Request $request): Response
     {
         $lesson = new Lesson();
         $form = $this->createForm(LessonType::class, $lesson);
@@ -42,11 +40,7 @@ class LessonController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-            $imageFile = $form['image']->getData();
-            if ($imageFile) {
-                $imageFileName = $fileUploader->upload($imageFile);
-                $lesson->setImage($imageFileName);
-            }
+
             $entityManager->persist($lesson);
             $entityManager->flush();
 
@@ -78,9 +72,7 @@ class LessonController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $lesson->setImage(
-                new File($this->getParameter('images_directory') . '/' . $lesson->getImage())
-            );
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('lesson_index');

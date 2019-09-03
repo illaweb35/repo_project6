@@ -3,13 +3,13 @@
 <form action="" enctype="multipart/form-data" method="post">
     <div class="uk-grid-small uk-grdid-divider" uk-grid>
         <div>
-            <img data-src="{{dance.image}}" alt="{{dance.imageCaption}}" width="250" uk-img>
+            <img data-src="{{asset('img/uploads/' ~ dance.image)}}" alt="{{dance.imageCaption}}" width="250" uk-img>
         </div>
         <div>
             <label class="uk-form-label">
                 Image de Couverture</label>
-            {{form_widget(form.image)}}
-            <div class="uk-fom-danger">{{form_errors(form.image)}}</div>
+            {{form_widget(form.imageFile)}}
+            <div class="uk-fom-danger">{{form_errors(form.imageFile)}}</div>
         </div>
         <div>
             <label class="uk-form-label">

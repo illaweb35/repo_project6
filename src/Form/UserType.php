@@ -5,9 +5,8 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Validator\Constraints\File;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -19,6 +18,7 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('imageFile', VichImageType::class)
             ->add('email', EmailType::class, [
                 'attr' => [
                     'class' => 'uk-input'
@@ -49,25 +49,6 @@ class UserType extends AbstractType
                 ]
             ])
             ->add('pseudo', TextType::class, [
-                'attr' => [
-                    'class' => 'uk-input'
-                ]
-            ])
-            ->add(
-                'image',
-                FileType::class,
-                [
-                    'label' => 'image',
-                    'mapped' => false,
-                    'required' => false,
-                    'constraints' => [
-                        new File([
-                            'maxSize' => '2M',
-                        ])
-                    ],
-                ]
-            )
-            ->add('imageCaption', TextType::class, [
                 'attr' => [
                     'class' => 'uk-input'
                 ]

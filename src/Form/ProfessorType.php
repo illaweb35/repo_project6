@@ -58,20 +58,7 @@ class ProfessorType extends AbstractType
                     'class' => 'uk-input'
                 ]
             ])
-            ->add(
-                'image',
-                FileType::class,
-                [
-                    'label' => 'image',
-                    'mapped' => false,
-                    'required' => false,
-                    'constraints' => [
-                        new File([
-                            'maxSize' => '2M',
-                        ])
-                    ],
-                ]
-            )
+            ->add('imageFile', VichImageType::class)
             ->add('imageCaption', TextType::class, [
                 'attr' => [
                     'class' => 'uk-input'

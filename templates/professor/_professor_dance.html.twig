@@ -15,7 +15,7 @@
                                 <a class="uk-button uk-button-link" href="{{ path('professor_show',{'id':professor.id})}}" uk-tooltip="title: Voir +">
                                     <div class="uk-grid-small uk-flex-middle" uk-grid>
                                         <div class="uk-width-auto">
-                                            <img class="uk-border-circle" height="40" src="{{professor.image}}" alt="{{professor.imageCaption}}" width=" 40">
+                                            <img class="uk-border-rounded" src="{{ asset('img/uploads/' ~ professor.image)}}" alt="{{professor.imageCaption}}" width="80">
                                         </div>
                                         <div class="uk-width-expand">
                                             <h3 class="uk-card-title uk-margin-remove-bottom">{{professor.firstName}}</h3>

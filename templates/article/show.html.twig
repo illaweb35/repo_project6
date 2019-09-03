@@ -18,7 +18,8 @@
                     {{article.category}}
                 </p>
 
-                <img class="uk-border-rounded" data-src="{{article.image}}" alt="{{article.imageCaption}}" uk-img>
+                <img class="uk-border-rounded" data-src="{{asset('img/uploads/' ~ article.image)}}" width="350" alt="{{article.imageCaption}}" uk-img>
+
                 <p class="uk-text-lead">{{article.subTitle}}</p>
 
                 <p>{{article.content}}</p>

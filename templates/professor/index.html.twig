@@ -26,7 +26,7 @@
                     {% for professor in professors %}
                         <tr>
                             <td>
-                                <a href="{{ path('professor_show',{'id':professor.id})}}" uk-tooltip="title: Voir +"><img class="uk-border-circle" data-src="{{ professor.image}}" alt="{{professor.imageCaption}}" width="60" uk-img></a>
+                                <a href="{{ path('professor_show',{'id':professor.id})}}" uk-tooltip="title: Voir +"><img class="uk-border-circle" data-src="{{ asset('img/uploads/' ~ professor.image)}}" alt="{{professor.imageCaption}}" width="60" uk-img></a>
                             </td>
                             <td>
                                 <p>{{ professor.fullName }}</p>

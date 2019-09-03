@@ -13,7 +13,7 @@
                             <p>{{article.category|capitalize}}</p>
                             <div class="uk-grid-small uk-flex-middle" uk-grid>
                                 <div class="uk-width-expand">
-                                    <img class="uk-border-rounded" data-src="{{article.Image}}" alt="{{article.imageCaption}}" uk-img>
+                                    <img class="uk-border-rounded" data-src="{{ asset('img/upmoads/' ~ article.Image)}}" alt="{{article.imageCaption}}" uk-img>
                                     <h3 class="uk-card-title uk-margin-remove-bottom">{{article.title}}</h3>
                                     <p class="uk-text-meta uk-margin">
                                         le :

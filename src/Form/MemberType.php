@@ -6,6 +6,7 @@ use App\Entity\Lesson;
 use App\Entity\Member;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -86,20 +87,7 @@ class MemberType extends AbstractType
                     'rows' => '3'
                 ]
             ])
-            ->add(
-                'image',
-                FileType::class,
-                [
-                    'label' => 'image',
-                    'mapped' => false,
-                    'required' => false,
-                    'constraints' => [
-                        new File([
-                            'maxSize' => '2M',
-                        ])
-                    ],
-                ]
-            )
+            ->add('imageFile', VichImageType::class)
             ->add('imageCaption', TextType::class, [
                 'attr' => [
                     'class' => 'uk-input .uk-form-width-small'

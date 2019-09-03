@@ -4,7 +4,6 @@ namespace App\Controller;
 
 use App\Entity\Prospect;
 use App\Form\ProspectType;
-use App\Service\Pagination;
 use App\Service\MailerService;
 use App\Repository\ProspectRepository;
 use Symfony\Component\HttpFoundation\Request;

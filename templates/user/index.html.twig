@@ -23,7 +23,7 @@
                 <tbody>
                     {% for user in users %}
                         <tr>
-                            <td><img class="uk-border-circle" data-src="{{ user.image|raw}}" alt="{{user.imageCaption}}" width="60" uk-img></td>
+                            <td><img class=" uk-border-circle" data-src="{{asset('img/uploads/' ~ user.image)}}" width="80" alt="{{user.imagecaption}}"></td>
                             <td>{{ user.email }}</td>
                             <td>{{ user.roles |json_encode  }}</td>
                             <td>{{ user.pseudo }}</td>

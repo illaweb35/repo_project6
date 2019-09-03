@@ -10,7 +10,7 @@
             <h1>Elève</h1>
             <article class="uk-article">
                 <div class="uk-grid-divider" uk-grid>
-                    <div class="uk-width-auto"><img data-src="{{member.image}}" alt="{{member.imageCaption}}" uk-img></div>
+                    <div class="uk-width-auto"><img data-src="{{asset('img/uploads/' ~ member.image)}}" alt="{{member.imageCaption}}" uk-img></div>
                     <div>
                         <h1 class="uk-article-title">{{ member.userFullName}}</h1>
                         <p>Age :

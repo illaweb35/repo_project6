@@ -73,13 +73,8 @@
 
             <li>
                 <a href="{{ path('dashboard') }}"></a>
-                <img class="uk-border-circle" height="80" data-src="{{app.user.image}}" width="80" alt="{{app.user.imageCaption}}" uk-img>
                 <ul class="uk-nav uk-dropdown-nav uk-text-left">
-                    <li>
-                        <a href="{{ path('user_edit', {'id': app.user.id}) }}">
-                            <span data-uk-icon="icon: refresh"></span>
-                            Edit</a>
-                    </li>
+
                     <li>
                         <a href="{{path('app_logout')}}">
                             <span data-uk-icon="icon: sign-out"></span>
