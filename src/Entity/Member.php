@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Service\OlderCalculator;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 use Symfony\Component\HttpFoundation\File\File;
@@ -161,6 +162,11 @@ class Member
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $imageCaption;
+
+    /**
+     * @ORM\Column(type="integer")
+     */
+    private $older;
 
 
 
@@ -400,5 +406,41 @@ class Member
         $this->imageCaption = $imageCaption;
 
         return $this;
+    }
+    /**
+     * Concatenation FirstName + LastName
+     *
+     * @return void
+     */
+    public function getUserFullName()
+    {
+        return "{$this->userFirstName} {$this->userLastName}";
+    }
+    /**
+     * Concatenation FirstName + LastName
+     *
+     * @return void
+     */
+    public function getFullName()
+    {
+        return "{$this->firstName} {$this->lastName}";
+    }
+
+    public function getOlder(): ?int
+    {
+        return $this->older;
+    }
+
+    public function setOlder(int $older): self
+    {
+        $this->older = $older;
+        return $this;
+    }
+    public function ageOlder()
+    {
+        if (empty($this->older)) {
+            $calculOlder = new OlderCalculator();
+            $this->older = $calculOlder->older($this->birthDay);
+        }
     }
 }

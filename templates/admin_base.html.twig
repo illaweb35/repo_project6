@@ -39,6 +39,7 @@
             <link crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.18.0/ui/trumbowyg.min.css" integrity="sha256-X5UWaGp+SiusJ9TA2ShymJz5VPE+oTl88TNI47fqOTs=" rel="stylesheet"/>
             <link href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.7/css/uikit.min.css" rel="stylesheet"/>
             <link rel="stylesheet" href="{{asset('css/styles.css')}}">
+            <link rel="stylesheet" href="{{asset('css/dashboard.css')}}">
         {% endblock %}
 
         <!-- Title page-head -->
@@ -49,8 +50,20 @@
     </head>
     <body>
         <!-- Content -->
-        {{include('_dashboard/_partials/_navbar.html.twig')}}
-        {% block body %}{% endblock %}
+        {{include('dashboard/_partials/_navbar.html.twig')}}
+        {% block body %}
+            <!-- LEFT BAR -->
+            <aside class="uk-light uk-visible@m" id="left-col">
+                {{ include('dashboard/home/_aside.html.twig') }}
+            </aside>
+            <!-- /LEFT BAR -->
+            <!-- CONTENT -->
+            <div data-uk-height-viewport="expand: true" id="content">
+                {% block content %}{% endblock %}
+
+            </div>
+        {% endblock %}
+        {% include "_partials/_footer.html.twig" %}
 
         <!-- Block javascripts -->
         {% block javascripts %}
@@ -69,7 +82,7 @@
             <!-- UIkit -->
             <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.7/js/uikit.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.1.7/js/uikit-icons.min.js"></script>
-
+            <script src="{{asset('js/hour.js')}}"></script</body>
         {% endblock %}
     </body>
 </html>

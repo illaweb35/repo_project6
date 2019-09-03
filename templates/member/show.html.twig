@@ -1,76 +1,46 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin_base.html.twig' %}
 
 {% block title %}Member
 {% endblock %}
 
-{% block body %}
-    <h1>Member</h1>
+{% block content %}
+    <section class="uk-section">
+        <div class="uk-container">
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ member.id }}</td>
-            </tr>
-            <tr>
-                <th>UserFirstName</th>
-                <td>{{ member.userFirstName }}</td>
-            </tr>
-            <tr>
-                <th>UserLastName</th>
-                <td>{{ member.userLastName }}</td>
-            </tr>
-            <tr>
-                <th>Birthday</th>
-                <td>{{ member.birthday ? member.birthday|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Civility</th>
-                <td>{{ member.civility }}</td>
-            </tr>
-            <tr>
-                <th>FirstName</th>
-                <td>{{ member.firstName }}</td>
-            </tr>
-            <tr>
-                <th>LastName</th>
-                <td>{{ member.lastName }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ member.email }}</td>
-            </tr>
-            <tr>
-                <th>Phone</th>
-                <td>{{ member.phoneNumber }}</td>
-            </tr>
-            <tr>
-                <th>Mobile</th>
-                <td>{{ member.mobileNumber }}</td>
-            </tr>
-            <tr>
-                <th>Address</th>
-                <td>{{ member.address }}</td>
-            </tr>
-            <tr>
-                <th>PostCode</th>
-                <td>{{ member.postCode }}</td>
-            </tr>
-            <tr>
-                <th>City</th>
-                <td>{{ member.city }}</td>
-            </tr>
-            <tr>
-                <th>Infos</th>
-                <td>{{ member.infos }}</td>
-            </tr>
+            <h1>Elève</h1>
+            <article class="uk-article">
+                <div class="uk-grid-divider" uk-grid>
+                    <img data-src="{{member.image}}" alt="{{member.imageCaption}}" uk-img>
+                    <h1 class="uk-article-title">{{ member.userFullName}}</h1>
+                </div>
+                <p>Age :
+                    {{member.older}}
+                    ans</p>
+                <p>Est inscrit pour le cours :
+                    <strong>{{member.lesson}}</strong>
+                </p>
+                <p class="uk-article-meta">Date de naissance :
+                    {{member.birthday|date('d M Y')}}</p>
+                <hr class="uk-divider-icon">
+            </article>
 
-        </tbody>
-    </table>
+            <div class="uk-grid-small uk-grid-divider uk-child-width-auto" uk-grid>
+                <div>
+                    <a class="uk-button uk-button-text" href="{{ path('member_index') }}">back to list</a>
+                </div>
+                {% if is_granted("ROLE_USER") %}
+                    <div>
+                        <a class="uk-button uk-button-link" href="{{ path('member_edit', {'id':member.id}) }}" uk-icon="icon: file-edit"></a>
+                    </div>
+                    <div>
+                        <a href="#delete-confirm" uk-toggle>
+                            <span uk-icon="icon: trash"></span>
+                        </a>
+                    {% endif %}
+                </div>
 
-    <a href="{{ path('member_index') }}">back to list</a>
+            </div>
+        </section>
 
-    <a href="{{ path('member_edit', {'id': member.id}) }}">edit</a>
-
-    {{ include('member/_delete_form.html.twig') }}
-{% endblock %}
+        {{ include('member/_delete_form.html.twig') }}
+    {% endblock %}

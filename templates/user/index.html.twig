@@ -1,49 +1,48 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin_base.html.twig' %}
 
-{% block title %}User index{% endblock %}
+{% block title %}Liste des utilisateurs
+{% endblock %}
 
-{% block body %}
-    <h1>User index</h1>
+{% block content %}
+    <section class="uk-section">
+        <div class="uk-container">
+            <h1>User index</h1>
+            <div class="uk-float-right">
+                <a class="uk-button uk-button-primary" href="{{ path('user_new') }}">Create new</a>
+            </div>
+            <table class="uk-table uk-table-hover">
+                <thead>
+                    <tr>
+                        <th>Avatar</th>
+                        <th>Email</th>
+                        <th>Roles</th>
+                        <th>Pseudo</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for user in users %}
+                        <tr>
+                            <td><img class="uk-border-circle" data-src="{{ user.image|raw}}" alt="avatar de l'utilisateur" width="60" uk-img></td>
+                            <td></td>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                            <td>{{ user.pseudo }}</td>
+                            <td>
+                                <a href="{{ path('user_show', {'id': user.id}) }}">
+                                    <i class="fas fa-eye"></i>
+                                </a>
+                                <a class="uk-button uk-button-link" href="{{ path('user_edit', {'id': user.id}) }}" uk-icon="icon:file-edit"></a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="7">no records found</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </section>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Email</th>
-                <th>Roles</th>
-                <th>Password</th>
-                <th>Pseudo</th>
-                <th>Image</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>ImageCaption</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for user in users %}
-            <tr>
-                <td>{{ user.id }}</td>
-                <td>{{ user.email }}</td>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td>{{ user.password }}</td>
-                <td>{{ user.pseudo }}</td>
-                <td>{{ user.image }}</td>
-                <td>{{ user.createdAt ? user.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ user.updatedAt ? user.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ user.imageCaption }}</td>
-                <td>
-                    <a href="{{ path('user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="10">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('user_new') }}">Create new</a>
 {% endblock %}

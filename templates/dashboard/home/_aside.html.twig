@@ -29,8 +29,20 @@
                 <span class="uk-margin-small-right" data-uk-icon="icon: list"></span>Utilisateurs</a>
         </li>
         <li>
+            <a href="{{path('member_index')}}">
+                <span class="uk-margin-small-right" data-uk-icon="icon: list"></span>Elèves</a>
+        </li>
+
+
+        <li class="uk-parent">
             <a href="{{path('article_index')}}">
                 <span class="uk-margin-small-right" data-uk-icon="icon: list"></span>Articles</a>
+            <ul class="uk-nav-sub">
+                <li>
+                    <a href="{{path('category_index')}}">
+                        <span class="uk-margin-small-right" data-uk-icon="icon: list"></span>Category</a>
+                </li>
+            </ul>
         </li>
         <li>
             <a href="{{ path('lesson_index')}}">

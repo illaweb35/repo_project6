@@ -1,0 +1,48 @@
+{% extends 'admin_base.html.twig' %}
+
+{% block title %}Category index
+{% endblock %}
+
+{% block content %}
+    <section class="uk-section">
+        <div class="uk-container">
+            <h1>Category index</h1>
+
+            <table class="uk-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Code couleur</th>
+                        <th>
+                            Couleur
+                        </th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for category in categories %}
+                        <tr>
+                            <td>{{ category.name }}</td>
+                            <td>{{ category.colorName }}</td>
+                            <td>
+                                <div id="cadre" style="background-color:{{category.colorName}}"></div>
+                            </td>
+
+                            <td>
+                                <a href="{{ path('category_show', {'id': category.id}) }}">show</a>
+                                <a href="{{ path('category_edit', {'id': category.id}) }}">edit</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="6">no records found</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <a href="{{ path('category_new') }}">Create new</a>
+        </div>
+    </section>
+
+{% endblock %}

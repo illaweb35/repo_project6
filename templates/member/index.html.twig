@@ -1,61 +1,67 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin_base.html.twig' %}
 
-{% block title %}Member index
+{% block title %}Elèves
 {% endblock %}
 
-{% block body %}
-    <h1>Member index</h1>
+{% block content %}
+    <section class="uk-section uk-section-default">
+        <div class="uk-container">
+            <h1>Liste des élèves</h1>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>UserFirstName</th>
-                <th>UserLastName</th>
-                <th>Birthday</th>
-                <th>Civility</th>
-                <th>FirstName</th>
-                <th>LastName</th>
-                <th>Email</th>
-                <th>Phone</th>
-                <th>Mobile</th>
-                <th>Address</th>
-                <th>PostCode</th>
-                <th>City</th>
-                <th>Infos</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for member in members %}
-                <tr>
-                    <td>{{ member.id }}</td>
-                    <td>{{ member.userFirstName }}</td>
-                    <td>{{ member.userLastName }}</td>
-                    <td>{{ member.birthday ? member.birthday|date('Y-m-d H:i:s') : '' }}</td>
-                    <td>{{ member.civility }}</td>
-                    <td>{{ member.firstName }}</td>
-                    <td>{{ member.lastName }}</td>
-                    <td>{{ member.email }}</td>
-                    <td>{{ member.phoneNumber }}</td>
-                    <td>{{ member.mobileNumber }}</td>
-                    <td>{{ member.address }}</td>
-                    <td>{{ member.postCode }}</td>
-                    <td>{{ member.city }}</td>
-                    <td>{{ member.infos|slice(0,80)|raw}}...</td>
+            <table class="uk-table">
+                <thead>
+                    <tr>
+                        <th>Avatar</th>
+                        <th>Nom</th>
+                        <th>age</th>
+                        <th>Responsable</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>Mobile</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for member in members %}
+                        <tr>
+                            <td><img class="uk-border-circle" data-src="{{member.image}}" width="60px" alt="{{member.imageCaption}}" uk-img></td>
+                            <td>
+                                <p>{{ member.userFullName }}</p>
+                            </td>
+                            <td>
+                                <p>{{ member.older }}
+                                    ans</p>
+                            </td>
+                            <td>
+                                <p>{{ member.fullName }}</p>
+                            </td>
+                            <td>
+                                <p class="uk-text-small">{{ member.email }}</p>
+                            </td>
+                            <td>
+                                <p class="uk-text-small">{{ member.phoneNumber|formatPhone(member.phoneNumber) }}</p>
+                            </td>
+                            <td>
+                                <p class="uk-text-small">{{ member.mobileNumber|formatPhone(member.mobileNumber) }}</p>
+                            </td>
 
-                    <td>
-                        <a href="{{ path('member_show', {'id': member.id}) }}">show</a>
-                        <a href="{{ path('member_edit', {'id': member.id}) }}">edit</a>
-                    </td>
-                </tr>
-            {% else %}
-                <tr>
-                    <td colspan="17">no records found</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
 
-    <a href="{{ path('member_new') }}">Create new</a>
+                            <td>
+                                <a href="{{ path('member_show', {'id': member.id}) }}">show</a>
+                                <a href="{{ path('member_edit', {'id': member.id}) }}">edit</a>
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="17">no records found</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <a href="{{ path('member_new') }}">Create new</a>
+        </div>
+
+    </section>
+
 {% endblock %}

@@ -1,4 +1,4 @@
-{% extends '_dashboard/dashboard_base.html.twig' %}
+{% extends 'admin_base.html.twig' %}
 {%block stylesheets %}
     {{parent()}}
     <link rel="stylesheet" href="{{asset('css/dashboard.css')}}">
@@ -10,12 +10,12 @@
 
     <!-- LEFT BAR -->
     <aside class="uk-light uk-visible@m" id="left-col">
-        {{ include('_dashboard/home/_aside.html.twig') }}
+        {{ include('dashboard/home/_aside.html.twig') }}
     </aside>
     <!-- /LEFT BAR -->
     <!-- CONTENT -->
     <div data-uk-height-viewport="expand: true" id="content">
-        {{ include('_dashboard/home/_content.html.twig') }}
+        {{ include('dashboard/home/_content.html.twig') }}
     </div>
     <!-- /CONTENT -->
 

@@ -22,7 +22,7 @@ class DashboardController extends AbstractController
 
 
 
-        return $this->render('_dashboard/home/index.html.twig', [
+        return $this->render('dashboard/home/index.html.twig', [
             'users' => $users->findAll(),
             'articles' => $articles->findall(),
             'articlesPanel' => $articles->findByLast(5),

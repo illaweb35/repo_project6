@@ -1,5 +1,16 @@
-<form method="post" action="{{ path('user_delete', {'id': user.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
-    <input type="hidden" name="_method" value="DELETE">
-    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
-    <button class="btn">Delete</button>
-</form>
+<div id="delete-confirm" uk-modal>
+    <div class="uk-modal-dialog uk-modal-body">
+        <p class="uk-text-center">
+            Voulez vous vraiment supprimer cette leçon ?
+        </p>
+        <div class="uk-text-center">
+            <form method="post" action="{{ path('user_delete', {'id': user.id}) }}">
+
+                <input name="_method" type="hidden" value="DELETE">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+                <button class="uk-button uk-button-danger uk-border-rounded">Supprimer</button>
+            </form>
+            <button class="uk-margin uk-border-rounded uk-button uk-button-default uk-modal-close" type="button">Annuler</button>
+        </div>
+    </div>
+</div>
