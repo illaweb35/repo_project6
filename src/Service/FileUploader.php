@@ -16,23 +16,19 @@ class FileUploader
         $this->targetDirectory = $targetDirectory;
     }
 
-    public function upload(UploadedFile $file): string
+    public function upload(UploadedFile $file)
     {
-        if ($file instanceof UploadFile) {
-            $originalFilename =  pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
-        } else {
-            $originalFilename = $file->getFilename();
-        }
+        $originalFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME);
         $safeFilename = transliterator_transliterate('Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()', $originalFilename);
-        $newFileName = $safeFilename . '-' . uniqid() . '.' . $file->guessExtension();
+        $fileName = $safeFilename . '-' . uniqid() . '.' . $file->guessExtension();
 
         try {
-            $file->move($this->getTargetDirectory(), $newFileName);
+            $file->move($this->getTargetDirectory(), $fileName);
         } catch (FileException $e) {
             // ... handle exception if something happens during file upload
         }
 
-        return $newFileName;
+        return $fileName;
     }
 
     public function getTargetDirectory()

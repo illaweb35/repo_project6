@@ -49,7 +49,7 @@ class AppFixtures extends Fixture
             ->setPseudo('jmh')
             ->setRoles(['ROLE_ADMIN'])
             ->setPassword($this->passwordEncoder->encodePassword($user, 'Password'))
-            ->setImage($imagefield)
+
             ->setImageCaption($faker->sentence);
         $manager->persist($user);
 
@@ -63,9 +63,9 @@ class AppFixtures extends Fixture
             $imageFile .= ($genre == 'male' ? 'men/' : 'women/') . $imageId;
             $users->setEmail($faker->email)
                 ->setPseudo($faker->firstName())
-                ->setRoles(['ROLE_User'])
+
                 ->setPassword($this->passwordEncoder->encodePassword($user, 'Password'))
-                ->setImage($imageFile)
+
                 ->setImageCaption($faker->sentence);
 
             $manager->persist($users);
@@ -87,7 +87,7 @@ class AppFixtures extends Fixture
                 ->setAddress($faker->streetAddress)
                 ->setPostCode($faker->postcode)
                 ->setCity($faker->city)
-                ->setImage($imageFile)
+
                 ->setImageCaption($faker->sentence);
         }
         $manager->persist($professor);
@@ -147,7 +147,7 @@ class AppFixtures extends Fixture
                         ->setCity($faker->city)
                         ->setInfos($faker->paragraph(5))
                         ->setLesson($lesson)
-                        ->setImage($imageFile)
+
                         ->setImageCaption($faker->sentence);
                     $ageOlder = new OlderCalculator();
                     $age = $ageOlder->older($member->getBirthday());
@@ -174,7 +174,7 @@ class AppFixtures extends Fixture
                     ->setSubTitle($faker->sentence)
                     ->setCategory($category)
                     ->setContent($faker->paragraph(5))
-                    ->setImage($faker->imageUrl)
+
                     ->setImageCaption($faker->sentence);
 
 

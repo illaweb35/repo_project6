@@ -3,6 +3,8 @@
 <img class="uk-border-pill" data-src="{{ asset('img/uploads/' ~ user.image) }}" width="100" height="100" alt="{{user.imageCaption}}" uk-img>
 
 <form action="" class="uk-grid-small" enctype="multipart/form-data" method="post" uk-grid>
+
+
     <div class="uk-width-1-1">
         <div class="js-upload uk-placeholder uk-text-center">
             <span uk-icon="icon: cloud-upload"></span>
@@ -33,7 +35,7 @@
     </div>
     <div class="uk-margin">
         <label class="uk-form-label">Rôles</label>
-        <div class="uk-checkbox">{{form_widget(form.roles)}}</div>
+        {{form_widget(form.roles)}}
     </div>
 
     {{ form_widget(form) }}

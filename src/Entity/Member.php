@@ -100,7 +100,7 @@ class Member
      * @Assert\NotBlank 
      * @Assert\Length(
      *      min= 8,
-     *      max= 14,
+     *      max= 20,
      *      minMessage = "Your phone number must be at least {{ limit }} characters long",
      *      maxMessage = "Your phone number cannot be longer than {{ limit }} characters")
      */
@@ -111,7 +111,7 @@ class Member
      * @Assert\NotBlank 
      * @Assert\Length(
      *      min= 8,
-     *      max= 14,
+     *      max= 20,
      *      minMessage = "Your phone number must be at least {{ limit }} characters long",
      *      maxMessage = "Your phone number cannot be longer than {{ limit }} characters")
      */

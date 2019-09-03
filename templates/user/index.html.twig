@@ -6,7 +6,7 @@
 {% block content %}
     <section class="uk-section">
         <div class="uk-container">
-            <h1>User index</h1>
+            <h1>Liste des utilisateurs</h1>
             <div class="uk-float-right">
                 <a class="uk-button uk-button-primary" href="{{ path('user_new') }}">Create new</a>
             </div>
@@ -23,16 +23,17 @@
                 <tbody>
                     {% for user in users %}
                         <tr>
-                            <td><img class="uk-border-circle" data-src="{{ user.image|raw}}" alt="avatar de l'utilisateur" width="60" uk-img></td>
-                            <td></td>
+                            <td><img class="uk-border-circle" data-src="{{ user.image|raw}}" alt="{{user.imageCaption}}" width="60" uk-img></td>
                             <td>{{ user.email }}</td>
-                            <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
+                            <td>{{ user.roles |json_encode  }}</td>
                             <td>{{ user.pseudo }}</td>
                             <td>
-                                <a class="uk-button uk-button-link" href="{{ path('user_edit', {'id': user.id}) }}" uk-icon="icon:file-edit"></a>
-                                <a href="#delete-confirm" uk-toggle>
-                                    <span uk-icon="icon: trash"></span>
-                                </a>
+                                <div class="uk-grid-small uk-grid-divider" uk-grid>
+                                    <a class="uk-button uk-button-link" href="{{ path('user_edit', {'id': user.id}) }}" uk-icon="icon:file-edit" uk-tooltip="title: Modifier {{user.pseudo}}"></a>
+                                    <a href="#delete-confirm" uk-toggle>
+                                        <span uk-icon="icon: trash" uk-tooltip="title: Supprimer {{user.pseudo}}"></span>
+                                    </a>
+                                </div>
                                 {{ include('user/_delete_form.html.twig')}}
 
 

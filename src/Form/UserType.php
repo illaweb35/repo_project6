@@ -5,7 +5,6 @@ namespace App\Form;
 use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -30,8 +29,8 @@ class UserType extends AbstractType
                 'expanded' => true,
                 'choices' => [
                     'Admin' => 'ROLE_ADMIN',
-                    'Manager' => 'ROLE_BUREAU'
-                ]
+                    'Manager' => 'ROLE_USER'
+                ],
             ])
             ->add('password', RepeatedType::class, [
                 'type' => PasswordType::class,

@@ -12,7 +12,7 @@
                     <div class="uk-grid-small uk-flex-middle" uk-grid>
                         <div class="uk-width-expand">
                             <h3 class="uk-card-title uk-margin-remove-bottom">{{prospect.fullName}}</h3>
-                            <p class="uk-text-meta uk-margin-remove-top">
+                            <p class="uk-text-meta">
                                 <time datetime="2016-04-01T19:00">Enregistré le
                                     {{prospect.createdAt|date('d M Y')}}
                                     &nbsp; à
@@ -22,6 +22,9 @@
                     </div>
                 </div>
                 <div class="uk-card-body">
+                    <a href="mailto:{{prospect.email}}?subject=Dance Attitude Bréal sous montfort _ Réponse à votre demande">
+                        <p uk-tooltip="title: Repondre à {{prospect.email}};pos: left">{{prospect.email}}</p>
+                    </a>
                     <p>Sujet de l'email :
                         {{prospect.subject}}</p>
                     <p>Contenu de l'email:</p>
@@ -33,11 +36,11 @@
                             <a class="uk-button uk-button-text" href="{{ path('prospect_index') }}">back to list</a>
                         </div>
                         <div>
-                            <a class="uk-button uk-button-link" href="{{ path('prospect_edit', {'id': prospect.id}) }}" uk-icon="icon: file-edit"></a>
+                            <a class="uk-button uk-button-link" href="mailto:{{prospect.email}}?subject=Dance Attitude Bréal sous monfort" uk-icon="icon: mail" uk-tooltip="title: Répondre à {{prospect.fullName}}"></a>
                         </div>
                         <div>
-                            <a href="#delete-confirm" uk-toggle>
-                                <span uk-icon="icon: trash"></span>
+                            <a href=" #delete-confirm" uk-toggle>
+                                <span uk-icon=" icon: trash" uk-tooltip="title: Supprimer"></span>
                             </a>
                         </div>
                     </div>

@@ -6,16 +6,14 @@
 {% block content %}
     <section class="uk-section">
         <div class="uk-container">
-            <h1>Category index</h1>
-
+            <h1>Liste des categories d'article</h1>
+            <a class="uk-button uk-button-primary" href="{{ path('category_new') }}" uk-tooltip="title: Ajouter une catégorie d'article">Ajouter</a>
             <table class="uk-table">
                 <thead>
                     <tr>
-                        <th>Name</th>
+                        <th>Nom</th>
                         <th>Code couleur</th>
-                        <th>
-                            Couleur
-                        </th>
+                        <th>aperçu de la Couleur</th>
                         <th>actions</th>
                     </tr>
                 </thead>
@@ -27,13 +25,14 @@
                             <td>
                                 <div id="cadre" style="background-color:{{category.colorName}}"></div>
                             </td>
-
                             <td>
-                                <a class="uk-button uk-button-link" href="{{ path('category_edit', {'id': category.id}) }}" uk-icon="icon: file-edit"></a>
-                                <a href="#delete-confirm" uk-toggle>
-                                    <span uk-icon="icon: trash"></span>
-                                </a>
-                                {{ include('category/_delete_form.html.twig')}}
+                                <div class="uk-grid-small uk-grid-divider" uk-grid>
+                                    <a class="uk-button uk-button-link" href="{{ path('category_edit', {'id': category.id}) }}" uk-icon="icon: file-edit" uk-tooltip="title: modifier la couleur"></a>
+                                    <a href="#delete-confirm" uk-toggle>
+                                        <span uk-icon="icon: trash" uk-tooltip="title: supprimer la couleur"></span>
+                                    </a>
+                                    {{ include('category/_delete_form.html.twig')}}
+                                </div>
                             </td>
                         </tr>
                     {% else %}
@@ -44,7 +43,7 @@
                 </tbody>
             </table>
 
-            <a href="{{ path('category_new') }}">Create new</a>
+
         </div>
     </section>
 

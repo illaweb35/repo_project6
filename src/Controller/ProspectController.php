@@ -6,6 +6,7 @@ use App\Entity\Prospect;
 use App\Form\ProspectType;
 use App\Service\Pagination;
 use App\Service\MailerService;
+use App\Repository\ProspectRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -26,17 +27,15 @@ class ProspectController extends AbstractController
     }
 
     /**
-     * @Route("/{page<\d+>?1}", name="prospect_index", methods={"GET"})
+     * @Route("/", name="prospect_index", methods={"GET"})
      * @IsGranted("ROLE_USER")
      */
-    public function index(Pagination $pagination, $page): Response
+    public function index(ProspectRepository $prospects): Response
     {
-        $pagination->setEntityClass(Prospect::class)
-            ->setPage($page);
-        $prospects = $pagination->getData();
+
         return $this->render('prospect/index.html.twig', [
-            'prospects' => $prospects,
-            'pagination' => $pagination
+            'prospects' => $prospects->findall(),
+
         ]);
     }
 

@@ -1,6 +1,6 @@
 <div class="uk-position-top">
     <div class="uk-sticky uk-sticky-fixed" style="position:fixed;top:0px;" uk-sticky="sel-target: .uk-navbar-container;cls-active: uk-navbar-stiky;bottom: #sticky-dropbar-push">
-        <nav class="uk-navbar-container " data-uk-navbar>
+        <nav class="uk-navbar-container uk-light" data-uk-navbar>
             <div class="uk-navbar-left">
                 <div class="uk-navbar-item">
                     <a class="uk-logo brand" href="{{ path('dashboard')}}"><img alt="Logo dashboard" src="{{asset('img/dashboard.png')}}">Tableau de bord
@@ -13,22 +13,23 @@
                         <a data-uk-icon="home" href="{{path('home')}}"></a>
                     </li>
                     <li class="uk-visible@m">
-                        <a href="{{ path('dance_index')}}">Danses</a>
+                        <a href="{{ path('user_index')}}">Uilisateurs</a>
                     </li>
                     <li class="uk-visible@m">
-                        <a href="{{path('lesson_index')}}">Leçons</a>
+                        <a href="{{path('member_index')}}">Elèves</a>
                     </li>
                     <li class="uk-visible@m">
-                        <a href="{{path('article_index')}}">Articles</a>
+                        <a href="{{path('admin_articles')}}">Articles</a>
                     </li>
 
                     <li class="uk-visible@m">
-                        <a href="{{path('prospect_index')}}">Contact</a>
+                        <a href="{{path('category_index')}}">Categories</a>
                     </li>
-                    <li>
-                        <a href="{{ path('dashboard') }}">
-                            <span uk-icon="icon: user"></span>
-                        </a>
+                    <li class="uk-visible@m">
+                        <a href="{{path('admin_lessons')}}">Leçons</a>
+                    </li>
+                    <li class="uk-visible@m">
+                        <a href="{{path('professor_index')}}">Professeurs</a>
                     </li>
                     <li class="uk-hidden@m">
                         <a class="uk-navbar-toggle" data-uk-navbar-toggle-icon data-uk-toggle href="#offcanvas-nav"></a>
@@ -43,26 +44,49 @@
     <div class="uk-offcanvas-bar uk-offcanvas-bar-animation uk-offcanvas-slide">
         <button class="uk-offcanvas-close uk-close uk-icon" data-uk-close type="button"></button>
         <ul class="uk-nav uk-nav-default">
+            <li class="uk-nav-header">Tableau de bord</li>
+
             <li>
                 <a data-uk-icon="home" href="{{path('home')}}"></a>
             </li>
             <li>
-                <a href="{{path('dance_index')}}">Danses</a>
+                <a href="{{path('user_index')}}">Utilisateurs</a>
             </li>
             <li>
-                <a href="{{path('lesson_index')}}">Lessons</a>
+                <a href="{{path('member_index')}}">Elèves</a>
             </li>
             <li>
-                <a href="{{path('article_index')}}">article</a>
+                <a href="{{path('admin_articles')}}">articles</a>
             </li>
 
             <li>
-                <a href="{{path('prospect_index')}}">Contact</a>
+                <a href="{{path('category_index')}}">Categories</a>
             </li>
             <li>
-                <a href="{{ path('dashboard') }}">
-                    <span uk-icon="icon: user"></span>
-                </a>
+                <a href="{{path('admin_lessons')}}">Leçons</a>
+            </li>
+            <li>
+                <a href="{{path('professor_index')}}">Professeurs</a>
+            </li>
+            <li class="uk-nav-divider"></li>
+            <li class="uk-nav-header">Utilisateur</li>
+
+            <li>
+                <a href="{{ path('dashboard') }}"></a>
+                <img class="uk-border-circle" height="80" data-src="{{app.user.image}}" width="80" alt="{{app.user.imageCaption}}" uk-img>
+                <ul class="uk-nav uk-dropdown-nav uk-text-left">
+                    <li>
+                        <a href="{{ path('user_edit', {'id': app.user.id}) }}">
+                            <span data-uk-icon="icon: refresh"></span>
+                            Edit</a>
+                    </li>
+                    <li>
+                        <a href="{{path('app_logout')}}">
+                            <span data-uk-icon="icon: sign-out"></span>
+                            Sign Out</a>
+                    </li>
+                </ul>
+
             </li>
         </ul>
     </div>
