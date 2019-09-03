@@ -2,9 +2,11 @@
 
 namespace App\Form;
 
+use App\Entity\Lesson;
 use App\Entity\Member;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\File;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -48,15 +50,19 @@ class MemberType extends AbstractType
                     'class' => 'uk-input'
                 ]
             ])
-            ->add('email', EmailType::class)
+            ->add('email', EmailType::class, [
+                'attr' => [
+                    'class' => 'uk-input uk-form-width-medium'
+                ]
+            ])
             ->add('phoneNumber', TextType::class, [
                 'attr' => [
-                    'class' => 'uk-input'
+                    'class' => 'uk-input uk-form-width-small'
                 ]
             ])
             ->add('mobileNumber', TextType::class, [
                 'attr' => [
-                    'class' => 'uk-input'
+                    'class' => 'uk-input uk-form-width-small'
                 ]
             ])
             ->add('address', TextType::class, [
@@ -64,10 +70,14 @@ class MemberType extends AbstractType
                     'class' => 'uk-input'
                 ]
             ])
-            ->add('postCode')
+            ->add('postCode', TextType::class, [
+                'attr' => [
+                    'class' => 'uk-input uk-form-width-small'
+                ]
+            ])
             ->add('city', TextType::class, [
                 'attr' => [
-                    'class' => 'uk-input'
+                    'class' => 'uk-input uk-form-width-small'
                 ]
             ])
             ->add('infos', TextareaType::class, [
@@ -92,10 +102,15 @@ class MemberType extends AbstractType
             )
             ->add('imageCaption', TextType::class, [
                 'attr' => [
-                    'class' => 'uk-input'
+                    'class' => 'uk-input .uk-form-width-small'
                 ]
             ])
-            ->add('lesson');
+            ->add('lesson', EntityType::class, [
+                'class' => Lesson::class,
+                'attr' => [
+                    'class' => 'uk-select uk-form-width-medium'
+                ]
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

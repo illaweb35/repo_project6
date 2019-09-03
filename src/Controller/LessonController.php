@@ -103,6 +103,6 @@ class LessonController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('lesson_index');
+        return $this->redirectToRoute('admin_lessons');
     }
 }

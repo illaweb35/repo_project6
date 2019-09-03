@@ -1,9 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin_base.html.twig' %}
 
 {% block title %}Edit Article
 {% endblock %}
 
-{% block body %}
+{% block content %}
 
     <section class="uk-section">
 
@@ -15,7 +15,7 @@
             {{ include('article/_form.html.twig') }}
             <div class="uk-grid uk-grid-small uk-grid-divider uk-margin-top uk-margin-bottom" uk-grid>
                 <div>
-                    <a class="uk-button uk-button-text" href="{{ path('article_index') }}">
+                    <a class="uk-button uk-button-text" href="{{ path('admin_articles') }}">
                         <span uk-icon="icon: arrow-left"></span>
                         retour à la liste</a>
                 </div>

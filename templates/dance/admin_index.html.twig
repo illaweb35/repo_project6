@@ -1,0 +1,58 @@
+{% extends 'admin_base.html.twig' %}
+
+{% block title %}Dance index
+{% endblock %}
+
+{% block content %}
+    <section class="uk-section">
+        <div class="uk-container">
+            <h1 class="uk-margin">Liste des danses enseignées</h1>
+            {% if is_granted("ROLE_USER")%}
+                <div class="uk-float-right">
+                    <a class="uk-button uk-button-primary uk-margin" href="{{path('dance_new')}}">Création d'une danse</a>
+                </div>
+            {% endif %}
+            <table class="uk-table uk-table-hover uk-table-responsive">
+                <thead>
+                    <tr>
+                        <th>Image</th>
+                        <th>Titre</th>
+                        <th>Description</th>
+                        <th>Contenu</th>
+                        <th>actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for dance in dances %}
+                        <tr>
+                            <td>
+                                <a href="{{ path('dance_show', {'slug': dance.slug}) }}">
+                                    <img class="uk-border-rounded" data-src="{{dance.image}}" width="80" alt="{{dance.imageCaption}}" uk-img uk-tooltip="title: Voir +">
+                                </a>
+                            </td>
+                            <td>{{ dance.title }}</td>
+                            <td>{{ dance.subTitle }}</td>
+                            <td>{{ dance.content|slice(0,120)|raw }}...</td>
+                            <td>
+                                <a class="uk-button uk-button-link" href=" {{ path('dance_edit', {'slug': dance.slug} ) }}" uk-icon="icon: file-edit"></a>
+                                <a href="#delete-confirm" uk-toggle>
+                                    <span uk-icon="icon: trash"></span>
+                                </a>
+                                {{include('dance/_delete_form.html.twig')}}
+                            </td>
+                        </tr>
+                    {% else %}
+                        <tr>
+                            <td colspan="8">no records found</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <hr class="uk-divider-icon">
+            <div class="uk-grid-small uk-grid-divider" uk-grid>
+                <a class="uk-button uk-button-link" href="javascript:history.go(-1)" uk-icon="icon: arrow-left;ratio:1.5" uk-tooltip="title: Page précédente"></a>
+            </div>
+
+        </div>
+    </section>
+{% endblock %}

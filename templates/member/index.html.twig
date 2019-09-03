@@ -47,8 +47,12 @@
 
 
                             <td>
-                                <a href="{{ path('member_show', {'id': member.id}) }}">show</a>
-                                <a href="{{ path('member_edit', {'id': member.id}) }}">edit</a>
+                                <a class="uk-button uk-button-link" href="{{ path('member_edit', {'id': member.id}) }}" uk-icon="icon:file-edit"></a>
+                                <a href="#delete-confirm" uk-toggle>
+                                    <span uk-icon="icon: trash"></span>
+                                </a>
+                                {{ include('member/_delete_form.html.twig')}}
+
                             </td>
                         </tr>
                     {% else %}
