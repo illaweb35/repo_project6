@@ -1,5 +1,5 @@
 {{ form_start(form) }}
-<form action="">
+<form action="" method="POST">
     <fieldset class="uk-fieldset">
         <div class="uk-margin">
             <label class="uk-form-label">Prénom*</label>
@@ -34,7 +34,7 @@
         <p class="uk-light">Les champs avec * son obligatoires</p>
         <div class="uk-margin uk-align-center">
             <label class="uk-form-label" for="form-stacked-text">J'autorise la collecte de mes données
-                                                                                                        personnelles</label>
+                                                                                                                        personnelles</label>
             <div id="agreeRGPD">{{form_widget(form.agreeRgpd)}}</div>
 
         </fieldset>

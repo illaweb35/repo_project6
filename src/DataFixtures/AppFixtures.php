@@ -14,9 +14,7 @@ use App\Entity\Professor;
 use App\Service\FileUploader;
 use App\Service\OlderCalculator;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Symfony\Component\Filesystem\Filesystem;
 use Doctrine\Common\Persistence\ObjectManager;
-use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class AppFixtures extends Fixture
@@ -56,7 +54,7 @@ class AppFixtures extends Fixture
         $manager->persist($user);
 
         /* User moderator */
-        for ($u = 1; $u <= 10; $u++) {
+        for ($u = 1; $u <= mt_rand(3, 10); $u++) {
             $users = new User();
             $genres     = ['male', 'female'];
             $genre      = $faker->randomElement($genres);

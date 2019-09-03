@@ -1,11 +1,7 @@
 <section class="uk-section uk-section-muted">
     <h1 class="uk-heading-line uk-text-center">Les dernières news</h1>
-    <!-- CreateButton -->
-    <div class="uk-container  uk-margin-large-bottom">
-        {% if is_granted('ROLE_USER') %}
-            <a class="uk-button uk-button-primary uk-border-rounded" href="{{ path('article_new') }}">Create New</a>
-        {% endif %}
-    </div>
+
+
     <!-- cards -->
     <div class="uk-container uk-container-muted">
         <div class="uk-child-width-1-2@s uk-child-width-1-3@m uk-child-width-1-4@l " uk-grid uk-scrollspy="cls: uk-animation-fade; target: .uk-card; delay: 100; repeat: true">

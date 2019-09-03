@@ -6,11 +6,6 @@
 {% block body %}
     <section class="uk-section">
         <h1 class="uk-heading-line uk-text-center">Liste des articles</h1>
-        <div class="uk-float-right ">
-            {% if is_granted("ROLE_USER") %}
-                <a class="uk-button uk-button-primary uk-margin" href="{{path('article_new')}}">Création d'un article</a>
-            {% endif %}
-        </div>
 
         <!-- filter article -->
         <div class="uk-container uk-margin-top">

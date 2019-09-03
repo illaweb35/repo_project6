@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
@@ -26,6 +27,7 @@ class ProspectController extends AbstractController
 
     /**
      * @Route("/{page<\d+>?1}", name="prospect_index", methods={"GET"})
+     * @IsGranted("ROLE_USER")
      */
     public function index(Pagination $pagination, $page): Response
     {
@@ -62,7 +64,7 @@ class ProspectController extends AbstractController
             } catch (\Exception $e) {
                 throw new \Exception('warning', 'Une erreur est survenue lors de l\'envoi de l\'email,merci de refaire votre demande');
             }
-            return $this->redirectToRoute('home');
+            return $this->redirectToRoute('dashboard');
         }
 
 
@@ -74,6 +76,7 @@ class ProspectController extends AbstractController
 
 
     /**
+     * @IsGranted("ROLE_USER")
      * @Route("/{id}", name="prospect_show", methods={"GET"})
      */
     public function show(prospect $prospect): Response
