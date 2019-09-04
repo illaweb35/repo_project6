@@ -6,6 +6,10 @@ Framework PHP : Symfony 4.3
 
 Framework CSS : UIkit 3.0
 
+Editor WYSIWYG : Trumbowyg 2.18
+
+UploadImage : VichUploaderBundle 
+
 Description:
 
 Creation of a website for the association Danse Attitude Bréal sous montfort.
@@ -17,3 +21,4 @@ Ability to choose a color for each category, display of the chosen color on the 
 
 Inserting an upload image for each entity,
 for articles a WYSIWYG editor is used to format the text and insert links or images.
+

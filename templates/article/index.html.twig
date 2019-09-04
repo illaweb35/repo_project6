@@ -13,6 +13,7 @@
                 <div class="uk-grid-small uk-grid-divider uk-child-width-auto" uk-grid>
                     <div>
                         <ul class="uk-subnav uk-subnav-pill" uk-margin>
+
                             <li class="uk-active uk-light" uk-filter-control>
                                 <a href="#">Tous</a>
                             </li>
@@ -29,6 +30,7 @@
                                     {% endif %}
                                 </li>
                             {% endfor %}
+
                         </ul>
                     </div>
                 </div>
@@ -60,7 +62,7 @@
                                                 <p class="uk-text-meta uk-margin-remove-top">
                                                     {% if article.updatedAt > article.createdAt %}
                                                         <time datetime="2016-04-01T19:00">
-                                                            modifier le&nbsp;{{article.createdAt|date('d M Y')}}</time>
+                                                            modifier le&nbsp;{{article.updatedAt|date('d M Y')}}</time>
                                                     {% else %}
                                                         <time datetime="2016-04-01T19:00">
                                                             Crée le&nbsp;{{article.createdAt|date('d M Y')}}</time>
