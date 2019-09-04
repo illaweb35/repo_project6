@@ -4,10 +4,10 @@
             Voulez vous vraiment supprimer ce Correspondant ?
         </p>
         <div class="uk-text-center">
-            <form method="post" action="{{ path('prospect_delete', {'id': prospect.id}) }}">
+            <form method="post" action="{{ path('prospect_delete', {'slug': prospect.slug}) }}">
 
                 <input name="_method" type="hidden" value="DELETE">
-                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ prospect.id) }}">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ prospect.slug) }}">
                 <button class="uk-button uk-button-danger uk-border-rounded">Supprimer</button>
             </form>
             <button class="uk-margin uk-border-rounded uk-button uk-button-default uk-modal-close" type="button">Annuler</button>

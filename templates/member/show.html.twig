@@ -10,7 +10,14 @@
             <h1>Elève</h1>
             <article class="uk-article">
                 <div class="uk-grid-divider" uk-grid>
-                    <div class="uk-width-auto"><img data-src="{{asset('img/uploads/' ~ member.image)}}" alt="{{member.imageCaption}}" uk-img></div>
+                    <div class="uk-width-auto">
+                        {% if member.image %}
+                            <img data-src="{{member.image}}" alt="{{member.imageCaption}}" uk-img>
+                        {% else %}
+                            <img data-src="{{member.image}}" alt="{{member.imageCaption}}" uk-img>
+                        {% endif %}
+
+                    </div>
                     <div>
                         <h1 class="uk-article-title">{{ member.userFullName}}</h1>
                         <p>Age :
@@ -60,7 +67,7 @@
                 </div>
                 {% if is_granted("ROLE_USER") %}
                     <div>
-                        <a class="uk-button uk-button-link" href="{{ path('member_edit', {'id':member.id}) }}" uk-icon="icon: file-edit"></a>
+                        <a class="uk-button uk-button-link" href="{{ path('member_edit', {'slug':member.slug}) }}" uk-icon="icon: file-edit"></a>
                     </div>
                     <div>
                         <a href="#delete-confirm" uk-toggle>

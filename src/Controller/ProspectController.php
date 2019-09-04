@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Prospect;
 use App\Form\ProspectType;
+use App\Service\Pagination;
 use App\Service\MailerService;
 use App\Repository\ProspectRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -26,14 +27,17 @@ class ProspectController extends AbstractController
     }
 
     /**
-     * @Route("/", name="prospect_index", methods={"GET"})
+     * @Route("/{page<\d+>?1}", name="prospect_index", methods={"GET"})
      * @IsGranted("ROLE_USER")
      */
-    public function index(ProspectRepository $prospects): Response
+    public function index(Pagination $pagination, $page): Response
     {
+        $pagination->setEntityClass(Prospect::class)->setPage($page);
+        $prospects = $pagination->getData();
 
         return $this->render('prospect/index.html.twig', [
-            'prospects' => $prospects->findall(),
+            'prospects' => $prospects,
+            'pagination' => $pagination
 
         ]);
     }
@@ -75,7 +79,7 @@ class ProspectController extends AbstractController
 
     /**
      * @IsGranted("ROLE_USER")
-     * @Route("/{id}", name="prospect_show", methods={"GET"})
+     * @Route("/{slug}", name="prospect_show", methods={"GET"})
      */
     public function show(prospect $prospect): Response
     {
@@ -85,7 +89,7 @@ class ProspectController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="prospect_edit", methods={"GET","POST"})
+     * @Route("/{slug}/edit", name="prospect_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, prospect $prospect): Response
     {
@@ -105,11 +109,11 @@ class ProspectController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="prospect_delete", methods={"DELETE"})
+     * @Route("/{slug}", name="prospect_delete", methods={"DELETE"})
      */
     public function delete(Request $request, prospect $prospect): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $prospect->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $prospect->getSlug(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($prospect);
             $entityManager->flush();

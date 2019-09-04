@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Service\Slugger;
 use App\Service\OlderCalculator;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
@@ -179,7 +180,26 @@ class Member
      */
     private $older;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
 
+    /**
+     * Initialize Slug !
+     *
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     *
+     * @return void
+     */
+    public function initializeSlug()
+    {
+        if (empty($this->slug)) {
+            $slugy = new Slugger();
+            $this->slug = $slugy->slugify($this->email);
+        }
+    }
 
     public function getId(): ?int
     {
@@ -477,5 +497,17 @@ class Member
             $calculOlder = new OlderCalculator();
             $this->older = $calculOlder->older($this->birthDay);
         }
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
     }
 }

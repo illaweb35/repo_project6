@@ -4,10 +4,10 @@
             Voulez vous vraiment supprimer cette leçon ?
         </p>
         <div class="uk-text-center">
-            <form method="post" action="{{ path('user_delete', {'id': user.id}) }}">
+            <form method="post" action="{{ path('user_delete', {'slug': user.slug}) }}">
 
                 <input name="_method" type="hidden" value="DELETE">
-                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.slug) }}">
                 <button class="uk-button uk-button-danger uk-border-rounded">Supprimer</button>
             </form>
             <button class="uk-margin uk-border-rounded uk-button uk-button-default uk-modal-close" type="button">Annuler</button>

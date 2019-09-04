@@ -4,10 +4,10 @@
             Voulez vous vraiment supprimer ce professeur ?
         </p>
         <div class="uk-text-center">
-            <form method="post" action="{{ path('professor_delete', {'id': professor.id}) }}">
+            <form method="post" action="{{ path('professor_delete', {'slug': professor.slug}) }}">
 
                 <input name="_method" type="hidden" value="DELETE">
-                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ professor.id) }}">
+                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ professor.slug) }}">
 
                 <button class="uk-button uk-button-danger uk-border-rounded">Supprimer</button>
             </form>

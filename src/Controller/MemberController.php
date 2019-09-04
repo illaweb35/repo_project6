@@ -4,7 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Member;
 use App\Form\MemberType;
-use App\Repository\MemberRepository;
+use App\Service\Pagination;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -16,12 +16,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class MemberController extends AbstractController
 {
     /**
-     * @Route("/", name="member_index", methods={"GET"})
+     * @Route("/{page<\d+>?1}", name="member_index", methods={"GET"})
      */
-    public function index(MemberRepository $memberRepository): Response
+    public function index(Pagination $pagination, $page): Response
     {
+        $pagination->setEntityClass(Member::class)->setPage($page);
+        $members = $pagination->getData();
         return $this->render('member/index.html.twig', [
-            'members' => $memberRepository->findAll(),
+            'members' => $members,
+            'pagination' => $pagination
         ]);
     }
 
@@ -50,7 +53,7 @@ class MemberController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="member_show", methods={"GET"})
+     * @Route("/{slug}", name="member_show", methods={"GET"})
      */
     public function show(Member $member): Response
     {
@@ -60,7 +63,7 @@ class MemberController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="member_edit", methods={"GET","POST"})
+     * @Route("/{slug}/edit", name="member_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Member $member): Response
     {
@@ -81,11 +84,11 @@ class MemberController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="member_delete", methods={"DELETE"})
+     * @Route("/{slug}", name="member_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Member $member): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $member->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $member->getSlug(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($member);
             $entityManager->flush();

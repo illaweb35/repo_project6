@@ -12,7 +12,7 @@
                 <h1 class="uk-article-title">
                     {{user.pseudo}}
                 </h1>
-                <img src="{{user.image}}" alt="{{user.imageCaption}}">
+                <img data-src="{{ user.image}}" alt="{{user.imageCaption}}" uk-img>
                 <p class="uk-text-lead">{{user.roles ? user.roles|json_encode : '' }}</p>
                 <div class="uk-grid-small uk-grid-divider uk-child-width-auto" uk-grid>
                     <div>
@@ -20,7 +20,7 @@
                     </div>
                     {% if is_granted("ROLE_USER") %}
                         <div>
-                            <a class="uk-button uk-button-link" href="{{ path('user_edit', {'id':user.id}) }}" uk-icon="icon: file-edit"></a>
+                            <a class="uk-button uk-button-link" href="{{ path('user_edit', {'slug':user.slug}) }}" uk-icon="icon: file-edit"></a>
                         </div>
                         <div>
                             <a href="#delete-confirm" uk-toggle>

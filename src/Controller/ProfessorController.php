@@ -59,7 +59,7 @@ class ProfessorController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="professor_show", methods={"GET"})
+     * @Route("/{slug}", name="professor_show", methods={"GET"})
      */
     public function show(Professor $professor): Response
     {
@@ -69,7 +69,7 @@ class ProfessorController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="professor_edit", methods={"GET","POST"})
+     * @Route("/{slug}/edit", name="professor_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Professor $professor): Response
     {
@@ -77,12 +77,9 @@ class ProfessorController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
             $this->getDoctrine()->getManager()->flush();
-
             return $this->redirectToRoute('professor_index');
         }
-
         return $this->render('professor/edit.html.twig', [
             'professor' => $professor,
             'form' => $form->createView(),
@@ -90,11 +87,11 @@ class ProfessorController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="professor_delete", methods={"DELETE"})
+     * @Route("/{slug}", name="professor_delete", methods={"DELETE"})
      */
     public function delete(Request $request, Professor $professor): Response
     {
-        if ($this->isCsrfTokenValid('delete' . $professor->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $professor->getSlug(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($professor);
             $entityManager->flush();

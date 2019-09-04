@@ -3,28 +3,38 @@
     <fiedlset class="uk-fieldset">
         <div class="uk-grid-divider" uk-grid>
             <div>
-                {{form_widget(form.imageFile)}}
-                <div class="uk-form-danger">{{form_errors(form.imageFile)}}</div>
-                <label class="uk-form-label">Description de l'image</label>
-                {{form_widget(form.imageCaption)}}
-                <div class="uk-form-danger">{{form_errors(form.imageCaption)}}</div>
+                <p>
+                    Selectionner une photo
+                    <small>(si vous le souhaitez)</small>
+                </p>
+                <div class="uk-margin">
+                    {{form_widget(form.imageFile)}}
+                    <div class="uk-form-danger">{{form_errors(form.imageFile)}}</div>
+                </div>
+                <div class="uk-margin">
+                    <label class="uk-form-label">Description de l'image
+
+                    </label>
+                    {{form_widget(form.imageCaption)}}
+                    <div class="uk-form-danger">{{form_errors(form.imageCaption)}}</div>
+                </div>
             </div>
             <div>
                 <div class="uk-margin">
-                    <label class="uk-form-label">Prénom de l'eleve</label>
+                    <label class="uk-form-label">Prénom de l'élève (*)</label>
                     {{ form_widget(form.userFirstName) }}
                     <div class="uk-form-danger">
                         {{form_errors(form.userFirstName)}}</div>
                 </div>
 
-                <label class="uk-form-label">Nom de l'eleve</label>
+                <label class="uk-form-label">Nom de l'élève (*)</label>
                 {{ form_widget(form.userLastName) }}
                 <div class="uk-form-danger">
                     {{form_errors(form.userLastName)}}</div>
             </div>
         </div>
-        <div>
-            <label class="uk-form-label">Date de naissance</label>
+        <div class="uk-margin">
+            <label class="uk-form-label">Date de naissance (*)</label>
             {{ form_widget(form.birthday) }}
             <div class="uk-form-danger">
                 {{form_errors(form.birthday)}}</div>
@@ -36,26 +46,27 @@
         <p>( repporter les informations ci-dessus  si il s'agit de la même personne)</p>
         <div class="uk-grid-divider" uk-grid>
             <div>
-                <label class="uk-form-label">Civilité</label>
+                <label class="uk-form-label">Civilité (*)</label>
                 {{ form_widget(form.civility) }}
                 <div class="uk-form-danger">
                     {{form_errors(form.civility)}}</div>
             </div>
             <div>
-                <label class="uk-form-label">Nom du parent ou responsable</label>
+                <label class="uk-form-label">Nom du parent ou responsable (*)</label>
                 {{ form_widget(form.lastName) }}
                 <div class="uk-form-danger">
                     {{form_errors(form.lastName)}}</div>
             </div>
             <div>
-                <label class="uk-form-label">Prénom du parent ou responsable</label>
+                <label class="uk-form-label">Prénom du parent ou responsable (*)
+                </label>
                 {{ form_widget(form.firstName) }}
                 <div class="uk-form-danger">
                     {{form_errors(form.firstName)}}</div>
             </div>
 
             <div>
-                <label class="uk-form-label">Email</label>
+                <label class="uk-form-label">Email (*)</label>
                 {{ form_widget(form.email) }}
                 <div class="uk-form-danger">
                     {{form_errors(form.email)}}</div>
@@ -103,7 +114,7 @@
                 {{form_errors(form.infos)}}</div>
         </div>
         <div class="uk-margin">
-            <label class="uk-form-label">Lesson</label>
+            <label class="uk-form-label">Lesson (*)</label>
             {{ form_widget(form.lesson) }}
             <div class="uk-form-danger">
                 {{form_errors(form.lesson)}}</div>
@@ -117,4 +128,5 @@
 
     </fiedlset>
 </form>
+
 {{ form_end(form) }}

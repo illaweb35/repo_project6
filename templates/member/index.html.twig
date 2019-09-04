@@ -24,12 +24,17 @@
                 <tbody>
                     {% for member in members %}
                         <tr>
+
                             <td>
-                                <img class="uk-border-circle" width="60" data-src="{{asset('img/uploads/' ~ member.image)}}" alt="{{member.imageCaption}}" uk-img>
+                                <a href="{{ path('member_show',{'slug':member.slug})}}"><img class="uk-border-circle" width="60" data-src="{% if not member.imageFile %}{{member.image}}{% else %}{{ member.image}}{% endif %}" alt="{{member.imageCaption}}" uk-img></a>
+
                             </td>
                             <td>
-                                <p>{{ member.userFullName }}</p>
+                                <a href="{{ path('member_show',{'slug':member.slug})}}">
+                                    <p>{{ member.userFullName }}</p>
+                                </a>
                             </td>
+
                             <td>
                                 <p>{{ member.older }}
                                     <small>
@@ -51,27 +56,25 @@
                             <td>
                                 <div class="uk-grid-small uk-grid-divider" uk-grid>
                                     <div>
-                                        <a class="uk-button uk-button-link" href="{{ path('member_edit', {'id': member.id}) }}" uk-icon="icon:file-edit" uk-tooltip="title: Modifier {{member.userFullName}}"></a>
+                                        <a class="uk-button uk-button-link" href="{{ path('member_edit', {'slug': member.slug}) }}" uk-icon="icon:file-edit" uk-tooltip="title: Modifier {{member.userFullName}}"></a>
                                     </div>
                                     <div>
                                         <a href="#delete-confirm" uk-toggle>
                                             <span uk-icon="icon: trash" uk-tooltip="title: Supprimer {{member.userFullName}}"></span>
                                         </a>
                                     </div>
-
-
                                     {{ include('member/_delete_form.html.twig')}}
                                 </div>
                             </td>
                         </tr>
-                    {% else %}
-                        <tr>
-                            <td>no records found</td>
-                        </tr>
-                    {% endfor %}
+                    </tbody>
                 </tbody>
-            </table>
-            <a href="{{ path('member_new') }}">Create new</a>
-        </div>
-    </section>
-{% endblock %}
+            </tr>
+        {% else %}
+            <tr>
+                <td>no records found</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{{ pagination.display() }}</div></section>{% endblock %}

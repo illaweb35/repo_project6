@@ -57,38 +57,53 @@ class MemberType extends AbstractType
                 ]
             ])
             ->add('phoneNumber', TextType::class, [
+                'required' => false,
                 'attr' => [
                     'class' => 'uk-input uk-form-width-small'
                 ]
             ])
             ->add('mobileNumber', TextType::class, [
+                'required' => false,
                 'attr' => [
                     'class' => 'uk-input uk-form-width-small'
                 ]
             ])
             ->add('address', TextType::class, [
+                'required' => false,
                 'attr' => [
                     'class' => 'uk-input'
                 ]
             ])
             ->add('postCode', TextType::class, [
+                'required' => false,
                 'attr' => [
                     'class' => 'uk-input uk-form-width-small'
                 ]
             ])
             ->add('city', TextType::class, [
+                'required' => false,
                 'attr' => [
                     'class' => 'uk-input uk-form-width-small'
                 ]
             ])
             ->add('infos', TextareaType::class, [
+                'required' => false,
                 'attr' => [
                     'class' => 'uk-textarea',
                     'rows' => '3'
                 ]
             ])
-            ->add('imageFile', VichImageType::class)
+            ->add('imageFile', VichImageType::class, [
+                'required' => false,
+                'allow_delete' => true,
+                'download_label' => '...',
+                'download_uri' => true,
+                'image_uri' => true,
+
+            ])
             ->add('imageCaption', TextType::class, [
+                'data' => 'Avatar de l\'élève',
+                'required' => false,
                 'attr' => [
                     'class' => 'uk-input .uk-form-width-small'
                 ]

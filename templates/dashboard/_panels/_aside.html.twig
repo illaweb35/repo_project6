@@ -1,15 +1,21 @@
 <div class="left-content-box  content-box-dark ">
 
-    <h4 class="uk-text-center uk-margin-remove-vertical text-light">{{app.user.pseudo}}</h4>
+    <h4 class="uk-text-center uk-margin-remove-vertical text-light">
+        {% if app.user %}
+            {{app.user.pseudo}}
+        {% endif %}
+    </h4>
     <div class="uk-position-relative uk-text-center uk-display-block">
         <a class="uk-text-small uk-text-muted uk-display-block uk-text-center" data-uk-icon="icon: triangle-down; ratio: 0.7" href="#">Admin</a>
         <!-- user dropdown -->
         <div class="uk-dropdown user-drop" data-uk-dropdown="mode: click; pos: bottom-center; animation: uk-animation-slide-bottom-small; duration: 150">
             <ul class="uk-nav uk-dropdown-nav uk-text-left">
                 <li>
-                    <a href="{{ path('user_edit', {'id': app.user.id}) }}">
-                        <span data-uk-icon="icon: refresh"></span>
-                        Edit</a>
+                    {% if app.user %}
+                        <a href="{{ path('user_edit', {'slug': app.user.slug}) }}">
+                            <span data-uk-icon="icon: refresh"></span>
+                            Edit</a>
+                    {% endif %}
                 </li>
                 <li>
                     <a href="{{path('app_logout')}}">

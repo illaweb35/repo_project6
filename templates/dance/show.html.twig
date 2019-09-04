@@ -11,7 +11,7 @@
                     <a class="uk-link-reset" href="">Danse :&nbsp;{{dance.title|capitalize}}</a>
                 </h1>
                 <p class="uk-article-meta">Professeur pour cette danse :
-                    <a class="uk-button uk-button-text" href="{{path('professor_show',{'id':dance.professor.id})}}" uk-tooltip="title: Voir la fiche du Professeur">{{dance.professor.fullName}}</a>
+                    <a class="uk-button uk-button-text" href="{{path('professor_show',{'slug':dance.professor.slug})}}" uk-tooltip="title: Voir la fiche du Professeur">{{dance.professor.fullName}}</a>
                 </p>
                 <img class="uk-border-rounded" data-src="{{dance.image}}" alt="{{dance.imageCaption}}" width="450" uk-img>
                 <p class="uk-text-lead">{{dance.subTitle}}</p>

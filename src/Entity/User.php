@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Service\Slugger;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 use Symfony\Component\HttpFoundation\File\File;
@@ -91,6 +92,43 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $imageCaption;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
+
+    /**
+     * Initialize Slug !
+     *
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     *
+     * @return void
+     */
+    public function initializeSlug()
+    {
+        if (empty($this->slug)) {
+            $slugy = new Slugger();
+            $this->slug = $slugy->slugify($this->pseudo . '-' . $this->email);
+        }
+    }
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+            $this->image,
+        ));
+    }
+
+    /** @see \Serializable::unserialize() */
+    public function unserialize($serialized)
+    {
+        list(
+            $this->id,
+            $this->image,
+        ) = unserialize($serialized, array('allowed_classes' => false));
+    }
 
     public function getId(): ?int
     {
@@ -278,5 +316,17 @@ class User implements UserInterface
     public function __toString()
     {
         return strval($this->pseudo);
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
     }
 }

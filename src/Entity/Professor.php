@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Service\Slugger;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
@@ -130,6 +131,27 @@ class Professor
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $imageCaption;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
+
+    /**
+     * Initialize Slug !
+     *
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     *
+     * @return void
+     */
+    public function initializeSlug()
+    {
+        if (empty($this->slug)) {
+            $slugy = new Slugger();
+            $this->slug = $slugy->slugify($this->email);
+        }
+    }
 
     public function __construct()
     {
@@ -373,5 +395,17 @@ class Professor
     public function __toString()
     {
         return strval($this->firstName);
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
     }
 }

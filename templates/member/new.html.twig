@@ -6,9 +6,26 @@
 {% block body %}
     <section class="uk-section">
         <div class="uk-container">
-            <h1>Inscription à un cours</h1>
-            {{ include('member/_form.html.twig') }}
-            <a class="uk-button uk-button-link" href="{{ path('home') }}">retour à l'accueil</a>
+            <div class="uk-card uk-card-default uk-card-hover">
+                <div class="uk-card-header">
+                    <h1>Inscription à un cours</h1>
+
+                    <div class="uk-width-auto uk-align-right">
+                        <p>
+                            <small>
+                                Les champs marqués avec (*) sont obligatoires.</small>
+                        </p>
+                    </div>
+                </div>
+                <div class="uk-card-body">
+
+                    {{ include('member/_form.html.twig') }}
+                </div>
+                <div class="uk-card-footer">
+                    <a class="uk-button uk-button-link" href="{{ path('home') }}">retour à l'accueil</a>
+                </div>
+            </div>
+
         </div>
     </section>
 {% endblock %}

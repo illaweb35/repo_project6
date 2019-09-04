@@ -36,7 +36,14 @@ class ArticleType extends AbstractType
                     'class' => 'uk-textarea'
                 ]
             ])
-            ->add('imageFile', VichImageType::class)
+            ->add('imageFile', VichImageType::class, [
+                'required' => false,
+                'allow_delete' => true,
+                'download_label' => '...',
+                'download_uri' => true,
+                'image_uri' => true,
+
+            ])
 
             ->add('imageCaption', TextType::class, [
                 'attr' => [

@@ -50,7 +50,7 @@
                                         <div class="uk-grid-small uk-flex-middle" uk-grid>
                                             <div class="uk-width-auto">
                                                 <a href="{{path('article_show',{'slug':article.slug})}}">
-                                                    <img class="uk-border-rounded" alt="{{article.imageCaption}}" height="80" data-src="{{asset('img/uploads/' ~ article.image)}}" width="80" uk-img></a>
+                                                    <img class="uk-border-rounded" alt="{{article.imageCaption}}" height="80" data-src="{{article.image}}" width="80" uk-img></a>
                                             </div>
                                             <div class="uk-width-expand">
                                                 {% if article.category.name == article.category.getSameName %}
