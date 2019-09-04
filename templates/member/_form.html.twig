@@ -39,7 +39,12 @@
             <div class="uk-form-danger">
                 {{form_errors(form.birthday)}}</div>
         </div>
-
+        <div class="uk-margin">
+            <label class="uk-form-label">Leçon de dance (*)</label>
+            {{ form_widget(form.lesson) }}
+            <div class="uk-form-danger">
+                {{form_errors(form.lesson)}}</div>
+        </div>
         <hr class="uk-divider-icon">
         <h4>Parent ou responsbale de l'élève
         </h4>
@@ -112,12 +117,6 @@
             {{ form_widget(form.infos) }}
             <div class="uk-form-danger">
                 {{form_errors(form.infos)}}</div>
-        </div>
-        <div class="uk-margin">
-            <label class="uk-form-label">Lesson (*)</label>
-            {{ form_widget(form.lesson) }}
-            <div class="uk-form-danger">
-                {{form_errors(form.lesson)}}</div>
         </div>
 
 
