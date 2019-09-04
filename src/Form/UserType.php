@@ -26,6 +26,7 @@ class UserType extends AbstractType
                 'image_uri' => true,
 
 
+
             ])
             ->add('email', EmailType::class, [
                 'attr' => [

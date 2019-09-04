@@ -125,6 +125,16 @@ class Lesson
      */
     private $imageCaption;
 
+    /**
+     * @ORM\Column(type="float", nullable=true)
+     */
+    private $lon;
+
+    /**
+     * @ORM\Column(type="float")
+     */
+    private $lat;
+
     public function __construct()
     {
         $this->members = new ArrayCollection();
@@ -402,5 +412,29 @@ class Lesson
     public function getImageFile()
     {
         return $this->imageFile;
+    }
+
+    public function getLon(): ?float
+    {
+        return $this->lon;
+    }
+
+    public function setLon(?float $lon): self
+    {
+        $this->lon = $lon;
+
+        return $this;
+    }
+
+    public function getLat(): ?float
+    {
+        return $this->lat;
+    }
+
+    public function setLat(float $lat): self
+    {
+        $this->lat = $lat;
+
+        return $this;
     }
 }

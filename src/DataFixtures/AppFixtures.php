@@ -42,7 +42,7 @@ class AppFixtures extends Fixture
             ->setPseudo('jmh')
             ->setRoles(['ROLE_ADMIN'])
             ->setPassword($this->passwordEncoder->encodePassword($user, 'Password'))
-            ->setImage($imageFile)
+
             ->setImageCaption($faker->sentence);
         $manager->persist($user);
 
@@ -113,7 +113,9 @@ class AppFixtures extends Fixture
                     ->setDance($dance)
                     ->setAddress($faker->streetAddress)
                     ->setPostCode($faker->postcode)
-                    ->setCity($faker->city);
+                    ->setCity($faker->city)
+                    ->setLat($faker->latitude(47, 49))
+                    ->setLon($faker->longitude(-2, 2));
 
                 $manager->persist($lesson);
                 /* Member */

@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use NumberFormatter;
 use App\Entity\Dance;
 use App\Entity\Lesson;
 use Symfony\Component\Form\AbstractType;
@@ -12,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 
 class LessonType extends AbstractType
 {
@@ -71,7 +73,8 @@ class LessonType extends AbstractType
                     'class' => 'uk-input'
                 ]
             ])
-
+            ->add('lat', NumberType::class)
+            ->add('lon', NumberType::class)
             ->add('dance', EntityType::class, [
                 'class' => Dance::class,
                 'choice_label' => 'title',

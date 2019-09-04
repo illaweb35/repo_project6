@@ -21,6 +21,16 @@ $('textarea').trumbowyg({
         ['horizontalRule'],
         ['removeformat'],
         ['fullscreen']
-    ]
+    ],
+    plugins: {
+
+        upload: {
+            serverPath: 'img/uploads/',
+            fileFieldName: 'image',
+            urlPropertyName: 'data.link',
+            alt: 'imageCaption'
+        }
+    }
+
 
 });

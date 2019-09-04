@@ -2,7 +2,10 @@
 
 {% block title %}Lesson
 {% endblock %}
-
+{% block stylesheets %}
+    {{parent()}}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
+{% endblock %}
 {% block body %}
     <section class="uk-section">
         <div class="uk-container">
@@ -17,32 +20,33 @@
                 </p>
                 <p class="uk-text-lead">{{lesson.subTitle}}</p>
                 <hr class="uk-divider-icon">
-                <p>Ce cours à lieu le :
-                    <strong>
-                        {{lesson.dayLesson}}</strong>
-                </p>
-                <p>Les horaires pour ce cours sont
-                </p>
-                <p>De &nbsp;
-                    {{lesson.startHour|date('H:i')}}&nbsp; à &nbsp;{{lesson.endHour|date('H:i')}}
-                </p>
-                <p>Pour une durée de
-                    {{lesson.duration}}</p>
-                <hr>
                 <div class="uk-grid-divider uk-child-width-expand@s" uk-grid>
 
                     <div>
+                        <p>Ce cours à lieu le :
+                            <strong>
+                                {{lesson.dayLesson}}</strong>
+                        </p>
+                        <p>Les horaires pour ce cours sont
+                        </p>
+                        <p>De &nbsp;
+                            {{lesson.startHour|date('H:i')}}&nbsp; à &nbsp;{{lesson.endHour|date('H:i')}}
+                        </p>
+                        <p>Pour une durée de
+                            {{lesson.duration}}</p>
+                        <hr>
+
                         <p>Le cours est situé à l'adresse suivante :</p>
                         <p>{{lesson.address}}
                             &nbsp;{{lesson.postCode}}
                             &nbsp;{{lesson.city}}</p>
+                        <p id="lat">{{lesson.lat}}</p>
+                        <p id="lon">{{lesson.lon}}</p>
                     </div>
                     <div>
                         <div class="uk-card uk-card-default uk-card-body">
                             <h3 class="uk-card-title">Carte</h3>
-                            <p>emplacement de la lesson</p>
-                            <p>
-                                à venir</p>
+                            <div id="mapid" style="height:280px"></div>
                         </div>
                     </div>
 
@@ -65,4 +69,10 @@
         </div>
     </section>
     {{ include('lesson/_delete_form.html.twig') }}
+{% endblock %}
+{% block javascripts %}
+    {{parent()}}
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script>
+    <script src="{{asset('js/mapid.js')}}"></script>
+
 {% endblock %}

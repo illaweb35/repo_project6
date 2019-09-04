@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Serializable;
 use App\Service\Slugger;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
