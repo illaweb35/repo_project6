@@ -46,6 +46,7 @@ class ArticleType extends AbstractType
             ])
 
             ->add('imageCaption', TextType::class, [
+                'required' => false,
                 'attr' => [
                     'class' => 'uk-input'
                 ]

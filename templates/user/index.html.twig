@@ -4,7 +4,22 @@
 {% endblock %}
 
 {% block content %}
-    <section class="uk-section">
+    <section
+        class="uk-section">
+        <!-- breadCrumb -->
+        <div class="uk-container uk-margin">
+            <ul class="uk-breadcrumb">
+                <li>
+                    <a href="{{path('home')}}">Home</a>
+                </li>
+
+                <li>
+                    <p>Utilisateurs</p>
+                </li>
+            </ul>
+        </div>
+        <!-- end of breadcrumb -->
+
         <div class="uk-container">
             <h1>Liste des utilisateurs</h1>
             <div class="uk-float-right">
@@ -25,7 +40,7 @@
                         <tr>
                             <td>
                                 <a href="{{ path('user_show',{'slug':user.slug})}}">
-                                    <img class="uk-border-circle" data-src="{{user.image}}" width="60" alt="{{user.imageCaption}}" uk-img>
+                                    <img class="uk-border-circle" data-src="{{asset('img/uploads/' ~ user.image)}}" width="40" alt="{{user.imageCaption}}" uk-img>
                                 </a>
                             </td>
 

@@ -5,7 +5,28 @@
 
 {% block content %}
 
-    <section class="uk-section">
+    <section
+        class="uk-section">
+        <!-- breadCrumb -->
+        <div class="uk-container uk-margin">
+            <ul class="uk-breadcrumb">
+                <li>
+                    <a href="{{path('home')}}">Home</a>
+                </li>
+                <li>
+                    <a href="{{path('article_index')}}">Article</a>
+                </li>
+
+                <li>
+                    <span>
+                        <p>Article:
+                            {{article.title}}
+                            - Modifier</p>
+                    </span>
+                </li>
+            </ul>
+        </div>
+        <!-- end of breadcrumb -->
 
         <div class="uk-container uk-margin-top">
             <h1 class="uk-heading-line uk-text-center">

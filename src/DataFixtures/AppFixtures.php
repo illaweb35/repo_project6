@@ -31,46 +31,28 @@ class AppFixtures extends Fixture
         $faker = Factory::create('fr_FR');
         /* User Administrator */
         $user = new User();
-
-        $genres     = ['male', 'female'];
-        $genre      = $faker->randomElement($genres);
-        $imageFile  = 'https://randomuser.me/api/portraits/';
-        $imageId    = $faker->numberBetween(1, 99) . '.jpg';
-        $imageFile .= ($genre == 'male' ? 'men/' : 'women/') . $imageId;
-
         $user->setEmail('admin@localhost.eu')
             ->setPseudo('jmh')
             ->setRoles(['ROLE_ADMIN'])
-            ->setPassword($this->passwordEncoder->encodePassword($user, 'Password'))
+            ->setPassword($this->passwordEncoder->encodePassword($user, 'Password'));
 
-            ->setImageCaption($faker->sentence);
         $manager->persist($user);
 
         /* User moderator */
-        for ($u = 1; $u <= mt_rand(3, 10); $u++) {
+        for ($u = 0; $u <= mt_rand(3, 5); $u++) {
             $users = new User();
-            $genres     = ['male', 'female'];
-            $genre      = $faker->randomElement($genres);
-            $imageFile  = 'https://randomuser.me/api/portraits/';
-            $imageId    = $faker->numberBetween(1, 99) . '.jpg';
-            $imageFile .= ($genre == 'male' ? 'men/' : 'women/') . $imageId;
+
             $users->setEmail($faker->email)
                 ->setPseudo($faker->firstName())
-                ->setImage($imageFile)
-                ->setPassword($this->passwordEncoder->encodePassword($user, 'Password'))
-                ->setImageCaption($faker->sentence);
+                ->setPassword($this->passwordEncoder->encodePassword($user, 'Password'));
 
             $manager->persist($users);
         }
 
         /* Professor */
-        for ($p = 1; $p <= 3; $p++) {
+        for ($p = 0; $p <= 2; $p++) {
             $professor = new Professor();
-            $genres     = ['male', 'female'];
-            $genre      = $faker->randomElement($genres);
-            $imageFile  = 'https://randomuser.me/api/portraits/';
-            $imageId    = $faker->numberBetween(1, 99) . '.jpg';
-            $imageFile .= ($genre == 'male' ? 'men/' : 'women/') . $imageId;
+
             $professor->setLastName($faker->lastName)
                 ->setFirstName($faker->firstName)
                 ->setEmail($faker->email)
@@ -78,21 +60,17 @@ class AppFixtures extends Fixture
                 ->setMobileNumber($faker->phoneNumber)
                 ->setAddress($faker->streetAddress)
                 ->setPostCode($faker->postcode)
-                ->setCity($faker->city)
-                ->setImage($imageFile)
-                ->setImageCaption($faker->sentence);
+                ->setCity($faker->city);
         }
         $manager->persist($professor);
 
         /* Dance */
-        for ($d = 1; $d <= mt_rand(2, 5); $d++) {
+        for ($d = 0; $d <= 3; $d++) {
             $dance = new Dance();
             $dance->setTitle($faker->word)
                 ->setSubTitle($faker->sentence)
                 ->setContent($faker->paragraph(5))
-                ->setProfessor($professor)
-                ->setImage($faker->imageUrl)
-                ->setImageCaption($faker->sentence);
+                ->setProfessor($professor);
 
             $manager->persist($dance);
 
@@ -108,7 +86,6 @@ class AppFixtures extends Fixture
                     ->setDayLesson($faker->dayOfWeek)
                     ->setStartHour($faker->dateTime())
                     ->setEndHour($end)
-                    ->setDuration($diff)
                     ->setAmount($faker->randomFloat(2, 5, 150))
                     ->setDance($dance)
                     ->setAddress($faker->streetAddress)
@@ -118,15 +95,10 @@ class AppFixtures extends Fixture
                     ->setLon($faker->longitude(-2, 2));
 
                 $manager->persist($lesson);
+
                 /* Member */
                 for ($m = 0; $m <= mt_rand(10, 30); $m++) {
                     $member = new Member();
-
-                    $genres     = ['male', 'female'];
-                    $genre      = $faker->randomElement($genres);
-                    $imageFile  = 'https://randomuser.me/api/portraits/';
-                    $imageId    = $faker->numberBetween(1, 99) . '.jpg';
-                    $imageFile .= ($genre == 'male' ? 'men/' : 'women/') . $imageId;
                     $member->setUserFirstName($faker->firstName)
                         ->setUserLastName($faker->lastName)
                         ->setBirthday($faker->dateTimeBetween('-60 years', '-5 years'))
@@ -140,9 +112,7 @@ class AppFixtures extends Fixture
                         ->setPostCode($faker->postcode)
                         ->setCity($faker->city)
                         ->setInfos($faker->paragraph(5))
-                        ->setLesson($lesson)
-                        ->setImage($imageFile)
-                        ->setImageCaption($faker->sentence);
+                        ->setLesson($lesson);
                     $ageOlder = new OlderCalculator();
                     $age = $ageOlder->older($member->getBirthday());
                     $member->setOlder($age);
@@ -161,16 +131,13 @@ class AppFixtures extends Fixture
             $manager->persist($category);
 
             /* articles */
-            for ($a = 0; $a <= 20; $a++) {
+            for ($a = 0; $a <= mt_rand(2, 5); $a++) {
 
                 $article = new Article();
                 $article->setTitle($faker->sentence)
                     ->setSubTitle($faker->sentence)
                     ->setCategory($category)
-                    ->setContent($faker->paragraph(5))
-                    ->setImage($faker->imageUrl)
-                    ->setImageCaption($faker->sentence);
-
+                    ->setContent($faker->paragraph(5));
 
                 $manager->persist($article);
             }

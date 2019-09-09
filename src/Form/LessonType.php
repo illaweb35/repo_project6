@@ -73,8 +73,16 @@ class LessonType extends AbstractType
                     'class' => 'uk-input'
                 ]
             ])
-            ->add('lat', NumberType::class)
-            ->add('lon', NumberType::class)
+            ->add('lat', NumberType::class, [
+                'attr' => [
+                    'class' => 'uk-input uk-form-width-medium'
+                ]
+            ])
+            ->add('lon', NumberType::class, [
+                'attr' => [
+                    'class' => 'uk-input uk-form-width-medium'
+                ]
+            ])
             ->add('dance', EntityType::class, [
                 'class' => Dance::class,
                 'choice_label' => 'title',

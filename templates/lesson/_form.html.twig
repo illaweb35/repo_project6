@@ -50,18 +50,32 @@
                 {{ form_widget(form.city) }}
             </div>
         </div>
-        <hr class="uk-divider-icon">
-        <div class="uk-grid-divider uk-child-width-expand@s" uk-grid>
-            <div>
-                <label class="uk-form-label">Dance</label>
-                {{ form_widget(form.dance)}}
+        <p>
+            Coordonnées GPS pour l'affichage sur la carte
+            <div class="uk-grid-divider uk-child-width-expand@s" uk-grid>
+                <div>
+                    <label class="uk-form-label">Lattitude</label>
+                    {{ form_widget(form.lat) }}
+                </div>
+                <div>
+                    <label class="uk-form-label">Longitude</label>
+                    {{ form_widget(form.lon) }}
+                </div>
             </div>
-            <div>
-                <label class="uk-form-label">Tarif</label>
-                {{ form_widget(form.amount) }}
-            </div>
-        </div>
 
+
+            <hr class="uk-divider-icon">
+            <div class="uk-grid-divider uk-child-width-expand@s" uk-grid>
+                <div>
+                    <label class="uk-form-label">Dance</label>
+                    {{ form_widget(form.dance)}}
+                </div>
+                <div>
+                    <label class="uk-form-label">Tarif</label>
+                    {{ form_widget(form.amount) }}
+                </div>
+            </div>
+        </p>
     </fiedlset>
     {{ form_widget(form) }}
     <div class="uk-margin">

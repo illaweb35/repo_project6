@@ -4,11 +4,31 @@
 {% endblock %}
 
 {% block body %}
-    <section class="uk-section">
+    <section
+        class="uk-section">
+        <!-- breadCrumb -->
+        <div class="uk-container uk-margin">
+            <ul class="uk-breadcrumb">
+                <li>
+                    <a href="{{path('home')}}">Home</a>
+                </li>
+
+                <li>
+                    <a href="{{path('professor_index')}}">Professeurs</a>
+                </li>
+                <li>
+                    <p>Professeur:
+                        <em>{{professor.fullName}}</em>
+                    </p>
+                </li>
+            </ul>
+        </div>
+        <!-- end of breadcrumb -->
+
         <div class="uk-container">
             <div class="uk-card uk-card-default">
                 <div class="uk-card-header">
-                    <img class="uk-border-rounded uk-float-left uk-margin-right" data-src="{{professor.image}}" width="150" alt="{{professor.imageCaption}}" uk-img>
+                    <img class="uk-border-rounded uk-float-left uk-margin-right" data-src="{{ asset('img/uploads/' ~ professor.image)}}" width="150" alt="{{professor.imageCaption}}" uk-img>
                     <h3 class="uk-card-title">{{professor.fullName}}</h3>
                     <p class="uk-text-lead">{{professor.email}}</p>
                 </div>
@@ -55,7 +75,7 @@
                     <div class="uk-card-footer">
                         <div class="uk-grid-small uk-grid-divider" uk-grid>
                             <a class="uk-button uk-button-text" href="javascript:history.go(-1)" uk-icon="icon: arrow-left;ratio:1.5" uk-tooltip="title: Page précédente"></a>
-                            <a class="uk-button uk-button-text" href="{{ path('professor_index')}}">Retour à la liste</a>
+                            <a class="uk-button uk-button-text" href="{{ path('professor_dance')}}">Retour à la liste</a>
                         </div>
                     </div>
                 </div>

@@ -4,7 +4,22 @@
 {% endblock %}
 
 {% block content %}
-    <section class="uk-section">
+    <section
+        class="uk-section">
+        <!-- breadCrumb -->
+        <div class="uk-container uk-margin">
+            <ul class="uk-breadcrumb">
+                <li>
+                    <a href="{{path('home')}}">Home</a>
+                </li>
+
+                <li>
+                    <p>Professeurs</p>
+                </li>
+            </ul>
+        </div>
+        <!-- end of breadcrumb -->
+
         <div class="uk-container uk-margin-top">
             <h1>Professor index</h1>
             <div class="uk-float-right">
@@ -26,7 +41,7 @@
                     {% for professor in professors %}
                         <tr>
                             <td>
-                                <a href="{{ path('professor_show',{'slug':professor.slug})}}" uk-tooltip="title: Voir +"><img class="uk-border-circle" data-src="{{ professor.image}}" alt="{{professor.imageCaption}}" width="60" uk-img></a>
+                                <a href="{{ path('professor_show',{'slug':professor.slug})}}" uk-tooltip="title: Voir +"><img class="uk-border-circle" data-src="{{ asset('img/uploads/' ~ professor.image)}}" alt="{{professor.imageCaption}}" width="60" uk-img></a>
                             </td>
                             <td>
                                 <p>{{ professor.fullName }}</p>

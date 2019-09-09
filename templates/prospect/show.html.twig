@@ -4,9 +4,29 @@
 {% endblock %}
 
 {% block content %}
-    <section class="uk-section">
-        <h1>Correspondance Email</h1>
+    <section
+        class="uk-section">
+        <!-- breadCrumb -->
+        <div class="uk-container uk-margin">
+            <ul class="uk-breadcrumb">
+                <li>
+                    <a href="{{path('home')}}">Home</a>
+                </li>
+
+                <li>
+                    <a href="{{path('prospect_index')}}">Contacts</a>
+                </li>
+                <li>
+                    <p>Contact:
+                        <em>{{prospect.fullName}}</em>
+                    </p>
+                </li>
+            </ul>
+        </div>
+        <!-- end of breadcrumb -->
         <div class="uk-container">
+            <h1>Correspondance Email</h1>
+
             <div class="uk-card uk-card-default ">
                 <div class="uk-card-header">
                     <div class="uk-grid-small uk-flex-middle" uk-grid>
@@ -33,7 +53,7 @@
                 <div class="uk-card-footer">
                     <div class="uk-grid-small uk-grid-divider uk-child-width-auto" uk-grid>
                         <div>
-                            <a class="uk-button uk-button-text" href="{{ path('prospect_index') }}">back to list</a>
+                            <a class="uk-button uk-button-text" href="{{ path('prospect_index') }}">retour à la liste</a>
                         </div>
                         <div>
                             <a class="uk-button uk-button-link" href="mailto:{{prospect.email}}?subject=Dance Attitude Bréal sous monfort" uk-icon="icon: mail" uk-tooltip="title: Répondre à {{prospect.fullName}}"></a>

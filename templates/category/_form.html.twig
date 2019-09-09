@@ -1,4 +1,21 @@
 {{ form_start(form) }}
+<form action="" method="POST">
+    <fieldset class="uk-fieldset">
+        <div class="uk-margin">
+            <label for="" class="uk-form-label">Nom de la catégorie</label>
+            {{form_widget(form.name)}}
+            <div class="uk-form-danger">
+                {{form_errors(form.name)}}</div>
+        </div>
+        <div class="uk-margin">
+            <label class="uk-form-label">Couleur code HEX:</label>
+            {{form_widget(form.colorName)}}
+            <div class="uk-form-danger">
+                {{form_errors(form.colorName)}}</div>
+        </div>
+    </fieldset>
+
     {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Save') }}</button>
+    <button class="uk-button uk-button-primary">{{ button_label|default('Enregistrer') }}</button>
+</form>
 {{ form_end(form) }}

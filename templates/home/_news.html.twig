@@ -1,6 +1,17 @@
 <section class="uk-section uk-section-muted">
     <h1 class="uk-heading-line uk-text-center">Les dernières news</h1>
 
+    <!-- breadcrumb -->
+    <div class="uk-container uk-margin">
+        <ul class="uk-breadcrumb">
+
+            <li>
+                <a href="{{path('home')}}">Home</a>
+            </li>
+            <li>News</li>
+        </ul>
+    </div>
+
 
     <!-- cards -->
     <div class="uk-container uk-container-muted">
@@ -13,7 +24,7 @@
                             <p>{{article.category|capitalize}}</p>
                             <div class="uk-grid-small uk-flex-middle" uk-grid>
                                 <div class="uk-width-expand">
-                                    <img class="uk-border-rounded" data-src="{{article.Image}}" alt="{{article.imageCaption}}" uk-img>
+                                    <img class="uk-border-rounded" data-src="{{asset('img/uploads/' ~ article.Image)}}" alt="{{article.imageCaption}}" uk-img>
                                     <h3 class="uk-card-title uk-margin-remove-bottom">{{article.title}}</h3>
                                     <p class="uk-text-meta uk-margin">
                                         le :

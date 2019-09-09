@@ -4,11 +4,34 @@
 {% endblock %}
 
 {% block content %}
-    <h1>Edit Category</h1>
+    <section
+        class="uk-section">
+        <!-- breadCrumb -->
+        <div class="uk-container uk-margin">
+            <ul class="uk-breadcrumb">
+                <li>
+                    <a href="{{path('home')}}">Home</a>
+                </li>
+                <li>
+                    <a href="{{ path('category_index')}}">catégorie</a>
+                </li>
+                <li>
+                    <p>Catégorie :<em>{{category.name}}</em>- modifier
+                    </p>
+                </li>
+            </ul>
+        </div>
+        <!-- fin de breadcrumb -->
+        <div class="uk-container uk-margin">
 
-    {{ include('category/_form.html.twig', {'button_label': 'Update'}) }}
+            <h1>Modifier la catégorie</h1>
 
-    <a href="{{ path('category_index') }}">back to list</a>
+            {{ include('category/_form.html.twig', {'button_label': 'Modifier'}) }}
+            <div class="uk-margin">
+                <a class="uk-button uk-button-text" href="{{ path('category_index') }}">retour à la liste</a>
+            </div>
 
-    {{ include('category/_delete_form.html.twig') }}
+        </div>
+        {{ include('category/_delete_form.html.twig') }}
+    </section>
 {% endblock %}

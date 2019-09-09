@@ -4,7 +4,27 @@
 {% endblock %}
 
 {% block content %}
-    <section class="uk-section">
+    <section
+        class="uk-section">
+        <!-- breadCrumb -->
+        <div class="uk-container uk-margin">
+            <ul class="uk-breadcrumb">
+                <li>
+                    <a href="{{path('home')}}">Home</a>
+                </li>
+
+                <li>
+                    <a href="{{path('professor_index')}}">Professeurs</a>
+                </li>
+                <li>
+                    <p>Professeur: Ajouter
+                    </p>
+                </li>
+            </ul>
+        </div>
+        <!-- end of breadcrumb -->
+
+
         <div class="uk-container">
             <h1>Création d'un Professeur</h1>
 

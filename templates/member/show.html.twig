@@ -4,7 +4,27 @@
 {% endblock %}
 
 {% block content %}
-    <section class="uk-section">
+    <section
+        class="uk-section">
+        <!-- breadCrumb -->
+        <div class="uk-container uk-margin">
+            <ul class="uk-breadcrumb">
+                <li>
+                    <a href="{{path('home')}}">Home</a>
+                </li>
+
+                <li>
+                    <a href="{{path('member_index')}}">Elèves</a>
+                </li>
+                <li>
+                    <p>Elève:
+                        <em>{{member.userFirstName}}</em>
+                    </p>
+                </li>
+            </ul>
+        </div>
+        <!-- end of breadcrumb -->
+
         <div class="uk-container">
 
             <h1>Elève</h1>

@@ -7,7 +7,27 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
 {% endblock %}
 {% block body %}
-    <section class="uk-section">
+    <section
+        class="uk-section uk-section-default">
+        <!-- breadCrumb -->
+        <div class="uk-container uk-margin">
+            <ul class="uk-breadcrumb">
+                <li>
+                    <a href="{{path('home')}}">Home</a>
+                </li>
+
+                <li>
+                    <a href="{{path('lesson_index')}}">Leçons</a>
+                </li>
+                <li>
+                    <p>Leçon:
+                        <em>{{lesson.title}}</em>
+                    </p>
+                </li>
+            </ul>
+        </div>
+        <!-- end of breadcrumb -->
+
         <div class="uk-container">
             <h1>Leçon :
                 {{lesson.title|capitalize}}</h1>
@@ -32,8 +52,7 @@
                         <p>De &nbsp;
                             {{lesson.startHour|date('H:i')}}&nbsp; à &nbsp;{{lesson.endHour|date('H:i')}}
                         </p>
-                        <p>Pour une durée de
-                            {{lesson.duration}}</p>
+
                         <hr>
 
                         <p>Le cours est situé à l'adresse suivante :</p>

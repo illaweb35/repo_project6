@@ -69,10 +69,7 @@ class Lesson
      */
     private $endHour;
 
-    /**
-     * @ORM\Column(type="float")
-     */
-    private $duration;
+
 
     /**
      * @ORM\Column(type="float")
@@ -213,18 +210,6 @@ class Lesson
     public function setEndHour(\DateTimeInterface $endHour): self
     {
         $this->endHour = $endHour;
-
-        return $this;
-    }
-
-    public function getDuration(): ?float
-    {
-        return $this->duration;
-    }
-
-    public function setDuration(float $duration): self
-    {
-        $this->duration = $duration;
 
         return $this;
     }

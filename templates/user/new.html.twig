@@ -4,7 +4,25 @@
 {% endblock %}
 
 {% block content %}
-    <section class="uk-section">
+    <section
+        class="uk-section">
+        <!-- breadCrumb -->
+        <div class="uk-container uk-margin">
+            <ul class="uk-breadcrumb">
+                <li>
+                    <a href="{{path('home')}}">Home</a>
+                </li>
+
+                <li>
+                    <a href="{{path('user_index')}}">Utilisateurs</a>
+                </li>
+                <li>
+                    <p>Utilisateur _ Ajouter</p>
+                </li>
+            </ul>
+        </div>
+        <!-- end of breadcrumb -->
+
         <div class="uk-container uk-margin-top">
             <h1 class="uk-heading-line uk-text-center">
                 Création d'un Utilisateur</h1>

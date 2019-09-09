@@ -4,9 +4,24 @@
 {% endblock %}
 
 {% block content %}
-    <section class="uk-section">
+    <section
+        class="uk-section">
+        <!-- breadCrumb -->
+        <div class="uk-container uk-margin">
+            <ul class="uk-breadcrumb">
+                <li>
+                    <a href="{{path('home')}}">Home</a>
+                </li>
+                <li>
+                    <p>Categorie</p>
+                </li>
+            </ul>
+        </div>
+        <!-- fin de breadcrumb -->
+
         <div class="uk-container">
             <h1>Liste des categories d'article</h1>
+
             <a class="uk-button uk-button-primary" href="{{ path('category_new') }}" uk-tooltip="title: Ajouter une catégorie d'article">Ajouter</a>
             <table class="uk-table">
                 <thead>
