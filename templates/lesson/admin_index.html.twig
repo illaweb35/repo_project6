@@ -52,10 +52,6 @@
                             <td>
                                 <div class="uk-grid uk-grid-small uk grid-divider">
                                     <a class="uk-button uk-button-link" href="{{ path('lesson_edit', {'slug': lesson.slug}) }}" uk-icon="icon:file-edit"></a>
-                                    <a href="#delete-confirm" uk-toggle>
-                                        <span uk-icon="icon: trash"></span>
-                                    </a>
-                                    {{ include('lesson/_delete_form.html.twig')}}
                                 </div>
                             </td>
                         </tr>

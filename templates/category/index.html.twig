@@ -43,10 +43,7 @@
                             <td>
                                 <div class="uk-grid-small uk-grid-divider" uk-grid>
                                     <a class="uk-button uk-button-link" href="{{ path('category_edit', {'id': category.id}) }}" uk-icon="icon: file-edit" uk-tooltip="title: modifier la couleur"></a>
-                                    <a href="#delete-confirm" uk-toggle>
-                                        <span uk-icon="icon: trash" uk-tooltip="title: supprimer la couleur"></span>
-                                    </a>
-                                    {{ include('category/_delete_form.html.twig')}}
+
                                 </div>
                             </td>
                         </tr>

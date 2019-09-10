@@ -1,5 +1,5 @@
 <div class="uk-container uk-container-expand">
-    <div class="uk-text-center uk-grid uk-grid-divider uk-grid-medium uk-child-width-1-2@s uk-child-width-1-3@m uk-child-width-1-4@l" data-uk-grid>
+    <div class="uk-text-center uk-grid uk-grid-divider uk-grid-medium uk-child-width-1-3@s uk-child-width-1-4@m uk-child-width-1-5@l" data-uk-grid>
         <div>
             <span class="uk-text-small">
                 <span class="uk-margin-small uk-text-primary" data-uk-icon="icon:users"></span>
@@ -26,8 +26,17 @@
             <h1 class="uk-heading-primary uk-margin-remove uk-text-primary">
                 {{articles|length}}
             </h1>
-
         </div>
+        <div>
+            <span class="uk-text-small">
+                <span class="uk-margin-small-right uk-text-primary" data-uk-icon="icon:info"></span>
+                Elèves
+            </span>
+            <h1 class="uk-heading-primary uk-margin-remove uk-text-primary">
+                {{members|length}}
+            </h1>
+        </div>
+
 
         <div>
             <span class="uk-text-small">
@@ -47,6 +56,9 @@
         </div>
         <div class="uk-width-1-2@m">
             {{include('dashboard/_panels/_panel_lesson.html.twig')}}
+        </div>
+        <div class="uk-width-1-2@m">
+            {{include('dashboard/_panels/_panel_member.html.twig')}}
         </div>
 
 

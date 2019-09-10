@@ -3,8 +3,8 @@
 namespace App\Repository;
 
 use App\Entity\Member;
-use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
+use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 
 /**
  * @method Member|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,6 +19,21 @@ class MemberRepository extends ServiceEntityRepository
         parent::__construct($registry, Member::class);
     }
 
+    /**
+     * Find the last Article
+     *
+     * @param [type] $value
+     *
+     * @return void
+     */
+    public function findByLast($value)
+    {
+        return $this->createQueryBuilder('m')
+            ->orderBy('m.id', 'DESC')
+            ->setMaxResults($value)
+            ->getQuery()
+            ->getResult();
+    }
     // /**
     //  * @return Member[] Returns an array of Member objects
     //  */

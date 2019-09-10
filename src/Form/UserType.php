@@ -51,10 +51,10 @@ class UserType extends AbstractType
                 ],
                 'required' => true,
                 'first_options' => [
-                    'label' => 'Password'
+                    'label' => 'Mot de passe'
                 ],
                 'second_options' => [
-                    'label' => 'Repeat password'
+                    'label' => 'Re-saisir votre mot de passe'
                 ]
             ])
             ->add('pseudo', TextType::class, [

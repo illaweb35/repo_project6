@@ -1,7 +1,9 @@
 <div id="delete-confirm" uk-modal>
     <div class="uk-modal-dialog uk-modal-body">
         <p class="uk-text-center">
-            Voulez vous vraiment supprimer cette leçon ?
+            Voulez vous vraiment supprimer cet utilisateur
+            {{user.pseudo}}
+            ?
         </p>
         <div class="uk-text-center">
             <form method="post" action="{{ path('user_delete', {'slug': user.slug}) }}">

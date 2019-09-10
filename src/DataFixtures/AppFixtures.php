@@ -49,10 +49,9 @@ class AppFixtures extends Fixture
             $manager->persist($users);
         }
 
-        /* Professor */
-        for ($p = 0; $p <= 2; $p++) {
+        /* Professors */
+        for ($i = 1; $i <= 3; $i++) {
             $professor = new Professor();
-
             $professor->setLastName($faker->lastName)
                 ->setFirstName($faker->firstName)
                 ->setEmail($faker->email)
@@ -61,62 +60,64 @@ class AppFixtures extends Fixture
                 ->setAddress($faker->streetAddress)
                 ->setPostCode($faker->postcode)
                 ->setCity($faker->city);
-        }
-        $manager->persist($professor);
+            $manager->persist($professor);
 
-        /* Dance */
-        for ($d = 0; $d <= 3; $d++) {
-            $dance = new Dance();
-            $dance->setTitle($faker->word)
-                ->setSubTitle($faker->sentence)
-                ->setContent($faker->paragraph(5))
-                ->setProfessor($professor);
 
-            $manager->persist($dance);
 
-            /* Lesson */
-            for ($l = 1; $l <= mt_rand(2, 5); $l++) {
-                $lesson = new Lesson();
-                $start = new \DateTime();
-                $duration = new \DateInterval('PT' . mt_rand(1, 3) . 'H');
-                $end = $start->add($duration);
-                $diff = $lesson->getStartHour() - $lesson->getEndHour();
-                $lesson->setTitle($faker->word)
-                    ->setSubtitle($faker->sentence)
-                    ->setDayLesson($faker->dayOfWeek)
-                    ->setStartHour($faker->dateTime())
-                    ->setEndHour($end)
-                    ->setAmount($faker->randomFloat(2, 5, 150))
-                    ->setDance($dance)
-                    ->setAddress($faker->streetAddress)
-                    ->setPostCode($faker->postcode)
-                    ->setCity($faker->city)
-                    ->setLat($faker->latitude(47, 49))
-                    ->setLon($faker->longitude(-2, 2));
+            /* Dance */
+            for ($d = 1; $d <= 3; $d++) {
+                $dance = new Dance();
+                $dance->setTitle($faker->word)
+                    ->setSubTitle($faker->sentence)
+                    ->setContent($faker->paragraph(5))
+                    ->setProfessor($professor);
 
-                $manager->persist($lesson);
+                $manager->persist($dance);
 
-                /* Member */
-                for ($m = 0; $m <= mt_rand(10, 30); $m++) {
-                    $member = new Member();
-                    $member->setUserFirstName($faker->firstName)
-                        ->setUserLastName($faker->lastName)
-                        ->setBirthday($faker->dateTimeBetween('-60 years', '-5 years'))
-                        ->setCivility($faker->title)
-                        ->setFirstName($faker->firstName)
-                        ->setLastName($faker->lastName)
-                        ->setEmail($faker->email)
-                        ->setPhoneNumber($faker->phoneNumber)
-                        ->setMobileNumber($faker->phoneNumber)
+                /* Lesson */
+                for ($l = 1; $l <= mt_rand(2, 5); $l++) {
+                    $lesson = new Lesson();
+                    $start = new \DateTime();
+                    $duration = new \DateInterval('PT' . mt_rand(1, 3) . 'H');
+                    $end = $start->add($duration);
+                    $diff = $lesson->getStartHour() - $lesson->getEndHour();
+                    $lesson->setTitle($faker->word)
+                        ->setSubtitle($faker->sentence)
+                        ->setDayLesson($faker->dayOfWeek)
+                        ->setStartHour($faker->dateTime())
+                        ->setEndHour($end)
+                        ->setAmount($faker->randomFloat(2, 5, 150))
+                        ->setDance($dance)
                         ->setAddress($faker->streetAddress)
                         ->setPostCode($faker->postcode)
                         ->setCity($faker->city)
-                        ->setInfos($faker->paragraph(5))
-                        ->setLesson($lesson);
-                    $ageOlder = new OlderCalculator();
-                    $age = $ageOlder->older($member->getBirthday());
-                    $member->setOlder($age);
-                    $manager->persist($member);
+                        ->setLat($faker->latitude(47, 49))
+                        ->setLon($faker->longitude(-2, 2));
+
+                    $manager->persist($lesson);
+
+                    /* Member */
+                    for ($m = 0; $m <= mt_rand(10, 30); $m++) {
+                        $member = new Member();
+                        $member->setUserFirstName($faker->firstName)
+                            ->setUserLastName($faker->lastName)
+                            ->setBirthday($faker->dateTimeBetween('-60 years', '-5 years'))
+                            ->setCivility($faker->title)
+                            ->setFirstName($faker->firstName)
+                            ->setLastName($faker->lastName)
+                            ->setEmail($faker->email)
+                            ->setPhoneNumber($faker->phoneNumber)
+                            ->setMobileNumber($faker->phoneNumber)
+                            ->setAddress($faker->streetAddress)
+                            ->setPostCode($faker->postcode)
+                            ->setCity($faker->city)
+                            ->setInfos($faker->paragraph(5))
+                            ->setLesson($lesson);
+                        $ageOlder = new OlderCalculator();
+                        $age = $ageOlder->older($member->getBirthday());
+                        $member->setOlder($age);
+                        $manager->persist($member);
+                    }
                 }
             }
         }

@@ -50,11 +50,8 @@
                             <td>
                                 <div class="uk-grid-small uk-grid-divider" uk-grid>
                                     <a class="uk-button uk-button-link" href="{{ path('user_edit', {'slug': user.slug}) }}" uk-icon="icon:file-edit" uk-tooltip="title: Modifier {{user.pseudo}}"></a>
-                                    <a href="#delete-confirm" uk-toggle>
-                                        <span uk-icon="icon: trash" uk-tooltip="title: Supprimer {{user.pseudo}}"></span>
-                                    </a>
                                 </div>
-                                {{ include('user/_delete_form.html.twig')}}</td>
+                            </td>
                         </tr>
                     </tbody>
                 </tbody>

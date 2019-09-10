@@ -7,6 +7,7 @@ use App\Service\Pagination;
 use App\Repository\UserRepository;
 use App\Repository\DanceRepository;
 use App\Repository\LessonRepository;
+use App\Repository\MemberRepository;
 use App\Repository\ArticleRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\ProspectRepository;
@@ -24,7 +25,7 @@ class DashboardController extends AbstractController
      * 
      * 
      */
-    public function index(UserRepository $users, ArticleRepository $articles, LessonRepository $lessons, ProspectRepository $prospects)
+    public function index(UserRepository $users, ArticleRepository $articles, LessonRepository $lessons, ProspectRepository $prospects, MemberRepository $members)
     {
 
 
@@ -33,9 +34,11 @@ class DashboardController extends AbstractController
             'users' => $users->findAll(),
             'articles' => $articles->findall(),
             'articlesPanel' => $articles->findByLast(5),
-            'lessons' => $lessons->findByLast(5),
+            'lessonsPanel' => $lessons->findByLast(5),
             'prospects' => $prospects->findAll(),
             'prospectsPanel' => $prospects->findByLast(5),
+            'members' => $members->findAll(),
+            'membersPanel' => $members->findByLast(5),
         ]);
     }
 
