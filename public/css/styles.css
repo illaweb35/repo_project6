@@ -15,7 +15,9 @@ a,
 label {
     font-family: "Josefin Sans", sans-serif;
 }
-
+em{
+    color:#F22E62;
+}
 .wrap::before {
     position: absolute;
     height: 100vh;
@@ -56,8 +58,10 @@ footer {
 .uk-navbar-toggle {
     font-family: "Josefin Sans", sans-serif;
 }
-
-uk-link,
+.uk-button-text{
+    color:#BF2C47;
+}
+.uk-link, .uk-button-link,
 a {
     color: #1b80bf;
 }

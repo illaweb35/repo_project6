@@ -65,33 +65,28 @@
             <a data-uk-icon="home" href="{{path('home')}}"></a>
         </li>
         <li>
-            <a href="#">Danses</a>
+            Danses
             <ul class="uk-nav-sub">
                 <li>
-                    <a href="#">Les professeurs</a>
+                    <a href="{{ path('professor_dance')}}">Les professeurs</a>
                 </li>
                 <li>
-                    <a href="#">Les danses</a>
+                    <a href="{{ path('dance_index')}}">Les danses</a>
                 </li>
                 <li>
-                    <a href="#">Les lessons</a>
+                    <a href="{{ path('lesson_index')}}">Les lessons</a>
                 </li>
-
+                <li>
+                    <a href="{{ path('member_new')}}">Inscription</a>
+                </li>
             </ul>
         </li>
-        <li>
-            <a href="#">Leçons</a>
 
+        <li>
+            <a href="{{ path('article_index')}}">Articles</a>
         </li>
         <li>
-            <a href="#">Articles</a>
-
-
-        </li>
-
-        <li>
-            <a href="#">Contact</a>
-
+            <a href="{{path('prospect_new')}}">Contact</a>
         </li>
         <li>
             <a href="{{ path('app_login') }}">
