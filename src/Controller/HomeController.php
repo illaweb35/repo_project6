@@ -17,4 +17,22 @@ class HomeController extends AbstractController
             'articles' => $articles->findByCategory('news', '4'),
         ]);
     }
+
+    /**
+     * @Route("/mentions_legals", name="mentions_legals")
+     *
+     * @return void
+     */
+    public function mentionsLegals()
+    {
+        return $this->render('mentions_legals/legals.html.twig');
+    }
+    /**privacy", name="privacy")
+     *
+     * @return void
+     */
+    public function privacy()
+    {
+        return $this->render('mentions_legals/privacy.html.twig');
+    }
 }
