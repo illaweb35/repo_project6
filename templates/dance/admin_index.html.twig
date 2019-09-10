@@ -49,11 +49,8 @@
                             <td>{{ dance.subTitle }}</td>
                             <td>{{ dance.content|slice(0,120)|raw }}...</td>
                             <td>
-                                <a class="uk-button uk-button-link" href=" {{ path('dance_edit', {'slug': dance.slug} ) }}" uk-icon="icon: file-edit"></a>
-                                <a href="#delete-confirm" uk-toggle>
-                                    <span uk-icon="icon: trash"></span>
-                                </a>
-                                {{include('dance/_delete_form.html.twig')}}
+                                <a class="uk-button uk-button-link" href=" {{ path('dance_edit', {'slug': dance.slug} ) }}" uk-icon="icon: file-edit" uk-tooltip="title: Modifier la danse {{dance.title}}"></a>
+
                             </td>
                         </tr>
                     {% else %}

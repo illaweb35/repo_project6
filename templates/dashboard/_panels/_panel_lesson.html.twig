@@ -25,11 +25,15 @@
                         <td>
                             <a class="uk-link-text" href="{{ path('lesson_show',{'slug':lesson.slug})}}">{{lesson.title|capitalize}}</a>
                         </td>
-                        <td>{{lesson.dayLesson}}</td>
-                        <td>de
-                            {{lesson.startHour|date('H:i')}}
-                            à
-                            {{lesson.endHour|date('H:i')}}</td>
+                        <td>
+                            <p class="uk-text-small">{{lesson.dayLesson}}</p>
+                        </td>
+                        <td>
+                            <p class="uk-text-small">de
+                                {{lesson.startHour|date('H:i')}}
+                                à
+                                {{lesson.endHour|date('H:i')}}</p>
+                        </td>
                         <td>
                             <div class="uk-grid uk-grid-small uk-grid-divider" uk-grid>
                                 <a href="{{ path('lesson_show',{'slug':lesson.slug})}}">

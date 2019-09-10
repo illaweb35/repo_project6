@@ -33,7 +33,13 @@
                     {{user.pseudo}}
                 </h1>
                 <img data-src="{{ asset('img/uploads/' ~ user.image)}}" alt="{{user.imageCaption}}" uk-img>
-                <p class="uk-text-lead">{{user.roles ? user.roles|json_encode : '' }}</p>
+                <p class="uk-text-lead">
+                    {% for role in user.roles %}
+                        <ul>
+                            <li>{{role}}</li>
+                        </ul>
+                    {% endfor %}
+                </p>
                 <div class="uk-grid-small uk-grid-divider uk-child-width-auto" uk-grid>
                     <div>
                         <a class="uk-button uk-button-text" href="{{ path('user_index') }}">back to list</a>

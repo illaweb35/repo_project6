@@ -30,8 +30,8 @@
                     <tr>
                         <th>Avatar</th>
                         <th>Email</th>
-                        <th>Roles</th>
                         <th>Pseudo</th>
+                        <th>Role</th>
                         <th>actions</th>
                     </tr>
                 </thead>
@@ -43,10 +43,22 @@
                                     <img class="uk-border-circle" data-src="{{asset('img/uploads/' ~ user.image)}}" width="40" alt="{{user.imageCaption}}" uk-img>
                                 </a>
                             </td>
-
-                            <td>{{ user.email }}</td>
-                            <td>{{ user.roles |json_encode  }}</td>
-                            <td>{{ user.pseudo }}</td>
+                            <td>
+                                <p>{{ user.email }}</p>
+                            </td>
+                            <td>
+                                <p>{{ user.pseudo }}</p>
+                            </td>
+                            <td>
+                                {% for role in user.roles %}
+                                    <ul class="uk-list">
+                                        <li class="uk-text-small">
+                                            {% if role == 'ROLE_ADMIN' %}Administrateur{% else %}Utilisateur
+                                            {% endif %}
+                                        </li>
+                                    </ul>
+                                {% endfor %}
+                            </td>
                             <td>
                                 <div class="uk-grid-small uk-grid-divider" uk-grid>
                                     <a class="uk-button uk-button-link" href="{{ path('user_edit', {'slug': user.slug}) }}" uk-icon="icon:file-edit" uk-tooltip="title: Modifier {{user.pseudo}}"></a>

@@ -49,10 +49,10 @@
                     <a class="uk-button uk-button-text" href="{{ path('article_index') }}">retour à la liste</a>
                     {% if is_granted("ROLE_USER") %}
 
-                        <a class="uk-button uk-button-link" href="{{ path('article_edit', {'slug': article.slug}) }}" uk-icon="icon: file-edit"></a>
+                        <a class="uk-button uk-button-link" href="{{ path('article_edit', {'slug': article.slug}) }}" uk-icon="icon: file-edit" uk-tooltip="title: Modifier l'article"></a>
 
                         <a href="#delete-confirm" uk-toggle>
-                            <span uk-icon="icon: trash"></span>
+                            <span uk-icon="icon: trash" uk-tooltip="title: Supprimer l'article"></span>
                         </a>
 
                     {% endif %}

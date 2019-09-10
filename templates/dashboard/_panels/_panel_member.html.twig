@@ -23,7 +23,7 @@
                 {% for member in membersPanel %}
                     <tr>
                         <td>
-                            <a href="{{ path('member_show',{'slug':member.slug})}}">
+                            <a class="uk-link-text" href="{{ path('member_show',{'slug':member.slug})}}">
                                 <p class="uk-text-small">{{ member.userFullName }}</p>
                             </a>
                         </td>

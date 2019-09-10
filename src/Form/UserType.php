@@ -38,7 +38,7 @@ class UserType extends AbstractType
                 'expanded' => true,
                 'choices' => [
                     'Admin' => 'ROLE_ADMIN',
-                    'Manager' => 'ROLE_USER'
+                    'Utilisateur' => 'ROLE_USER'
                 ],
             ])
             ->add('password', RepeatedType::class, [

@@ -1,6 +1,6 @@
 <div class="uk-position-relative">
     <div class="uk-sticky uk-sticky-fixed" style="position:fixed;top:0px;" uk-sticky="sel-target: .uk-navbar-container;cls-active: uk-navbar-stiky;bottom: #sticky-dropbar-push">
-        <nav class="uk-navbar-container uk-navbar" data-uk-navbar uk-navbar="dropbar: true; dropbar-mode: push">
+        <nav class="uk-navbar-container uk-navbar" data-uk-navbar uk-navbar="dropbar: true;">
 
             <div class="uk-navbar-left">
                 <div class="uk-navbar-item">
@@ -17,16 +17,16 @@
                         <a href="#">Danses</a>
                         <div class="uk-navbar-dropdown">
                             <ul class="uk-nav uk-navbar-dropdown-nav">
-                                <li class="uk-active">
+                                <li>
                                     <a href="{{ path('professor_dance')}}">Les professeurs</a>
                                 </li>
-                                <li class="uk-active">
+                                <li>
                                     <a href="{{ path('dance_index')}}">Les danses</a>
                                 </li>
-                                <li class="uk-active">
+                                <li>
                                     <a href="{{ path('lesson_index')}}">Les leçons</a>
                                 </li>
-                                <li class="uk-active">
+                                <li>
                                     <a href="{{ path('member_new')}}">inscription</a>
                                 </li>
 

@@ -52,18 +52,12 @@
                             <td>
                                 <p class="uk-text-small">{{ professor.phoneNumber|formatPhone(professor.phoneNumber) }}</p>
                             </td>
-
                             <td>
                                 <p class="uk-text-small">{{ professor.mobileNumber|formatPhone(professor.mobileNumber) }}</p>
                             </td>
-
                             <td>
-
-                                <a class="uk-button uk-button-link" href="{{ path('professor_edit', {'slug': professor.slug}) }}" uk-icon="icon: file-edit"></a>
-                                <a href="#delete-confirm" uk-toggle>
-                                    <span uk-icon="icon: trash"></span>
-                                </a>
-                                {{ include('professor/_delete_form.html.twig')}}</td>
+                                <a class="uk-button uk-button-link" href="{{ path('professor_edit', {'slug': professor.slug}) }}" uk-icon="icon: file-edit" uk-tooltip="title: Modifier la fiche {{professor.fullName}}"></a>
+                            </td>
                         </tr>
                     </div>
                 </tbody>

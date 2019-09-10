@@ -16,7 +16,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ArticleRepository")
  * @ORM\HasLifecycleCallbacks()
- * @UniqueEntity("title")
+ * @UniqueEntity("slug")
  * @Vich\Uploadable 
  */
 class Article

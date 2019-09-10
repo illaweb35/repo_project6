@@ -14,7 +14,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass="App\Repository\LessonRepository")
  * @ORM\HasLifecycleCallbacks()
- * @UniqueEntity("title")
+ * @UniqueEntity("slug")
  */
 class Lesson
 {
