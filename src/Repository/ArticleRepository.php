@@ -33,7 +33,7 @@ class ArticleRepository extends ServiceEntityRepository
             ->join('a.category', 'c')
             ->where('c.name = :cat')
             ->setParameter('cat', $value)
-            ->orderBy('a.id', 'DESC')
+            ->orderBy('a.createdAt', 'DESC')
             ->setMaxResults($limit)
             ->getQuery()
             ->getResult();

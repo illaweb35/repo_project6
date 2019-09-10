@@ -75,10 +75,10 @@
                     <a class="uk-button uk-button-link" href="javascript:history.go(-1)" uk-icon="icon: arrow-left;ratio:1.5" uk-tooltip="title: Page précédente"></a>
                     <a class="uk-button uk-button-text" href="{{ path('lesson_index') }}">retour à la liste</a>
                     {% if is_granted("ROLE_USER") %}
-                        <a class="uk-button uk-button-link" href="{{ path('lesson_edit', {'slug': lesson.slug}) }}" uk-icon="icon: file-edit"></a>
+                        <a class="uk-button uk-button-link" href="{{ path('lesson_edit', {'slug': lesson.slug}) }}" uk-icon="icon: file-edit" uk-tooltip="title: Modification de la leçon {{lesson.title}}"></a>
 
                         <a class="uk-button uk-button-link" href="#delete-confirm" uk-toggle>
-                            <span uk-icon="icon: trash"></span>
+                            <span uk-icon="icon: trash" uk-tooltip="title: Supprimer la leçon {{lesson.title}}"></span>
                         </a>
                     {% endif %}
 

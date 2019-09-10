@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+use DateInterval;
 use Faker\Factory;
 use App\Entity\User;
 use App\Entity\Dance;
@@ -77,31 +78,30 @@ class AppFixtures extends Fixture
                 /* Lesson */
                 for ($l = 1; $l <= mt_rand(2, 5); $l++) {
                     $lesson = new Lesson();
-                    $start = new \DateTime();
-                    $duration = new \DateInterval('PT' . mt_rand(1, 3) . 'H');
-                    $end = $start->add($duration);
-                    $diff = $lesson->getStartHour() - $lesson->getEndHour();
                     $lesson->setTitle($faker->word)
                         ->setSubtitle($faker->sentence)
                         ->setDayLesson($faker->dayOfWeek)
-                        ->setStartHour($faker->dateTime())
-                        ->setEndHour($end)
+
                         ->setAmount($faker->randomFloat(2, 5, 150))
                         ->setDance($dance)
                         ->setAddress($faker->streetAddress)
                         ->setPostCode($faker->postcode)
                         ->setCity($faker->city)
                         ->setLat($faker->latitude(47, 49))
-                        ->setLon($faker->longitude(-2, 2));
+                        ->setLon($faker->longitude(-2, 2))
+                        ->setStartHour($faker->dateTime('22 hours', '+12 hours'));
+                    $duration = $lesson->getStartHour()->add(new \DateInterval('PT2H'));
+                    $lesson->setEndHour($duration);
+
 
                     $manager->persist($lesson);
 
                     /* Member */
-                    for ($m = 0; $m <= mt_rand(10, 30); $m++) {
+                    for ($m = 0; $m <= mt_rand(5, 20); $m++) {
                         $member = new Member();
                         $member->setUserFirstName($faker->firstName)
                             ->setUserLastName($faker->lastName)
-                            ->setBirthday($faker->dateTimeBetween('-60 years', '-5 years'))
+                            ->setBirthday($faker->dateTimeBetween('-55 years', '-5 years'))
                             ->setCivility($faker->title)
                             ->setFirstName($faker->firstName)
                             ->setLastName($faker->lastName)

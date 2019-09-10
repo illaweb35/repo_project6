@@ -87,7 +87,7 @@ class Dance
     private $updatedAt;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Lesson", mappedBy="dance")
+     * @ORM\OneToMany(targetEntity="App\Entity\Lesson", mappedBy="dance",orphanRemoval=true)
      */
     private $lessons;
 
