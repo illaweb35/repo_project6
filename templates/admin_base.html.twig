@@ -51,6 +51,14 @@
     <body>
         <!-- Content -->
         {{include('dashboard/_partials/_navbar.html.twig')}}
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="flash-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
         {% block body %}
             <!-- LEFT BAR -->
             <aside class="uk-light uk-visible@m" id="left-col">

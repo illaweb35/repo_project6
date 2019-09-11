@@ -4,7 +4,7 @@
             Voulez vous vraiment supprimer cette catégorie ?
         </p>
         <div class="uk-text-center">
-            <form method="post" action="{{ path('article_delete', {'slug': category.id}) }}">
+            <form method="post" action="{{ path('category_delete', {'id': category.id}) }}">
 
                 <input name="_method" type="hidden" value="DELETE">
                 <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ category.id) }}">

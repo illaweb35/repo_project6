@@ -27,8 +27,12 @@
             <h1>Modifier la catégorie</h1>
 
             {{ include('category/_form.html.twig', {'button_label': 'Modifier'}) }}
-            <div class="uk-margin">
+            <div class="uk-grid-small uk-margin uk-grid-divider" uk-grid>
                 <a class="uk-button uk-button-text" href="{{ path('category_index') }}">retour à la liste</a>
+                <a href="#delete-confirm" uk-toggle>
+                    <span uk-icon="icon: trash"></span>
+                </a>
+
             </div>
 
         </div>

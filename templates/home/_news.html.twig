@@ -20,7 +20,7 @@
                     <div class="uk-card uk-card-default uk-card-hover">
                         <div class="uk-card-header">
                             <div class="uk-grid-small" uk-grid>
-                                <p>{{article.category|capitalize}}</p>
+                                <p class="news">{{article.category|capitalize}}</p>
 
                                 <div class="uk-width-auto">
                                     <a href="{{ path('article_show',{'slug':article.slug}) }}">

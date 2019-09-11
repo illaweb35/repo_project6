@@ -15,9 +15,7 @@ a,
 label {
     font-family: "Josefin Sans", sans-serif;
 }
-em{
-    color:#F22E62;
-}
+
 .wrap::before {
     position: absolute;
     height: 100vh;
@@ -58,18 +56,25 @@ footer {
 .uk-navbar-toggle {
     font-family: "Josefin Sans", sans-serif;
 }
-.uk-button-text{
-    color:#BF2C47;
+/* color of site */
+.news{
+    color:#BF2C47
 }
-.uk-link, .uk-button-link,
-a {
-    color: #1b80bf;
+em{
+    color:#F22E62;
+}
+.uk-button-primary{
+    background-color:#1B80BF;
+}
+.uk-link, .uk-button-link,.uk-button-text,a {
+    color: #1ea4d9;
 }
 .uk-subnav-pill > .uk-active > a{
  background-color: rgba(245,245,245, 0.1);
    border:1px solid rgb(27,128,191,1);
    color:#111111;
 }
+
 #cadre{
     width: 30px;
     height: 30px;

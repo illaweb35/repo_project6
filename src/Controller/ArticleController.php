@@ -4,12 +4,10 @@ namespace App\Controller;
 
 use App\Entity\Article;
 use App\Form\ArticleType;
-
 use App\Repository\ArticleRepository;
 use App\Repository\CategoryRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
@@ -40,11 +38,10 @@ class ArticleController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
-
-
             $entityManager->persist($article);
             $entityManager->flush();
 
+            $this->addFlash('success', 'Votre article a bien été enregistré !');
             return $this->redirectToRoute('article_index');
         }
 
@@ -74,7 +71,7 @@ class ArticleController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
-
+            $this->addFlash('success', 'Votre article a bien été modifié !');
             return $this->redirectToRoute('article_index');
         }
 

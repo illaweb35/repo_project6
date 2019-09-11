@@ -50,6 +50,14 @@
     <body>
         <!-- Content -->
         {{ include('_partials/_navbar.html.twig')}}
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="flash-{{ label }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endfor %}
+
         {% block body %}{% endblock %}
         {{include('_partials/_footer.html.twig')}}
         <!-- Block javascripts -->
