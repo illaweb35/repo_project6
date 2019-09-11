@@ -90,6 +90,7 @@ class ProspectController extends AbstractController
 
     /**
      * @Route("/{slug}/edit", name="prospect_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_USER")
      */
     public function edit(Request $request, prospect $prospect): Response
     {
@@ -110,6 +111,7 @@ class ProspectController extends AbstractController
 
     /**
      * @Route("/{slug}", name="prospect_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_USER")
      */
     public function delete(Request $request, prospect $prospect): Response
     {

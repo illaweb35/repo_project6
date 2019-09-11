@@ -8,6 +8,7 @@ use App\Repository\ProfessorRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
@@ -36,6 +37,7 @@ class ProfessorController extends AbstractController
 
     /**
      * @Route("/new", name="professor_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_USER")
      */
     public function new(Request $request): Response
     {
@@ -70,6 +72,7 @@ class ProfessorController extends AbstractController
 
     /**
      * @Route("/{slug}/edit", name="professor_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_USER")
      */
     public function edit(Request $request, Professor $professor): Response
     {
@@ -88,6 +91,7 @@ class ProfessorController extends AbstractController
 
     /**
      * @Route("/{slug}", name="professor_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_USER")
      */
     public function delete(Request $request, Professor $professor): Response
     {

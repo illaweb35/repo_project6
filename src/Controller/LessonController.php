@@ -8,6 +8,7 @@ use App\Service\Pagination;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
@@ -31,6 +32,7 @@ class LessonController extends AbstractController
 
     /**
      * @Route("/new", name="lesson_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_USER")
      */
     public function new(Request $request): Response
     {
@@ -65,6 +67,7 @@ class LessonController extends AbstractController
 
     /**
      * @Route("/{slug}/edit", name="lesson_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_USER")
      */
     public function edit(Request $request, Lesson $lesson): Response
     {
@@ -86,6 +89,7 @@ class LessonController extends AbstractController
 
     /**
      * @Route("/{slug}", name="lesson_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_USER")
      */
     public function delete(Request $request, Lesson $lesson): Response
     {

@@ -8,6 +8,7 @@ use App\Repository\DanceRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 /**
@@ -27,6 +28,7 @@ class DanceController extends AbstractController
 
     /**
      * @Route("/new", name="dance_new", methods={"GET","POST"})
+     * @IsGranted("ROLE_USER")
      */
     public function new(Request $request): Response
     {
@@ -61,6 +63,7 @@ class DanceController extends AbstractController
 
     /**
      * @Route("/{slug}/edit", name="dance_edit", methods={"GET","POST"})
+     * @IsGranted("ROLE_USER")
      */
     public function edit(Request $request, Dance $dance): Response
     {
@@ -82,6 +85,7 @@ class DanceController extends AbstractController
 
     /**
      * @Route("/{slug}", name="dance_delete", methods={"DELETE"})
+     * @IsGranted("ROLE_USER")
      */
     public function delete(Request $request, Dance $dance): Response
     {

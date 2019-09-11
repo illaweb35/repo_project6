@@ -23,13 +23,9 @@ class DashboardController extends AbstractController
     /**
      * @Route("/admin", name="dashboard")
      * 
-     * 
      */
     public function index(UserRepository $users, ArticleRepository $articles, LessonRepository $lessons, ProspectRepository $prospects, MemberRepository $members)
     {
-
-
-
         return $this->render('dashboard/home/index.html.twig', [
             'users' => $users->findAll(),
             'articles' => $articles->findall(),
