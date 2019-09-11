@@ -6,12 +6,12 @@ use App\Service\Slugger;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ProspectRepository")
  * @ORM\HasLifecycleCallbacks()
- * @UniqueEntity("email")
+ * 
  */
 class Prospect
 {
