@@ -36,6 +36,7 @@ class ProspectType extends AbstractType
                 ]
             ])
             ->add('phoneNumber', TextType::class, [
+                'required' => false,
                 'attr' => [
                     'class' => 'uk-input',
                     'placeholder' => 'Votre tel'
@@ -51,6 +52,7 @@ class ProspectType extends AbstractType
                 ]
             ])
             ->add('content', TextareaType::class, [
+                'required' => false,
                 'attr' => [
                     'class' => 'uk-textarea',
                     'rows' => '5'
