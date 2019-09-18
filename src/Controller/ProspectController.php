@@ -27,7 +27,7 @@ class ProspectController extends AbstractController
     }
 
     /**
-     * @Route("/{page<\d+>?1}", name="prospect_index", methods={"GET"})
+     * @Route("/{page<\d+>?1}", name="prospect_index", methods={"GET"},)
      * @IsGranted("ROLE_USER")
      */
     public function index(Pagination $pagination, $page): Response
