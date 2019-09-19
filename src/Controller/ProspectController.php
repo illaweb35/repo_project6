@@ -63,10 +63,10 @@ class ProspectController extends AbstractController
             try {
                 $mailerService->postMail($prospect);
                 $this->addFlash('success', 'Votre demande ' . $prospect->getSubject() . 'a bien été envoyé, vous allez recevoir un email de confirmation sur ' . $prospect->getEmail());
-            } catch (\Exception $e) {
-                throw new \Exception('warning', 'Une erreur est survenue lors de l\'envoi de l\'email,merci de refaire votre demande');
+            } catch (Exception $e) {
+                throw new Exception('warning', 'Une erreur est survenue lors de l\'envoi de l\'email,merci de refaire votre demande');
             }
-            return $this->redirectToRoute('dashboard');
+            return $this->redirectToRoute('home');
         }
 
 

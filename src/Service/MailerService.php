@@ -21,7 +21,7 @@ class MailerService
             ->setTo($value->getEmail())
             ->setBody(
                 $this->twigEnv->render(
-                    'customer/_email.html.twig',
+                    'prospect/_email.html.twig',
                     [
                         'value' => $value
                     ]
