@@ -62,7 +62,7 @@ class ProspectController extends AbstractController
             $entityManager->flush();
             try {
                 $mailerService->postMail($prospect);
-                $this->addFlash('success', 'Votre demande ' . $prospect->getSubject() . 'a bien été envoyé, vous allez recevoir un email de confirmation sur ' . $prospect->getEmail());
+                $this->addFlash('success', 'Votre demande ' . $prospect->getSubject() . ' a bien été envoyé, vous allez recevoir un email de confirmation sur ' . $prospect->getEmail());
             } catch (Exception $e) {
                 throw new Exception('warning', 'Une erreur est survenue lors de l\'envoi de l\'email,merci de refaire votre demande');
             }
