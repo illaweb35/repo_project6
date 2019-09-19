@@ -52,8 +52,10 @@
         {{ include('_partials/_navbar.html.twig')}}
         {% for label, messages in app.flashes %}
             {% for message in messages %}
-                <div class=" uk-alert-{{label}} uk-alert flash-{{ label }}">
+                <div class=" uk-alert-{{label}}  flash-{{ label }}" uk-alert="animation: uk-animation-scale-up;duration: 1000">
+                    <a class="uk-alert-close uk-icon uk-close " href="#" uk-close=""></a>
                     {{ message }}
+
                 </div>
             {% endfor %}
         {% endfor %}
