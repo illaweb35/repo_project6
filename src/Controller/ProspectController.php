@@ -4,15 +4,15 @@ namespace App\Controller;
 
 use App\Entity\Prospect;
 use App\Form\ProspectType;
-use App\Service\Pagination;
-use App\Service\MailerService;
 use App\Repository\ProspectRepository;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use App\Service\MailerService;
+use App\Service\Pagination;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
+use Symfony\Component\Routing\Annotation\Route;
 
 /**
  * @Route("/prospect")
@@ -68,8 +68,6 @@ class ProspectController extends AbstractController
             }
             return $this->redirectToRoute('home');
         }
-
-
         return $this->render('prospect/new.html.twig', [
             'prospect' => $prospect,
             'form' => $form->createView(),

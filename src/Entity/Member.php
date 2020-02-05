@@ -176,7 +176,7 @@ class Member
     private $imageCaption;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer",nullable=true)
      */
     private $older;
 
@@ -496,6 +496,7 @@ class Member
         if (empty($this->older)) {
             $calculOlder = new OlderCalculator();
             $this->older = $calculOlder->older($this->birthDay);
+            return $this->older;
         }
     }
 

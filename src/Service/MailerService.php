@@ -15,7 +15,7 @@ class MailerService
 
     public function postMail($value)
     {
-        dump($value);
+        
         $message = (new \Swift_Message('Votre demande ' . $value->getSubject()))
             ->setFrom('infos@danseAttitude.fr')
             ->setTo($value->getEmail())
