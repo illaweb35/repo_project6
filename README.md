@@ -2,7 +2,7 @@
 
 ## Site Danse Attitude
 
-Framework PHP : Symfony 4.3
+Framework PHP : Symfony 4.4
 
 Framework CSS : UIkit 3.0
 
